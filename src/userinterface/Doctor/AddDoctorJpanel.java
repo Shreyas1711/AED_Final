@@ -112,7 +112,7 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
        
         }else{
              System.out.println("Already exists");
-             System.out.println(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList().size());
+            // System.out.println(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList().size());
 //            DoctorDirectory doctordirectory =new DoctorDirectory();
 //            Doctor doctor = new Doctor();
 //            ArrayList<Doctor> doclist = new ArrayList<>();

@@ -51,7 +51,7 @@ public class EnterpriseDirectory {
             enterpriseList.add(enterprise);
         }
         else if(type==Enterprise.EnterpriseType.Lab){
-            enterprise=new HospitalEnterprise(name);
+            enterprise=new LabEnterprise(name);
             enterprise.setEnterpriseType(type);
             enterpriseList.add(enterprise);
         }

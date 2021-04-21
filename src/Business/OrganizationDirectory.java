@@ -13,7 +13,6 @@ import Business.Organization.Type;
 import Business.Patient.Patient;
 import Business.HospitalAdmin.Hospital;
 import Business.InsuraceAdmin.InsuranceeAdmin;
-import Business.LabAdmin.LabbAdmin;
 import Business.Patient.PatientDirectory;
 import Business.Pharmacist.PharamacyAdmin;
 import Business.VoluntaryAdmin.VoluntaryyAdmin;
@@ -86,8 +85,9 @@ DoctorDirectory doctorDirectory;
         if (type.getValue().equals(Type.Doctor.getValue())){
             organization = new Doctor();
             organization.setName(name);
-            if(getDoctorDirectory()==null){
-                DoctorDirectory doctordirectory =new DoctorDirectory();
+            organization.setEnterpriseType1(type);
+             if(getDoctorDirectory()==null){
+             DoctorDirectory doctordirectory =new DoctorDirectory();
             Doctor doctor = new Doctor();
             ArrayList<Doctor> doclist = new ArrayList<>();
             doctor.setName(name);
@@ -98,8 +98,6 @@ DoctorDirectory doctorDirectory;
             }else{
                 getDoctorDirectory().createDoctor(name, random);
             }
-            
-            organization.setEnterpriseType1(type);
             organizationList.add(organization);
             
         }
@@ -129,13 +127,13 @@ DoctorDirectory doctorDirectory;
             organizationList.add(organization);
         }
         else if (type.getValue().equals(Type.LabAdmin.getValue())){
-            organization = new LabbAdmin();
+            organization = new DeliveryMan();
              organization.setName(name);
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
         }
          else if (type.getValue().equals(Type.SupportAdmin.getValue())){
-            organization = new LabbAdmin();
+            organization = new DeliveryMan();
              organization.setName(name);
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
@@ -146,7 +144,7 @@ DoctorDirectory doctorDirectory;
             organizationList.add(organization);
         }
          else if (type.getValue().equals(Type.EmergencyAdmin.getValue())){
-            organization = new LabbAdmin();
+            organization = new DeliveryMan();
              organization.setName(name);
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
