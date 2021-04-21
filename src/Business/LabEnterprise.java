@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.LabAdmin;
+package Business;
 
-import Business.Organization;
 import Business.Role.LabAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
@@ -14,15 +13,10 @@ import java.util.ArrayList;
  *
  * @author shreyascr
  */
-public class LabbAdmin extends Organization{
-    String name;
+public class LabEnterprise extends Enterprise {
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+     public LabEnterprise(String name) {
+         super(name,EnterpriseType.Lab);
     }
 
     @Override
@@ -31,4 +25,7 @@ public class LabbAdmin extends Organization{
         roles.add(new LabAdminRole());
         return roles;
     }
+
+   
+    
 }
