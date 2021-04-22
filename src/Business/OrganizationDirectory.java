@@ -92,29 +92,29 @@ DoctorDirectory doctorDirectory;
          }
          return null;
      }
-      public Organization createPharmacyOrganization(String name,Type type){
-            Organization organization = null;
-           if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
-            organization = new PharamacyAdmin();
-             organization.setName(name);
-             organization.setEnterpriseType1(type);
-             if(getPharmacyAdminDirectory()==null){
-             PharamacyAdminDirectory pharmacydirectory =new PharamacyAdminDirectory();
-            PharamacyAdmin pharmacy = new PharamacyAdmin();
-            ArrayList<PharamacyAdmin> pharlist = new ArrayList<>();
-            pharmacy.setName(name);
-            //pharmacy.getPharDir().setCatalog(cataloglist);
-            //pharmacy.setSpecialization(random);
-            pharlist.add(pharmacy);
-            pharmacydirectory.setPharmacyList(pharlist);
-            setPharmacyAdminDirectory(pharmacydirectory);
-            }else{
-                getPharmacyAdminDirectory().createPharmacy(name);
-            }
-            organizationList.add(organization);
-        }
-           return organization;
-      }
+//      public Organization createPharmacyOrganization(String name,Type type){
+//            Organization organization = null;
+//           if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
+//            organization = new PharamacyAdmin();
+//             organization.setName(name);
+//             organization.setEnterpriseType1(type);
+//             if(getPharmacyAdminDirectory()==null){
+//             PharamacyAdminDirectory pharmacydirectory =new PharamacyAdminDirectory();
+//            PharamacyAdmin pharmacy = new PharamacyAdmin();
+//            ArrayList<PharamacyAdmin> pharlist = new ArrayList<>();
+//            pharmacy.setName(name);
+//            //pharmacy.getPharDir().setCatalog(cataloglist);
+//            //pharmacy.setSpecialization(random);
+//            pharlist.add(pharmacy);
+//            pharmacydirectory.setPharmacyList(pharlist);
+//            setPharmacyAdminDirectory(pharmacydirectory);
+//            }else{
+//                getPharmacyAdminDirectory().createPharmacy(name);
+//            }
+//            organizationList.add(organization);
+//        }
+//           return organization;
+//      }
     public Organization createOrganization(String name,Type type,String random){
         Organization organization = null;
         if (type.getValue().equals(Type.Doctor.getValue())){
@@ -171,6 +171,23 @@ DoctorDirectory doctorDirectory;
          else if (type.getValue().equals(Type.VoluntaryAdmin.getValue())){
             organization = new VoluntaryyAdmin();
             organization.setEnterpriseType1(type);
+            organizationList.add(organization);
+        }
+            else if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
+            organization = new VoluntaryyAdmin();
+            organization.setEnterpriseType1(type);
+            if(getPharmacyAdminDirectory()==null){
+            PharamacyAdminDirectory pharmacydirectory =new PharamacyAdminDirectory();
+            PharamacyAdmin pharmacy = new PharamacyAdmin();
+            ArrayList<PharamacyAdmin> pharlist = new ArrayList<>();
+            pharmacy.setName(name);
+            //doctor.setSpecialization(random);
+            pharlist.add(pharmacy);
+            pharmacydirectory.setPharmacyList(pharlist);
+            setPharmacyAdminDirectory(pharmacydirectory);
+            }else{
+                getPharmacyAdminDirectory().createPharmacy(name);
+            }
             organizationList.add(organization);
         }
          else if (type.getValue().equals(Type.EmergencyAdmin.getValue())){

@@ -227,8 +227,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton8)
                                     .addComponent(jButton7))
-                                .addGap(0, 52, Short.MAX_VALUE)))))
-                .addGap(199, 199, 199))
+                                .addGap(0, 154, Short.MAX_VALUE)))))
+                .addGap(191, 191, 191))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,10 +297,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnPharmacyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPharmacyActionPerformed
         // TODO add your handling code here:
-        AddPharmacy AddPharmacyJPanel = new AddPharmacy(userProcessContainer, system);
-        userProcessContainer.add("CreateHospital", AddPharmacyJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+//        AddPharmacy AddPharmacyJPanel = new AddPharmacy(userProcessContainer, system);
+//        userProcessContainer.add("CreateHospital", AddPharmacyJPanel);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnPharmacyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

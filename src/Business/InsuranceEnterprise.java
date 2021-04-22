@@ -5,10 +5,25 @@
  */
 package Business;
 
+import Business.Role.InsuranceAdminRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Apoorva
  */
-public class InsuranceEnterprise {
+public class InsuranceEnterprise extends Enterprise {
+
+    public InsuranceEnterprise(String name) {
+                 super(name,EnterpriseType.Insurance);
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+                ArrayList<Role> roles = new ArrayList();
+        roles.add(new InsuranceAdminRole());
+        return roles; //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

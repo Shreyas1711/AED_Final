@@ -6,6 +6,8 @@
 package userinterface.PharamacyAdmin;
 
 import Business.EcoSystem;
+import Business.Enterprise;
+import Business.Organization;
 import Business.Patient.Patient;
 import Business.Pharmacist.PharamacyAdmin;
 import Business.PharmacyCatalog.PharmacyCatalog;
@@ -38,11 +40,12 @@ public class addMedicineJpanel extends javax.swing.JPanel {
     Patient pat;
     PharamacyAdmin pharm;
     String pharname;
-    public addMedicineJpanel(JPanel userProcessContainer,EcoSystem system,String pharname) {
+    public addMedicineJpanel(JPanel userProcessContainer,EcoSystem system,String pharname,UserAccount user) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.system=system;
         this.pharname = pharname;
+        this.user = user;
         System.out.println("user"+pharname);
         //this.pharm = pharm;
     }
@@ -58,13 +61,13 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         
         
         // Restaurant ro1 = system.getRestaurantDirectory().findRestaurant(resName);
-        PharamacyAdmin phar = system.findNetwork(pharname).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname);
-            System.out.println("Username"+system.findNetwork(pharname).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname));
+        PharamacyAdmin phar = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname);
+            System.out.println("Username"+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname));
             //PharmacyDirectory pd = system.getPharmacyDirectory().getCatalog();
            // ArrayList<PharmacyCatalog> pd = system.getPharmacyDirectory().getCatalog();
                    if(phar.getPharDir()!=null){
            for(PharmacyCatalog m : phar.getPharDir().getCatalog()  ) {
-               System.out.println(system.findNetwork(pharname).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().getPharmacyList().size());
+               System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().getPharmacyList().size());
                 Object row[] = new Object[3];
                 row[0] = m.getItemName();
                 row[1] = m.getItemPrice();
@@ -180,12 +183,16 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         String menuIt = medNameTxt.getText();
         Double ip = Double.valueOf(medPriceTxt.getText());
         PharmacyCatalog m = new PharmacyCatalog();
+        System.out.println("Test "+user.getEmployee().getCity());
+        System.out.println(pharname);
+       System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()));     
+       //System.out.println();
         PharamacyAdmin pha = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname);
         
         m.setItemName(menuIt);
         m.setItemPrice(ip);
             
-            if(pha.getPharDir() != null){
+            if( pha.getPharDir()!= null){
             //PharmacyDirectory d = new PharmacyCatalogDirectory();
             PharmacyCatalogDirectory pd = pha.getPharDir();
             ArrayList<PharmacyCatalog> am  = pha.getPharDir().getCatalog();
