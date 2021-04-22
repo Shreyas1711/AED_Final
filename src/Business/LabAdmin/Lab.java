@@ -94,5 +94,10 @@ public class Lab extends Organization {
     }
     
     
+    public Lab(){
+        testlist = new TestDirectory();
+    
+    }
+    
  
 }
