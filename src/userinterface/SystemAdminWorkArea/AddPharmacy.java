@@ -12,10 +12,12 @@ import Business.HospitalAdmin.Hospital;
 import Business.Organization;
 import Business.Role.DoctorRole;
 import Business.Role.HospitalAdminRole;
+import Business.Role.LabAdminRole;
 import Business.Role.PharamacyAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -121,12 +123,19 @@ public class AddPharmacy extends javax.swing.JPanel {
         Employee emp = system.getEmployeeDirectory().createEmployee(name);
         emp.setCity(city);
         UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new PharamacyAdminRole());
-        if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ||system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().findOrganization(name)==null){
-         system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createPharmacyOrganization(name, Organization.Type.PharamacyAdmin);
-       
-        }else{
-             System.out.println("Already exists");
+        if(system.getNetworkList()==null || system.findNetwork(city)==null){
+            system.createNetwork(city);
+             System.out.println("cities"+system.findNetwork(city));
         }
+      
+        if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
+        system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Pharmacy );
+        system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.PharamacyAdmin, "Test");
+        }else{
+            System.out.println("already there");
+        }
+        
+        JOptionPane.showMessageDialog(this," Pharmacy created");
     }//GEN-LAST:event_addHospitalActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

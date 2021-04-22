@@ -112,7 +112,7 @@ public class PharamacyAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-                        addMedicineJpanel addMed = new addMedicineJpanel(userProcessContainer, system,pharName);
+                        addMedicineJpanel addMed = new addMedicineJpanel(userProcessContainer, system,pharName,user);
         userProcessContainer.add("CreateHospital", addMed);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
