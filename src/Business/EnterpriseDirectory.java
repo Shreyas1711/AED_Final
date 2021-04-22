@@ -46,7 +46,7 @@ public class EnterpriseDirectory {
             enterpriseList.add(enterprise);
         }
         else if(type==Enterprise.EnterpriseType.Pharmacy){
-            enterprise=new HospitalEnterprise(name);
+            enterprise=new PharmacyEnterprise(name);
             enterprise.setEnterpriseType(type);
             enterpriseList.add(enterprise);
         }
@@ -56,7 +56,7 @@ public class EnterpriseDirectory {
             enterpriseList.add(enterprise);
         }
         else if(type==Enterprise.EnterpriseType.Delivery){
-            enterprise=new HospitalEnterprise(name);
+            enterprise=new DeliveryEnterprise(name);
             enterprise.setEnterpriseType(type);
             enterpriseList.add(enterprise);
         }

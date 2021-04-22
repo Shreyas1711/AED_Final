@@ -10,7 +10,9 @@ import Business.Employee.Employee;
 import Business.Enterprise;
 import Business.HospitalAdmin.Hospital;
 import Business.Organization;
+import Business.Role.DoctorRole;
 import Business.Role.HospitalAdminRole;
+import Business.Role.PharamacyAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -20,14 +22,15 @@ import javax.swing.JPanel;
  *
  * @author shreyascr
  */
-public class AddHospital extends javax.swing.JPanel {
+public class AddPharmacy extends javax.swing.JPanel {
 
     /**
      * Creates new form AddHospital
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
-    public AddHospital(JPanel userProcessContainer,EcoSystem system) {
+    UserAccount user;
+    public AddPharmacy(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
         this.system=system;
@@ -58,7 +61,7 @@ public class AddHospital extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Hospial Name");
+        jLabel2.setText("Pharmacy Name");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
         jLabel3.setText("Address");
@@ -74,7 +77,7 @@ public class AddHospital extends javax.swing.JPanel {
         add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 164, -1));
         add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 164, -1));
 
-        addHospital.setText("Add Hospital");
+        addHospital.setText("Add Pharmacy");
         addHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addHospitalActionPerformed(evt);
@@ -90,7 +93,7 @@ public class AddHospital extends javax.swing.JPanel {
         });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 37, -1, -1));
 
-        jLabel1.setText("Add Hospital");
+        jLabel1.setText("Add Pharmacy");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 37, 155, 37));
 
         jLabel6.setText("City Name");
@@ -114,20 +117,15 @@ public class AddHospital extends javax.swing.JPanel {
         Object selectedItem = jComboBox1.getSelectedItem();
 
         String city = selectedItem.toString();
-         //  System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().createOrganization(Organization.Type.HospitalAdmin));
+        //String city = "Boston";
         Employee emp = system.getEmployeeDirectory().createEmployee(name);
         emp.setCity(city);
-        UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new HospitalAdminRole());
-        if(system.getNetworkList()==null || system.findNetwork(city)==null){
-            system.createNetwork(city);
-             System.out.println("cities"+system.findNetwork(city));
-             
-        }
-      
-        if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
-        system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Hospital );
+        UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new PharamacyAdminRole());
+        if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ||system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().findOrganization(name)==null){
+         system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createPharmacyOrganization(name, Organization.Type.PharamacyAdmin);
+       
         }else{
-            System.out.println("already there");
+             System.out.println("Already exists");
         }
     }//GEN-LAST:event_addHospitalActionPerformed
 

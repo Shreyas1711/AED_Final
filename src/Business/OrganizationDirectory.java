@@ -15,6 +15,9 @@ import Business.HospitalAdmin.Hospital;
 import Business.InsuraceAdmin.InsuranceeAdmin;
 import Business.Patient.PatientDirectory;
 import Business.Pharmacist.PharamacyAdmin;
+import Business.Pharmacist.PharamacyAdminDirectory;
+import Business.PharmacyCatalog.PharmacyCatalog;
+import Business.PharmacyCatalog.PharmacyCatalogDirectory;
 import Business.VoluntaryAdmin.VoluntaryyAdmin;
 import java.util.ArrayList;
 
@@ -26,7 +29,16 @@ public class OrganizationDirectory {
      private ArrayList<Organization> organizationList;
 DoctorDirectory doctorDirectory;
     PatientDirectory patientDirectory;
+
+    public PharamacyAdminDirectory getPharmacyAdminDirectory() {
+        return pharmacyAdminDirectory;
+    }
+
+    public void setPharmacyAdminDirectory(PharamacyAdminDirectory pharmacyAdminDirectory) {
+        this.pharmacyAdminDirectory = pharmacyAdminDirectory;
+    }
     DeliveryManDirectory deliveryManDirectory;
+    PharamacyAdminDirectory pharmacyAdminDirectory;
     EcoSystem system;
 
     public DoctorDirectory getDoctorDirectory() {
@@ -80,6 +92,29 @@ DoctorDirectory doctorDirectory;
          }
          return null;
      }
+      public Organization createPharmacyOrganization(String name,Type type){
+            Organization organization = null;
+           if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
+            organization = new PharamacyAdmin();
+             organization.setName(name);
+             organization.setEnterpriseType1(type);
+             if(getPharmacyAdminDirectory()==null){
+             PharamacyAdminDirectory pharmacydirectory =new PharamacyAdminDirectory();
+            PharamacyAdmin pharmacy = new PharamacyAdmin();
+            ArrayList<PharamacyAdmin> pharlist = new ArrayList<>();
+            pharmacy.setName(name);
+            //pharmacy.getPharDir().setCatalog(cataloglist);
+            //pharmacy.setSpecialization(random);
+            pharlist.add(pharmacy);
+            pharmacydirectory.setPharmacyList(pharlist);
+            setPharmacyAdminDirectory(pharmacydirectory);
+            }else{
+                getPharmacyAdminDirectory().createPharmacy(name);
+            }
+            organizationList.add(organization);
+        }
+           return organization;
+      }
     public Organization createOrganization(String name,Type type,String random){
         Organization organization = null;
         if (type.getValue().equals(Type.Doctor.getValue())){
@@ -114,12 +149,7 @@ DoctorDirectory doctorDirectory;
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
         }
-        else if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
-            organization = new PharamacyAdmin();
-             organization.setName(name);
-             organization.setEnterpriseType1(type);
-            organizationList.add(organization);
-        }
+        
         else if (type.getValue().equals(Type.InsuranceAdmin.getValue())){
             organization = new InsuranceeAdmin();
              organization.setName(name);

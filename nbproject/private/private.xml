@@ -2,6 +2,30 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/PharamacyAdmin/PharamacyAdminJPanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/Doctor/AddDoctorJpanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/PharmacyCatalog/PharmacyCatalog.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/SystemAdminWorkArea/AddPharmacy.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/HospitalEnterprise.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/WorkQueue/PlaceNewOrderWorkRequest.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/HospitalAdminRole/AddPatientJPanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/DeliveryEnterprise.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/OrganizationDirectory.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/SystemAdminWorkArea/AddHospital.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/PharamacyAdmin/addMedicineJpanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/Doctor/DoctorAdminJPanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/PharmacyCatalog/PharmacyCatalogDirectory.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/Enterprise.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/PharmacyEnterprise.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/Pharmacist/PharamacyAdminDirectory.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/HospitalAdminRole/AdminWorkAreaJPanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/Organization.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/HospitalAdmin/Hospital.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/EnterpriseDirectory.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/Pharmacist/PharamacyAdmin.java</file>
+            <file>file:/D:/Information%20system/AED/Final%20Project%20AED/AED_Final/src/Business/Doctor/Doctor.java</file>
+        </group>
     </open-files>
 </project-private>
