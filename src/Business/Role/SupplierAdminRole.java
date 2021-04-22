@@ -14,7 +14,7 @@ import userinterface.VoluntaryAdmin.VoluntaryJPanel;
  *
  * @author shreyascr
  */
-public class VoluntaryAdminRole extends Role{
+public class SupplierAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {

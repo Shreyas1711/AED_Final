@@ -7,7 +7,7 @@ package Business.VoluntaryAdmin;
 
 import Business.Organization;
 import Business.Role.Role;
-import Business.Role.VoluntaryAdminRole;
+import Business.Role.SupplierAdminRole;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +28,7 @@ public class VoluntaryyAdmin extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new VoluntaryAdminRole());
+        roles.add(new SupplierAdminRole());
         return roles;
     }
 }
