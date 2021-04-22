@@ -8,6 +8,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise;
+import Business.Organization;
 import Business.Role.LabAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -182,6 +183,7 @@ public class AddLabJPanel extends javax.swing.JPanel {
       
         if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
         system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Lab );
+        system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.LabAdmin, "Test");
         }else{
             System.out.println("already there");
         }

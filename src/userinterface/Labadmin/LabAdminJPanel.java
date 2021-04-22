@@ -5,6 +5,9 @@
  */
 package userinterface.Labadmin;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -16,10 +19,15 @@ public class LabAdminJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LabAdmin
      */
+    
     JPanel userProcessContainer;
-    public LabAdminJPanel(JPanel userProcessContainer) {
+    EcoSystem system;
+    private  UserAccount user;
+    public LabAdminJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount user) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+                this.userProcessContainer = userProcessContainer;
+        this.user= user;
+        this.system=system;
     }
 
     /**
@@ -37,6 +45,7 @@ public class LabAdminJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -50,7 +59,7 @@ public class LabAdminJPanel extends javax.swing.JPanel {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 180, -1));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 180, -1));
 
         manageEmployeeJButton.setText("Manage Lab");
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +67,7 @@ public class LabAdminJPanel extends javax.swing.JPanel {
                 manageEmployeeJButtonActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 150, -1));
+        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 150, -1));
 
         manageOrganizationJButton.setText("Manage Tests");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +83,14 @@ public class LabAdminJPanel extends javax.swing.JPanel {
 
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+
+        jButton1.setText("View Tests");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -87,11 +104,24 @@ public class LabAdminJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
 
+       AddTestJPanel addTest = new AddTestJPanel(userProcessContainer, system,user);
+        userProcessContainer.add("AddTest", addTest);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ViewUpdateDeleteTestJPanel addTest = new ViewUpdateDeleteTestJPanel(userProcessContainer,user,system);
+        userProcessContainer.add("AddTest", addTest);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;

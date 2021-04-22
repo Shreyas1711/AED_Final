@@ -18,7 +18,7 @@ public class LabAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-         return new LabAdminJPanel(userProcessContainer);
+         return new LabAdminJPanel(userProcessContainer, business, account);
     }
     
 }

@@ -25,4 +25,15 @@ public class TestDirectory {
     public void addTest(Test t) {
         testList.add(t);
     }
+    
+     public Test findTest(String name){
+        
+         
+         for(Test t : testList){
+             if(t.getName().equals(name)){
+                 return t;
+             }
+         }
+         return null;
+     }
 }

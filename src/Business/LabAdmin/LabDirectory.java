@@ -22,13 +22,13 @@ public class LabDirectory {
         this.labList = labList;
     }
     
-        public Lab createLab(String name, String address, String phone){
+        public Lab createLab(String name){
         
-        Lab lab = new Lab(name);
-        lab.setAddress(address);
-        lab.setPhoneNumber(phone);
-        
-        
+        Lab lab = new Lab();
+        lab.setName(name);
+//        lab.setAddress(address);
+//        lab.setPhoneNumber(phone);
+       // phar.setPharlocation(location);
         labList.add(lab);
         return lab;
     
