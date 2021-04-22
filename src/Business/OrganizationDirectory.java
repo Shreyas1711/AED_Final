@@ -13,6 +13,9 @@ import Business.Organization.Type;
 import Business.Patient.Patient;
 import Business.HospitalAdmin.Hospital;
 import Business.InsuraceAdmin.InsuranceeAdmin;
+import Business.LabAdmin.Lab;
+import Business.LabAdmin.LabDirectory;
+import Business.LabAdmin.Test;
 import Business.Patient.PatientDirectory;
 import Business.Pharmacist.PharamacyAdmin;
 import Business.Pharmacist.PharamacyAdminDirectory;
@@ -29,6 +32,7 @@ public class OrganizationDirectory {
      private ArrayList<Organization> organizationList;
 DoctorDirectory doctorDirectory;
     PatientDirectory patientDirectory;
+    LabDirectory labDirectory;
 
     public PharamacyAdminDirectory getPharmacyAdminDirectory() {
         return pharmacyAdminDirectory;
@@ -70,6 +74,16 @@ DoctorDirectory doctorDirectory;
     public ArrayList<Organization> getOrganizationList() {
         return organizationList;
     }
+
+    public LabDirectory getLabDirectory() {
+        return labDirectory;
+    }
+
+    public void setLabDirectory(LabDirectory labDirectory) {
+        this.labDirectory = labDirectory;
+    }
+    
+    
      public Organization findOrganization(String name){
         
          
@@ -156,12 +170,12 @@ DoctorDirectory doctorDirectory;
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
         }
-        else if (type.getValue().equals(Type.LabAdmin.getValue())){
-            organization = new DeliveryMan();
-             organization.setName(name);
-             organization.setEnterpriseType1(type);
-            organizationList.add(organization);
-        }
+//        else if (type.getValue().equals(Type.LabAdmin.getValue())){
+//            organization = new DeliveryMan();
+//             organization.setName(name);
+//             organization.setEnterpriseType1(type);
+//            organizationList.add(organization);
+//        }
          else if (type.getValue().equals(Type.SupportAdmin.getValue())){
             organization = new DeliveryMan();
              organization.setName(name);
@@ -195,6 +209,25 @@ DoctorDirectory doctorDirectory;
              organization.setName(name);
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
+        }
+         else if (type.getValue().equals(Type.LabAdmin.getValue())){
+            organization = new Lab();
+            organization.setName(name);
+            organization.setEnterpriseType1(type);
+             if(getLabDirectory()==null){
+             LabDirectory labDirectory =new LabDirectory();
+             Lab lab = new Lab();
+            ArrayList<Lab> labList = new ArrayList<>();
+            lab.setName(name);
+            //doctor.setSpecialization(random);
+            labList.add(lab);
+            labDirectory.setLabList(labList);
+            setLabDirectory(labDirectory);
+            }else{
+                getLabDirectory().createLab(name);
+            }
+            organizationList.add(organization);
+            
         }
         return organization;
     }
