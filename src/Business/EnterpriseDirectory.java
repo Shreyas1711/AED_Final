@@ -61,12 +61,18 @@ public class EnterpriseDirectory {
             enterpriseList.add(enterprise);
         }
         else if(type==Enterprise.EnterpriseType.Insurance){
-            enterprise=new HospitalEnterprise(name);
+            enterprise=new InsuranceEnterprise(name);
             enterprise.setEnterpriseType(type);
             enterpriseList.add(enterprise);
         }
         else if(type==Enterprise.EnterpriseType.Emergency){
-            enterprise=new HospitalEnterprise(name);
+            enterprise=new EmergencyEnterprise(name);
+            enterprise.setEnterpriseType(type);
+            enterpriseList.add(enterprise);
+        }
+        
+        else if(type==Enterprise.EnterpriseType.Supplier){
+            enterprise=new SupplierEnterprise(name);
             enterprise.setEnterpriseType(type);
             enterpriseList.add(enterprise);
         }
