@@ -6,7 +6,9 @@
 package Business.Pharmacist;
 
 import Business.Organization;
+import Business.PharmacyCatalog.PharmacyCatalogDirectory;
 import Business.Role.LabAdminRole;
+import Business.Role.PharamacyAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -16,6 +18,24 @@ import java.util.ArrayList;
  */
 public class PharamacyAdmin extends Organization{
     private String name;
+    private String pharlocation;
+
+    public PharmacyCatalogDirectory getPharDir() {
+        return pharDir;
+    }
+
+    public void setPharDir(PharmacyCatalogDirectory pharDir) {
+        this.pharDir = pharDir;
+    }
+    PharmacyCatalogDirectory pharDir;
+
+    public String getPharlocation() {
+        return pharlocation;
+    }
+
+    public void setPharlocation(String pharlocation) {
+        this.pharlocation = pharlocation;
+    }
 
     public String getName() {
         return name;
@@ -24,11 +44,14 @@ public class PharamacyAdmin extends Organization{
     public void setName(String name) {
         this.name = name;
     }
-
+         @Override
+    public String toString(){
+        return name;
+    }
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new LabAdminRole());
+        roles.add(new PharamacyAdminRole());
         return roles;
     }
 }

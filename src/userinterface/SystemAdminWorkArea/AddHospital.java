@@ -121,6 +121,7 @@ public class AddHospital extends javax.swing.JPanel {
         if(system.getNetworkList()==null || system.findNetwork(city)==null){
             system.createNetwork(city);
              System.out.println("cities"+system.findNetwork(city));
+             
         }
       
         if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){

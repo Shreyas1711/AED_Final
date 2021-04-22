@@ -18,7 +18,7 @@ public class PharamacyAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-         return new PharamacyAdminJPanel(userProcessContainer);
+         return new PharamacyAdminJPanel(userProcessContainer,account,business);
     }
     
 }
