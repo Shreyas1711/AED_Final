@@ -305,7 +305,7 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
                      System.out.println(lab.getUserAccountDirectory().getUserAccountList());
                      System.out.println(lab.getName());
                      System.out.println(lab.getUserAccountDirectory().findUserAccount(lab.getName()));
-        
+                if(lab.getEnterpriseType().getValue().equals("Emergency")){
             Object[] row = new Object[3];
             row[0] = lab;
             System.out.println("LISTING IT" +system.getUserAccountDirectory().getUserAccountList());
@@ -320,5 +320,6 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
             model.addRow(row);
  
         }
+    }
     }
 }

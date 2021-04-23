@@ -189,6 +189,7 @@ public class AddTestJPanel extends javax.swing.JPanel {
                 }
                 else {
                     system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getLabDirectory().findLab(userAccount.getEmployee().getName()).getTestlist().addTest(t);
+                    System.out.println("test list is here "+system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getLabDirectory().findLab(userAccount.getEmployee().getName()).getTestlist().getTestList());
                 }
 
                 

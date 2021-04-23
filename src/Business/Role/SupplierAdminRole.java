@@ -8,7 +8,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.VoluntaryAdmin.VoluntaryJPanel;
+import userinterface.SupplierAdmin.SupplierAdminJPanel;
 
 /**
  *
@@ -18,7 +18,7 @@ public class SupplierAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new VoluntaryJPanel(userProcessContainer, business,account);
+        return new SupplierAdminJPanel(userProcessContainer, business,account);
     }
     
 }

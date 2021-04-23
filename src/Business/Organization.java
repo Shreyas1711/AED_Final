@@ -75,8 +75,9 @@ public abstract class Organization {
         Doctor("Doctor"),
         SupportAdmin("SupportAdmin"),
         EmergencyAdmin("EmergencyAdmin"),
-        VoluntaryAdmin("VoluntaryAdmin"),
+        SupplierAdmin("SupplierAdmin"),
         PharamacyAdmin("PharamacyAdmin");
+        
         private String value;
         private Type(String value) {
             this.value = value;
