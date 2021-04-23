@@ -309,11 +309,11 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
         System.out.println("ap here " +system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList());
 
         for(Enterprise lab: system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()){
-                     System.out.println(lab.getEnterpriseType().getValue().equals("Lab"));
+//                     System.out.println);
                      System.out.println(lab.getUserAccountDirectory().getUserAccountList());
                      System.out.println(lab.getName());
                      System.out.println(lab.getUserAccountDirectory().findUserAccount(lab.getName()));
-        
+        if(lab.getEnterpriseType().getValue().equals("Lab")){
             Object[] row = new Object[3];
             row[0] = lab;
             System.out.println("LISTING IT" +system.getUserAccountDirectory().getUserAccountList());
@@ -327,6 +327,7 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
             row[2] = ua.getPassword();
             model.addRow(row);
  
+        }
         }
     }
 }
