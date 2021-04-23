@@ -12,6 +12,7 @@ import Business.Doctor.DoctorDirectory;
 import Business.Organization.Type;
 import Business.Patient.Patient;
 import Business.HospitalAdmin.Hospital;
+import Business.InsuraceAdmin.InsuranceAdminDirectory;
 import Business.InsuraceAdmin.InsuranceeAdmin;
 import Business.LabAdmin.Lab;
 import Business.LabAdmin.LabDirectory;
@@ -33,6 +34,7 @@ public class OrganizationDirectory {
 DoctorDirectory doctorDirectory;
     PatientDirectory patientDirectory;
     LabDirectory labDirectory;
+    InsuranceAdminDirectory insuranceAdminDirectory;
 
     public PharamacyAdminDirectory getPharmacyAdminDirectory() {
         return pharmacyAdminDirectory;
@@ -66,6 +68,14 @@ DoctorDirectory doctorDirectory;
 
     public void setDeliveryManDirectory(DeliveryManDirectory deliveryManDirectory) {
         this.deliveryManDirectory = deliveryManDirectory;
+    }
+
+    public InsuranceAdminDirectory getInsuranceAdminDirectory() {
+        return insuranceAdminDirectory;
+    }
+
+    public void setInsuranceAdminDirectory(InsuranceAdminDirectory insuranceAdminDirectory) {
+        this.insuranceAdminDirectory = insuranceAdminDirectory;
     }
     public OrganizationDirectory() {
         organizationList = new ArrayList();
@@ -168,6 +178,18 @@ DoctorDirectory doctorDirectory;
             organization = new InsuranceeAdmin();
              organization.setName(name);
              organization.setEnterpriseType1(type);
+             if(getInsuranceAdminDirectory()==null){
+            InsuranceAdminDirectory insdirectory =new InsuranceAdminDirectory();
+            InsuranceeAdmin pharmacy = new InsuranceeAdmin();
+            ArrayList<InsuranceeAdmin> inslist = new ArrayList<>();
+            pharmacy.setName(name);
+            //doctor.setSpecialization(random);
+            inslist.add(pharmacy);
+            insdirectory.setInsuranceList(inslist);
+            setInsuranceAdminDirectory(insdirectory);
+            }else{
+                getInsuranceAdminDirectory().createInsuranceeAdmin(name);
+            }
             organizationList.add(organization);
         }
 //        else if (type.getValue().equals(Type.LabAdmin.getValue())){

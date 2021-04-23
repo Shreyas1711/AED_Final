@@ -18,7 +18,16 @@ public class Employee {
     public String getCity() {
         return city;
     }
+private boolean hasInsurance;
+   
 
+    public boolean isHasInsurance() {
+        return hasInsurance;
+    }
+
+    public void setHasInsurance(boolean hasInsurance) {
+        this.hasInsurance = hasInsurance;
+    }
     public void setCity(String city) {
         this.city = city;
     }

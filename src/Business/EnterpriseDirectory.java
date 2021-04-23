@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Organization.Type;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,16 @@ public class EnterpriseDirectory {
          
          for(Enterprise net : enterpriseList){
              if(net.getName().equals(name)){
+                 return net;
+             }
+         }
+         return null;
+     }
+      public Enterprise findEnterpriseType(String type){
+        
+         
+         for(Enterprise net : enterpriseList){
+             if(net.getEnterpriseType().getValue().equals(type)){
                  return net;
              }
          }
