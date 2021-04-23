@@ -67,7 +67,6 @@ public class PharamacyAdminJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        userJButton = new javax.swing.JButton();
         manageEmployeeJButton = new javax.swing.JButton();
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
@@ -78,14 +77,6 @@ public class PharamacyAdminJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("My Work Area -Adminstrative Role");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
-
-        userJButton.setText("Manage Pharmacy");
-        userJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userJButtonActionPerformed(evt);
-            }
-        });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 180, -1));
 
         manageEmployeeJButton.setText("Add new medications");
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,10 +109,6 @@ public class PharamacyAdminJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
 
-    private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userJButtonActionPerformed
-
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
         manageOrderJpanel orderMan = new manageOrderJpanel(userProcessContainer, system, user,pharName, patName);
         userProcessContainer.add("CreateHospital", orderMan);
@@ -135,7 +122,6 @@ public class PharamacyAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }
