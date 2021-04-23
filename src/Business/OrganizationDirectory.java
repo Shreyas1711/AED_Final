@@ -161,6 +161,18 @@ DoctorDirectory doctorDirectory;
             organization = new DeliveryMan();
              organization.setName(name);
              organization.setEnterpriseType1(type);
+            if(getDeliveryManDirectory()==null){
+            DeliveryManDirectory deliverydirectory =new DeliveryManDirectory();
+            DeliveryMan delivery = new DeliveryMan();
+            ArrayList<DeliveryMan> dellist = new ArrayList<>();
+            delivery.setDeliveryManName(name);
+            //doctor.setSpecialization(random);
+            dellist.add(delivery);
+            deliverydirectory.setDeliveryList(dellist);
+            setDeliveryManDirectory(deliverydirectory);
+            }else{
+                getDeliveryManDirectory().createDeliveryMan(name);
+            }
             organizationList.add(organization);
         }
         

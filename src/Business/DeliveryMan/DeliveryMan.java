@@ -7,6 +7,7 @@ package Business.DeliveryMan;
 
 import Business.Organization;
 import Business.Role.DeliverManRole;
+import Business.Role.PharamacyAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -15,14 +16,23 @@ import java.util.ArrayList;
  * @author harold
  */
 public class DeliveryMan extends Organization{
-    private String name;
+       String deliveryManName;
+    
 
-    public String getName() {
-        return name;
+    public String getDeliveryManName() {
+        return deliveryManName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    
+    public void setDeliveryManName(String deliveryManName) {
+        this.deliveryManName = deliveryManName;
+    }
+
+
+    
+    @Override
+    public String toString(){
+        return deliveryManName;
     }
 
     @Override
