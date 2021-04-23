@@ -169,7 +169,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton3"/>
+        <Property name="text" type="java.lang.String" value="Support"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
@@ -180,6 +180,18 @@
         </Constraint>
       </Constraints>
     </Component>
+<<<<<<< HEAD
+    <Component class="javax.swing.JButton" name="InsuranceJButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insurance"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsuranceJButtonActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="370" y="300" width="-1" height="-1"/>
+=======
     <Component class="javax.swing.JButton" name="OrderBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Order"/>
@@ -229,6 +241,7 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="390" y="330" width="80" height="-1"/>
+>>>>>>> 379db28daa4bd0d75e4024761c292f9ba60fb3c0
         </Constraint>
       </Constraints>
     </Component>
