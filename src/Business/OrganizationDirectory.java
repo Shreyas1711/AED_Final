@@ -9,6 +9,8 @@ import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Doctor.Doctor;
 import Business.Doctor.DoctorDirectory;
+import Business.EmergencyAdmin.Emergency;
+import Business.EmergencyAdmin.EmergencyDirectory;
 import Business.Organization.Type;
 import Business.Patient.Patient;
 import Business.HospitalAdmin.Hospital;
@@ -21,6 +23,8 @@ import Business.Pharmacist.PharamacyAdmin;
 import Business.Pharmacist.PharamacyAdminDirectory;
 import Business.PharmacyCatalog.PharmacyCatalog;
 import Business.PharmacyCatalog.PharmacyCatalogDirectory;
+import Business.SupplierAdmin.Supplier;
+import Business.SupplierAdmin.SupplierDirectory;
 import Business.VoluntaryAdmin.VoluntaryyAdmin;
 import java.util.ArrayList;
 
@@ -33,6 +37,8 @@ public class OrganizationDirectory {
 DoctorDirectory doctorDirectory;
     PatientDirectory patientDirectory;
     LabDirectory labDirectory;
+    EmergencyDirectory emergencyDirectory;
+    SupplierDirectory supplierDirectory;
 
     public PharamacyAdminDirectory getPharmacyAdminDirectory() {
         return pharmacyAdminDirectory;
@@ -82,6 +88,25 @@ DoctorDirectory doctorDirectory;
     public void setLabDirectory(LabDirectory labDirectory) {
         this.labDirectory = labDirectory;
     }
+
+    public EmergencyDirectory getEmergencyDirectory() {
+        return emergencyDirectory;
+    }
+
+    public void setEmergencyDirectory(EmergencyDirectory emergencyDirectory) {
+        this.emergencyDirectory = emergencyDirectory;
+    }
+
+    public SupplierDirectory getSupplierDirectory() {
+        return supplierDirectory;
+    }
+
+    public void setSupplierDirectory(SupplierDirectory supplierDirectory) {
+        this.supplierDirectory = supplierDirectory;
+    }
+    
+    
+    
     
     
      public Organization findOrganization(String name){
@@ -182,11 +207,11 @@ DoctorDirectory doctorDirectory;
              organization.setEnterpriseType1(type);
             organizationList.add(organization);
         }
-         else if (type.getValue().equals(Type.VoluntaryAdmin.getValue())){
-            organization = new VoluntaryyAdmin();
-            organization.setEnterpriseType1(type);
-            organizationList.add(organization);
-        }
+//         else if (type.getValue().equals(Type.VoluntaryAdmin.getValue())){
+//            organization = new VoluntaryyAdmin();
+//            organization.setEnterpriseType1(type);
+//            organizationList.add(organization);
+//        }
             else if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
             organization = new VoluntaryyAdmin();
             organization.setEnterpriseType1(type);
@@ -204,12 +229,12 @@ DoctorDirectory doctorDirectory;
             }
             organizationList.add(organization);
         }
-         else if (type.getValue().equals(Type.EmergencyAdmin.getValue())){
-            organization = new DeliveryMan();
-             organization.setName(name);
-             organization.setEnterpriseType1(type);
-            organizationList.add(organization);
-        }
+//         else if (type.getValue().equals(Type.EmergencyAdmin.getValue())){
+//            organization = new DeliveryMan();
+//             organization.setName(name);
+//             organization.setEnterpriseType1(type);
+//            organizationList.add(organization);
+//        }
          else if (type.getValue().equals(Type.LabAdmin.getValue())){
             organization = new Lab();
             organization.setName(name);
@@ -223,6 +248,44 @@ DoctorDirectory doctorDirectory;
             labList.add(lab);
             labDirectory.setLabList(labList);
             setLabDirectory(labDirectory);
+            }else{
+                getLabDirectory().createLab(name);
+            }
+            organizationList.add(organization);
+            
+        }
+            else if (type.getValue().equals(Type.SupplierAdmin.getValue())){
+            organization = new Supplier();
+            organization.setName(name);
+            organization.setEnterpriseType1(type);
+             if(getSupplierDirectory()==null){
+             SupplierDirectory supplierDirectory =new SupplierDirectory();
+             Supplier supplier = new Supplier();
+            ArrayList<Supplier> supplierList = new ArrayList<>();
+            supplier.setName(name);
+            //doctor.setSpecialization(random);
+            supplierList.add(supplier);
+            supplierDirectory.setSupplierDirectory(supplierList);
+            setSupplierDirectory(supplierDirectory);
+            }else{
+                getSupplierDirectory().createSupplier(name);
+            }
+            organizationList.add(organization);
+            
+        }
+            else if (type.getValue().equals(Type.EmergencyAdmin.getValue())){
+            organization = new Emergency();
+            organization.setName(name);
+            organization.setEnterpriseType1(type);
+             if(getEmergencyDirectory()==null){
+             EmergencyDirectory emergencyDirectory =new EmergencyDirectory();
+             Emergency emergency = new Emergency();
+            ArrayList<Emergency> emergencyList = new ArrayList<>();
+            emergency.setName(name);
+            //doctor.setSpecialization(random);
+            emergencyList.add(emergency);
+            emergencyDirectory.setEmergencyUnitDirectory(emergencyList);
+            setEmergencyDirectory(emergencyDirectory);
             }else{
                 getLabDirectory().createLab(name);
             }

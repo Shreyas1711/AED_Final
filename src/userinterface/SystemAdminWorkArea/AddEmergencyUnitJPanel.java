@@ -8,6 +8,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise;
+import Business.Organization;
 import Business.Role.EmergencyAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -191,6 +192,7 @@ public class AddEmergencyUnitJPanel extends javax.swing.JPanel {
       
         if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
         system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Emergency );
+        system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.EmergencyAdmin, "Test");
         }else{
             System.out.println("already there");
         }

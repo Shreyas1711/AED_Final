@@ -6,6 +6,7 @@ package userinterface.CustomerRole;
 
 import Business.Doctor.Doctor;
 import Business.EcoSystem;
+import Business.EmergencyAdmin.Emergency;
 import Business.Enterprise;
 import Business.HospitalAdmin.Hospital;
 import Business.Organization;
@@ -13,6 +14,7 @@ import Business.Patient.Patient;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookAppointment;
+import Business.WorkQueue.EmergencyWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -22,7 +24,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -115,6 +119,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         doctorDetails1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -189,6 +196,30 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
+
+        jButton4.setText("Book Test ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
+
+        jButton6.setText("View SOS history");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
+
+        jButton5.setText("SOS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void restListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restListActionPerformed
@@ -309,6 +340,53 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jsupport.setVisible(true);
         jsupport.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        BookTestJPanel bookTest = new BookTestJPanel(userProcessContainer, user, system);
+        userProcessContainer.add("BookTest", bookTest);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+
+        for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
+
+            EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
+            if (request.getSender().getUsername().equals(this.user.getUsername())) {
+
+                ViewEmergencyRequestStatusJPanel viewStatus = new ViewEmergencyRequestStatusJPanel(userProcessContainer, user, system, emergencyWorkRequest);
+                userProcessContainer.add("viewStatus", viewStatus);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Random random_method = new Random();
+        ArrayList<Emergency> e = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterpriseType("Emergency").getOrganizationDirectory().getEmergencyDirectory().getEmergencyUnitDirectory();
+        int index = 0;
+        for (int i = 0; i < e.size(); i++)
+        {
+            index = random_method.nextInt(e.size());
+
+        }
+        EmergencyWorkRequest emergencyWorkRequest = new EmergencyWorkRequest();
+
+        emergencyWorkRequest.setSender(this.user);
+        //            System.out.println("getting sender uname "+bookNewTestWorkRequest.getSender().getUsername());
+        emergencyWorkRequest.setReceiver(e.get(index).getUserAccountDirectory().findUserAccount(e.get(index).getName()));
+        emergencyWorkRequest.setStatus("emergency assistance needed");
+       // Patient patient = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).ge
+//        System.out.println(patient.getName());
+//        emergencyWorkRequest.setP(patient);
+        system.getWorkQueue().addWorkRequest(emergencyWorkRequest);
+        JOptionPane.showMessageDialog(this, "Help is on the way!");
+    }//GEN-LAST:event_jButton5ActionPerformed
 // public void getDoctors(String resName){
 //      
 //        
@@ -333,6 +411,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
