@@ -120,10 +120,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         doctorDetails1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+
+        InsuranceJButton = new javax.swing.JButton();
+
         OrderBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -191,13 +195,22 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 620, 160));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Support");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
+
+
+        InsuranceJButton.setText("Insurance");
+        InsuranceJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsuranceJButtonActionPerformed(evt);
+            }
+        });
+        add(InsuranceJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, -1));
 
         OrderBtn.setText("Order");
         OrderBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +243,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 80, -1));
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void restListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restListActionPerformed
@@ -351,6 +365,25 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jsupport.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void InsuranceJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsuranceJButtonActionPerformed
+        // TODO add your handling code here:
+        if(this.user.getEmployee().isHasInsurance()){
+            
+                    ViewCurrentPlans viewCurrentPlans = new ViewCurrentPlans(userProcessContainer, user, system);
+        userProcessContainer.add("viewCurentPlans", viewCurrentPlans);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+            }
+        else {
+        ViewInsurancePlans viewInsurance = new ViewInsurancePlans(userProcessContainer, user, system);
+        userProcessContainer.add("viewInsurance", viewInsurance);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+        }
+    }//GEN-LAST:event_InsuranceJButtonActionPerformed
+
 
     private void OrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderBtnActionPerformed
         // TODO add your handling code here:
@@ -407,6 +440,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Help is on the way!");
     }//GEN-LAST:event_jButton5ActionPerformed
 
+
 // public void getDoctors(String resName){
 //      
 //        
@@ -426,7 +460,11 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 //        }
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    private javax.swing.JButton InsuranceJButton;
+
     private javax.swing.JButton OrderBtn;
+
     private javax.swing.JTable doctorDetails1;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;

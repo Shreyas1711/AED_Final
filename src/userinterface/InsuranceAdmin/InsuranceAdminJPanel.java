@@ -7,6 +7,7 @@ package userinterface.InsuranceAdmin;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -84,14 +85,24 @@ public class InsuranceAdminJPanel extends javax.swing.JPanel {
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
+         ViewUpdateDeleteIPlansJPanel viewUpdateDeleteIPlansJPanel = new ViewUpdateDeleteIPlansJPanel(userProcessContainer, user, system);
+             userProcessContainer.add("viewUpdateDeleteIPlans", viewUpdateDeleteIPlansJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_userJButtonActionPerformed
 
     private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-
+            AddInsurancePlanJPanel addInsurancePlanJPanel = new AddInsurancePlanJPanel(userProcessContainer, user, system);
+             userProcessContainer.add("AddInusrance", addInsurancePlanJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
-
+ManageInsuranceOrdersJPanel manageInsurancePlan = new ManageInsuranceOrdersJPanel(userProcessContainer, user, system);
+             userProcessContainer.add("manageinsurance", manageInsurancePlan);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
 
