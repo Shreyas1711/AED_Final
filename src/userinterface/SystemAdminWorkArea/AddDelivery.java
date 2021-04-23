@@ -64,7 +64,7 @@ public class AddDelivery extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Pharmacy Name");
+        jLabel2.setText("Delivery Man Name");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
         jLabel3.setText("Address");
@@ -80,7 +80,7 @@ public class AddDelivery extends javax.swing.JPanel {
         add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 164, -1));
         add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 164, -1));
 
-        addHospital.setText("Add Pharmacy");
+        addHospital.setText("Add DeliveryMan");
         addHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addHospitalActionPerformed(evt);
@@ -96,7 +96,7 @@ public class AddDelivery extends javax.swing.JPanel {
         });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 37, -1, -1));
 
-        jLabel1.setText("Add Pharmacy");
+        jLabel1.setText("Add Delivery");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 37, 155, 37));
 
         jLabel6.setText("City Name");
@@ -136,7 +136,7 @@ public class AddDelivery extends javax.swing.JPanel {
             System.out.println("already there");
         }
         
-        JOptionPane.showMessageDialog(this," Pharmacy created");
+        JOptionPane.showMessageDialog(this," Delivery created");
     }//GEN-LAST:event_addHospitalActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

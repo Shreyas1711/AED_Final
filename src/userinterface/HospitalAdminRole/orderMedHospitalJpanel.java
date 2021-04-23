@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.CustomerRole;
+package userinterface.HospitalAdminRole;
 
+import userinterface.CustomerRole.*;
 import Business.EcoSystem;
 import Business.Enterprise;
 import Business.HospitalAdmin.Hospital;
 import Business.Patient.Patient;
 import Business.Pharmacist.PharamacyAdmin;
 import Business.PharmacyCatalog.PharmacyCatalog;
-import Business.PharmacyCatalog.PharmacyCatalogDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookAppointment;
 import Business.WorkQueue.PharmacyOrder;
@@ -23,8 +23,6 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Tharoon
  */
 
-public class orderMedJpanel extends javax.swing.JPanel {
+public class orderMedHospitalJpanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
 
     private UserAccount user;
@@ -55,20 +53,18 @@ public class orderMedJpanel extends javax.swing.JPanel {
     /**
      * Creates new form orderMedJpanel
      */
-    public orderMedJpanel(JPanel userProcessContainer,UserAccount user,EcoSystem system,String patName) {
+    public orderMedHospitalJpanel(JPanel userProcessContainer,UserAccount user,EcoSystem system,String patName) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
         this.system=system;
         this.patName = patName;
         this.user = user;
-        this.ml = new ArrayList<>();
         System.out.println("Pat"+patName);
         System.out.println("Test phar"+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList());
        populateComboBox();
         System.out.println(selectedPharmacy);
         System.out.println("Receiver "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy));
         System.out.println("Sender "+user);
-        //tableListener();
 //            System.out.println(pat.getMedicine().getMedicines().get(0));
 //            txt1.setText(pat.getMedicine().getMedicines().get(0));
 //            txt2.setText(pat.getMedicine().getMedicines().get(1));
@@ -103,7 +99,8 @@ public class orderMedJpanel extends javax.swing.JPanel {
             }
         }
     }
-    private void populatetable(){
+
+         private void populatetable(){
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
@@ -122,29 +119,7 @@ public class orderMedJpanel extends javax.swing.JPanel {
                 
         }
         }
-    }
-//        public void tableListener(){
-//        dtm = (DefaultTableModel) medTable.getModel();
-//        dtm.setRowCount(0);
-//       
-//        dtm.addTableModelListener(
-//            new TableModelListener()
-//            {
-//                public void tableChanged(TableModelEvent evt)
-//                {
-//                    
-//                    int col = evt.getColumn();
-//                    int row = evt.getFirstRow();
-//                    System.out.println(row+"as");
-//                    System.out.println(col+"as1");
-//                    catalog = (PharmacyCatalog)dtm.getValueAt(row, 0);
-//
-//                   
-//                }
-//            });
-//    }
-
-            
+    }       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,7 +138,6 @@ public class orderMedJpanel extends javax.swing.JPanel {
         addcartBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
 
         orderBtn.setText("Order");
         orderBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -211,23 +185,16 @@ public class orderMedJpanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Order ID", "Medicine", "Price", "Status", "Customer Name"
+                "Order ID", "Medicine", "Price"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
-
-        jButton1.setText("Track");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -239,9 +206,7 @@ public class orderMedJpanel extends javax.swing.JPanel {
                         .addGap(73, 73, 73)
                         .addComponent(addcartBtn)
                         .addGap(63, 63, 63)
-                        .addComponent(orderBtn)
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1))
+                        .addComponent(orderBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel5)
@@ -267,8 +232,7 @@ public class orderMedJpanel extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderBtn)
-                    .addComponent(addcartBtn)
-                    .addComponent(jButton1))
+                    .addComponent(addcartBtn))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
@@ -300,9 +264,7 @@ public class orderMedJpanel extends javax.swing.JPanel {
             System.out.println(newWorkRequest.getRequestDate());
             System.out.println(newWorkRequest.getStatus());
             
-            
         }
-        populatetable();
         
         
     }//GEN-LAST:event_orderBtnActionPerformed
@@ -316,17 +278,6 @@ public class orderMedJpanel extends javax.swing.JPanel {
 
     private void addcartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcartBtnActionPerformed
         // TODO add your handling code here:
-//                int rowCount =medTable.getRowCount();
-//        for (int i = 0; i < rowCount; i++) {
-//            //int quantity = Integer.parseInt(medTable.getValueAt(i, 2).toString());
-//            PharmacyCatalog item = (PharmacyCatalog) medTable.getValueAt(i, 0);
-//            //if (quantity > 0) {
-//                PharmacyOrder orderItemTotal = new PharmacyOrder(item);
-//                orderItemList.add(orderItemTotal);
-//                
-//            //}
-//        }
-//        System.out.println(orderItemList.get(0));
                int selectedRow = medTable.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "You must select a row first!");
@@ -335,31 +286,11 @@ public class orderMedJpanel extends javax.swing.JPanel {
                 PharmacyOrder orderItemTotal = new PharmacyOrder(item);
               orderItemList.add(orderItemTotal);
             }
-
-        
-     
-//        PharmacyCatalog menu1 = new PharmacyCatalog();
-//        PharmacyCatalogDirectory md = new PharmacyCatalogDirectory();
-//        
-//        menu1.setItemName(catalog.getItemName());
-//        menu1.setItemPrice(catalog.getItemPrice());
-//        //menu1.setQuantity(Integer.parseInt(quantity));
-//       
-//        
-//        PharmacyOrder orderItemTotal = new PharmacyOrder(menu1);
-//                orderItemList.add(orderItemTotal);
-//       
     }//GEN-LAST:event_addcartBtnActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        populatetable();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addcartBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

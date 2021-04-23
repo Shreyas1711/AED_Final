@@ -56,7 +56,8 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         this.user = user;
         initComponents();
         //System.out.println("check "+systeuser.getEmployee().getCity()));
-       populateFields();
+       //populateFields();
+       populatetable();
         populateComboBox();
         System.out.println("Work request"+system.getWorkQueue().getWorkRequestList());
         
@@ -91,20 +92,20 @@ public class manageOrderJpanel extends javax.swing.JPanel {
        // }
     
    // }
-        private void populateFields() {
-            
-            for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
-                placeWorkRequest = (PlaceNewOrderWorkRequest) request;
-        System.out.println("Here it is" + placeWorkRequest.getOrderTotal());
-        for (PharmacyOrder orderItemTotal : placeWorkRequest.getOrderTotal()) {
-            itmNameTxt.setText(orderItemTotal.getCatalog().getItemName());
-            //QuantityJTxtField.setText(String.valueOf(orderItemTotal.getQuantity()));
-            itmPriceTxt.setText(String.valueOf(orderItemTotal.getCatalog().getItemPrice()));
-            custNameTxt.setText(placeWorkRequest.getSender().getUsername());
-            stsTxt.setText(placeWorkRequest.getStatus());
-        }
-            }
-    }
+//        private void populateFields() {
+//            
+//            for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
+//                placeWorkRequest = (PlaceNewOrderWorkRequest) request;
+//        System.out.println("Here it is" + placeWorkRequest.getOrderTotal());
+//        for (PharmacyOrder orderItemTotal : placeWorkRequest.getOrderTotal()) {
+//            itmNameTxt.setText(orderItemTotal.getCatalog().getItemName());
+//            //QuantityJTxtField.setText(String.valueOf(orderItemTotal.getQuantity()));
+//            itmPriceTxt.setText(String.valueOf(orderItemTotal.getCatalog().getItemPrice()));
+//            custNameTxt.setText(placeWorkRequest.getSender().getUsername());
+//            stsTxt.setText(placeWorkRequest.getStatus());
+//        }
+//            }
+//    }
         
     public void populateComboBox(){
          for(Enterprise res: system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList()){
@@ -116,43 +117,39 @@ public class manageOrderJpanel extends javax.swing.JPanel {
              }
          }
     }
+    private void populatetable(){
+        DefaultTableModel dtm = (DefaultTableModel) orderTbl.getModel();
+        dtm.setRowCount(0);
+        for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
+        placeWorkRequest = (PlaceNewOrderWorkRequest) request;
+        for (PharmacyOrder orderItemTotal : placeWorkRequest.getOrderTotal()){
+                Object row[] = new Object[4];
+                row[0] = request;
+                row[1] = orderItemTotal.getCatalog().getItemName();
+                row[2] = orderItemTotal.getCatalog().getItemPrice();
+                row[3] = request.getStatus();
+
+                dtm.addRow(row);
+                
+        }
+        }
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        custNameTxt = new javax.swing.JTextField();
-        itmNameTxt = new javax.swing.JTextField();
-        itmPriceTxt = new javax.swing.JTextField();
-        stsTxt = new javax.swing.JTextField();
         acceptOrder = new javax.swing.JButton();
         declineOrder = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         delManCombo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        orderTbl = new javax.swing.JTable();
 
         jLabel1.setText("Pharmacy");
-
-        jLabel2.setText("Customer:");
-
-        jLabel3.setText("Item Name:");
-
-        jLabel4.setText("Price:");
-
-        jLabel5.setText("Status:");
-
-        custNameTxt.setEditable(false);
-
-        itmNameTxt.setEditable(false);
-
-        itmPriceTxt.setEditable(false);
-
-        stsTxt.setEditable(false);
 
         acceptOrder.setText("Accept");
         acceptOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +181,19 @@ public class manageOrderJpanel extends javax.swing.JPanel {
             }
         });
 
+        orderTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Customer Name", "Item Name", "Price", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(orderTbl);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,96 +204,83 @@ public class manageOrderJpanel extends javax.swing.JPanel {
                         .addGap(130, 130, 130)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(acceptOrder)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(itmPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(stsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(itmNameTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(custNameTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(147, 147, 147))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(declineOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(delManCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(acceptOrder))
+                        .addGap(137, 137, 137)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(declineOrder)
+                            .addComponent(delManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(jButton1)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {custNameTxt, itmNameTxt, itmPriceTxt, stsTxt});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(custNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(itmNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(itmPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(stsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptOrder)
-                    .addComponent(declineOrder))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(acceptOrder)
+                            .addComponent(declineOrder))
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel6))
                     .addComponent(delManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(412, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
         // TODO add your handling code here:
-                if (placeWorkRequest.getStatus().equals("Ordered")) {
-            placeWorkRequest.setStatus("Accepted");
-            JOptionPane.showMessageDialog(null, " Order has been accepted, continue to assign Delivery Man");
+                int selectedRow = orderTbl.getSelectedRow();
+                System.out.println("Status "+orderTbl.getValueAt(selectedRow, 3)); 
+       if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "You must select a row first!");
+        } else {
+            if (orderTbl.getValueAt(selectedRow, 3).equals("Completed")) {
+                JOptionPane.showMessageDialog(null, "Order is already completed!");
+            } else {
+                WorkRequest request = (WorkRequest) orderTbl.getValueAt(selectedRow, 0);
+                request.setStatus("Accepted");
+                populatetable();
+            }
+
         }
 
-        stsTxt.setText(placeWorkRequest.getStatus());
+        //stsTxt.setText(placeWorkRequest.getStatus());
     }//GEN-LAST:event_acceptOrderActionPerformed
 
     private void declineOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineOrderActionPerformed
         // TODO add your handling code here:
-        if (placeWorkRequest.getStatus().equals("Ordered")) {
-            placeWorkRequest.setStatus("Declined");
-            JOptionPane.showMessageDialog(null, " Order has been declined");
+                int selectedRow = orderTbl.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "You must select a row first!");
         }
-        stsTxt.setText(placeWorkRequest.getStatus());
+
+        WorkRequest request = (WorkRequest) orderTbl.getValueAt(selectedRow, 0);
+        if (orderTbl.getValueAt(selectedRow, 1).equals("Completed")) {
+            JOptionPane.showMessageDialog(null, "Order is already processed and completed!");
+        } else {
+               
+                request.setStatus("Declined");
+                populatetable();
+        }
+
+        
+        //stsTxt.setText(placeWorkRequest.getStatus());
     }//GEN-LAST:event_declineOrderActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -311,18 +308,12 @@ public class manageOrderJpanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptOrder;
-    private javax.swing.JTextField custNameTxt;
     private javax.swing.JButton declineOrder;
     private javax.swing.JComboBox<String> delManCombo;
-    private javax.swing.JTextField itmNameTxt;
-    private javax.swing.JTextField itmPriceTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField stsTxt;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable orderTbl;
     // End of variables declaration//GEN-END:variables
 }
