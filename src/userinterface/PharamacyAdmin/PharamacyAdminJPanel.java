@@ -123,7 +123,10 @@ public class PharamacyAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_userJButtonActionPerformed
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
-
+        manageOrderJpanel orderMan = new manageOrderJpanel(userProcessContainer, system, user,pharName, patName);
+        userProcessContainer.add("CreateHospital", orderMan);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
 

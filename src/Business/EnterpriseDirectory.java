@@ -48,6 +48,9 @@ public class EnterpriseDirectory {
         enterpriseList=new ArrayList<Enterprise>();
     }
     
+  
+
+    
     //Create enterprise
     public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
         Enterprise enterprise=null;
