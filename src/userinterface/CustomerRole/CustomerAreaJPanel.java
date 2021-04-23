@@ -29,6 +29,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.HospitalAdminRole.AddSupportJPanel;
 
 /**
  *
@@ -119,6 +120,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         doctorDetails1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        OrderBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -196,6 +198,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
+
+        OrderBtn.setText("Order");
+        OrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderBtnActionPerformed(evt);
+            }
+        });
+        add(OrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
 
         jButton4.setText("Book Test ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -341,6 +351,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jsupport.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+
+    private void OrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderBtnActionPerformed
+        // TODO add your handling code here:
+        orderMedJpanel orderJPanel = new orderMedJpanel(userProcessContainer, user, system, user.getEmployee().getName());
+        userProcessContainer.add("CreateSupport", orderJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_OrderBtnActionPerformed
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         BookTestJPanel bookTest = new BookTestJPanel(userProcessContainer, user, system);
@@ -387,6 +406,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         system.getWorkQueue().addWorkRequest(emergencyWorkRequest);
         JOptionPane.showMessageDialog(this, "Help is on the way!");
     }//GEN-LAST:event_jButton5ActionPerformed
+
 // public void getDoctors(String resName){
 //      
 //        
@@ -406,6 +426,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 //        }
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton OrderBtn;
     private javax.swing.JTable doctorDetails1;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;

@@ -43,6 +43,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         userJButton1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        oderMedBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -95,7 +96,15 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 160, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 170, -1));
+
+        oderMedBtn.setText("Order Medicine");
+        oderMedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oderMedBtnActionPerformed(evt);
+            }
+        });
+        add(oderMedBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 370, 170, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -127,11 +136,24 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                ManageInventoryJPanel manageInventory = new ManageInventoryJPanel(userProcessContainer, user, system);
+
+
+                                ManageInventoryJPanel manageInventory = new ManageInventoryJPanel(userProcessContainer, user, system);
         userProcessContainer.add("ManageInventory", manageInventory);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void oderMedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oderMedBtnActionPerformed
+        // TODO add your handling code here:
+        orderMedHospitalJpanel hosorderJPanel = new orderMedHospitalJpanel(userProcessContainer, user, system, user.getEmployee().getName());
+        userProcessContainer.add("Hospital Order", hosorderJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);  
+    }//GEN-LAST:event_oderMedBtnActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -140,6 +162,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
+    private javax.swing.JButton oderMedBtn;
     private javax.swing.JButton userJButton;
     private javax.swing.JButton userJButton1;
     private javax.swing.JLabel valueLabel;

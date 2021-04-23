@@ -23,7 +23,6 @@ public class PlaceNewOrderWorkRequest extends WorkRequest {
 
     public void setOrderId() {
         this.orderId = orderId;
-        count++;
     }
 
     public List<PharmacyOrder> getOrderTotal() {
@@ -37,6 +36,19 @@ public class PlaceNewOrderWorkRequest extends WorkRequest {
     public PharmacyOrder addItem(PharmacyOrder orderItemTotal) {
         orderTotal.add(orderItemTotal);
         return orderItemTotal;
+    }
+        public PlaceNewOrderWorkRequest(){
+        orderId = count;
+        count++;
+
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        PlaceNewOrderWorkRequest.count = count;
     }
     
 }
