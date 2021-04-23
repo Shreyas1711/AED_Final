@@ -148,8 +148,8 @@ public class ManageInsuranceOrdersJPanel extends javax.swing.JPanel {
                 System.out.println(buyInsuranceWorkRequest.getClass());
                 if (buyInsuranceWorkRequest != null) {
                     System.out.println("Is it null");
-                 //   ConfirmInsuranceJPanel confirmInsurance = new ConfirmInsuranceJPanel(userProcessContainer, userAccount, system, buyInsuranceWorkRequest);
-                   // userProcessContainer.add("CompleteTestJPanel", confirmInsurance);
+                    ConfirmInsuranceJPanel confirmInsurance = new ConfirmInsuranceJPanel(userProcessContainer, userAccount, system, buyInsuranceWorkRequest);
+                    userProcessContainer.add("CompleteTestJPanel", confirmInsurance);
                     CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                     layout.next(userProcessContainer);
                 } else {
@@ -181,7 +181,7 @@ public class ManageInsuranceOrdersJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 //        System.out.println("R is");
         System.out.println(system.getWorkQueue().getWorkRequestList());
-        for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
+        for (WorkRequest request : system.getWorkQueue().findWorkRequest(userAccount)) {
             
             BuyInsuranceWorkRequest buyInsurance = (BuyInsuranceWorkRequest ) request;
             System.out.println("REC "+request.getReceiver().getUsername());

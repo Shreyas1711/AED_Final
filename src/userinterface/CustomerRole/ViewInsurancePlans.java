@@ -7,9 +7,11 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise;
-import Business.InsuraceAdmin.InsuranceeAdmin;
 import Business.InsuraceAdmin.InsuranceAdminDirectory;
 import Business.InsuraceAdmin.InsurancePlan;
+import Business.InsuraceAdmin.InsuranceeAdmin;
+import Business.Organization;
+
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BuyInsuranceWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -34,20 +36,16 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
     UserAccount userAccount;
     InsuranceAdminDirectory id;
     InsuranceeAdmin ic;
+    String name;
     public ViewInsurancePlans(JPanel userProcessContainer,UserAccount userAccount,EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.userAccount=userAccount;
         this.system=system;
-        //System.out.println("asasas"+userAccount.getEmployee().getName());
-        for(int i=0;i<system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().size();i++){
-            id= system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().get(i).getOrganizationDirectory().getInsuranceAdminDirectory() ;
-            System.out.println("outttt"+id);
-        }
-        
+//        id= system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise();
         insuranceCompanyJComboBox.removeAllItems();
-        populateInsuranceJComboBox();
-        
+//        populateInsuranceJComboBox(id);
+        populateLogComboBox();
     }
 
     /**
@@ -273,14 +271,14 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         int selectedValue = insuranceCompanyJComboBox.getSelectedIndex();
-        String name = insuranceCompanyJComboBox.getItemAt(selectedValue);
-        populatePlans(name);
+         name = insuranceCompanyJComboBox.getItemAt(selectedValue);
+//        populatePlans(name);
         
     }//GEN-LAST:event_insuranceCompanyJComboBoxActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ic = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getInsuranceAdminDirectory().findInsuranceAdmin(userAccount.getEmployee().getName());        
+        ic = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getInsuranceAdminDirectory().findInsuranceAdmin(name);        
         int rowCount = plansJTable.getRowCount();
         for (int i = 0; i < rowCount; i++) {
         InsurancePlan ip = (InsurancePlan) plansJTable.getValueAt(i, 0);
@@ -300,15 +298,16 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
             buyInsuranceRequest.setSender(this.userAccount);
             buyInsuranceRequest.setPlan(ip);
 //            System.out.println("getting sender uname "+bookNewTestWorkRequest.getSender().getUsername());
-            buyInsuranceRequest.getSender().setUsername(this.userAccount.getUsername());
+           // buyInsuranceRequest.getSender().setUsername(this.userAccount.getUsername());
 //            Lab l= (Lab) LabTable.getValueAt(0, 0);
             int selectedValue = insuranceCompanyJComboBox.getSelectedIndex();
-            InsuranceeAdmin  icc = id.getInsuranceList().get(selectedValue);
+            
+            InsuranceeAdmin  icc = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getInsuranceAdminDirectory().getInsuranceList().get(selectedValue);
 //            Lab lab2 = labDirectory.findLab(l1.getUsername());
             
-            buyInsuranceRequest.setReceiver(userAccount);
+            buyInsuranceRequest.setReceiver(system.getUserAccountDirectory().findUserAccount(icc.getName()));
 //            System.out.println(" YO " +l1.getUsername());
-            buyInsuranceRequest.getReceiver().setUsername(icc.getName());
+//            buyInsuranceRequest.getReceiver().);
 //            bookNewTestWorkRequest.setRec(l);
 //            bookNewTestWorkRequest.setTestId(1);
 //            System.out.println("OOOOOOO" + l1.g);
@@ -382,19 +381,22 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
     private javax.swing.JTextField yrsTxtField;
     // End of variables declaration//GEN-END:variables
 
-    private void populateInsuranceJComboBox() {
-         //To change body of generated methods, choose Tools | Templates.
-        for (InsuranceeAdmin ic : id.getInsuranceList()) {
-            insuranceCompanyJComboBox.addItem(ic.getName());
-    }
-    }
+//    private void populateInsuranceJComboBox(InsuranceDirectory id) {
+//         //To change body of generated methods, choose Tools | Templates.
+//        for (InsuranceCompany ic : id.getInsuranceList()) {
+//            insuranceCompanyJComboBox.addItem(ic.getName());
+//    }
+//    }
 
     private void populateTable() {
          //To change body of generated methods, choose Tools | Templates.
         DefaultTableModel dtm = (DefaultTableModel) plansJTable.getModel();
         dtm.setRowCount(0);
         int selectedValue = insuranceCompanyJComboBox.getSelectedIndex();
-        InsuranceeAdmin ic = id.getInsuranceList().get(selectedValue);
+        String Admin = insuranceCompanyJComboBox.getItemAt(selectedValue);
+        System.out.println("name"+name);
+        System.out.println("insur"+Admin);
+        InsuranceeAdmin ic = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getInsuranceAdminDirectory().findInsuranceAdmin(Admin);
 //        System.out.println("Lab in table is "+lab.getName());
 
         for (InsurancePlan p : ic.getInsurancePlanDirectory().getIpDirectory()) {
@@ -409,15 +411,25 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
     }
     }
 
-    private void populatePlans(String name) {
-            for (InsuranceeAdmin ic : id.getInsuranceList()) {
-            if (ic.getName().equals(name)) {
-                InsuranceeAdmin ic1 = ic;
-                for (InsurancePlan ip : ic1.getInsurancePlanDirectory().getIpDirectory()) {
-                    insuranceCompanyJComboBox.addItem(ip.getName());
-                }
-                break;
-            }
+//    private void populatePlans(String name) {
+//            for (InsuranceeAdmin ic : system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getInsuranceAdminDirectory().getInsuranceList()) {
+//            if (ic.getName().equals(name)) {
+//                InsuranceeAdmin ic1 = ic;
+//                for (InsurancePlan ip :ic1.getInsurancePlanDirectory().getIpDirectory() ) {
+//                    insuranceCompanyJComboBox.addItem(ip.getName());
+//                }
+//                break;
+//            }
+//        }
+//    }
+     private void populateLogComboBox() {
+      for(Enterprise res: system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList()){
+             if(res.getEnterpriseType().getValue().equals("Insurance")){
+                            insuranceCompanyJComboBox.addItem(res.getName());
+         
+        }else{
+                 System.out.println("No Companies");
+             }
         }
     }
 }
