@@ -216,7 +216,7 @@ public class ViewUpdateDeleteInventoryJPanel extends javax.swing.JPanel {
             //            System.out.println("item : " + t.getName());
             i.setName(nameTxtField.getText());
             i.setManufacturer(yrsTxtField.getText());
-            i.setPrice(Double.parseDouble(monthlTxtField.getText()));
+            i.setPrice(Integer.parseInt(monthlTxtField.getText()));
             i.setAvailability(Integer.parseInt(unitsTxtField.getText()));
             populateTable();
             nameTxtField.setText("");

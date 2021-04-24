@@ -33,4 +33,14 @@ public class InventoryDirectory {
         public void addInventory(Inventory i){
         inventoryList.add(i);
     }
+        public Inventory findInventory(String name){
+        
+         
+         for(Inventory doc : inventoryList){
+             if(doc.getName().equals(name)){
+                 return doc;
+             }
+         }
+         return null;
+     }
 }

@@ -8,6 +8,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise;
+import Business.Organization;
 import Business.Role.InsuranceAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -54,7 +55,7 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        jLabel2.setText("Hospial Name");
+        jLabel2.setText("Insurance Name");
 
         jLabel3.setText("Address");
 
@@ -62,7 +63,7 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Password");
 
-        addHospital.setText("Add Hospital");
+        addHospital.setText("Add Insurance");
         addHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addHospitalActionPerformed(evt);
@@ -76,7 +77,7 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Add Hospital");
+        jLabel1.setText("Add Insurance");
 
         jLabel6.setText("City Name");
 
@@ -191,11 +192,12 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
       
         if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
         system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Insurance );
+        system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.InsuranceAdmin, "Test");
         }else{
             System.out.println("already there");
         }
         
-        JOptionPane.showMessageDialog(this," Lab created");
+        JOptionPane.showMessageDialog(this," Insurance created");
     
     }//GEN-LAST:event_addHospitalActionPerformed
 

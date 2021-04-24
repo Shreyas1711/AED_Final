@@ -29,16 +29,7 @@ public class EnterpriseDirectory {
          }
          return null;
      }
-
-    public void setEnterpriseList(ArrayList<Enterprise> enterpriseList) {
-        this.enterpriseList = enterpriseList;
-    }
-    
-    public EnterpriseDirectory(){
-        enterpriseList=new ArrayList<Enterprise>();
-    }
-    
-    public Enterprise findEnterpriseType(String type){
+      public Enterprise findEnterpriseType(String type){
         
          
          for(Enterprise net : enterpriseList){
@@ -48,6 +39,16 @@ public class EnterpriseDirectory {
          }
          return null;
      }
+
+    public void setEnterpriseList(ArrayList<Enterprise> enterpriseList) {
+        this.enterpriseList = enterpriseList;
+    }
+    
+    public EnterpriseDirectory(){
+        enterpriseList=new ArrayList<Enterprise>();
+    }
+    
+  
 
     
     //Create enterprise

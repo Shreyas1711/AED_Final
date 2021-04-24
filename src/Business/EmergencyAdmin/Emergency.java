@@ -21,9 +21,7 @@ public class Emergency extends Organization{
     String phoneNumber;
     String emergencyId;
 
-    public Emergency() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     public String getEmergencyUnitName() {
         return emergencyUnitName;
@@ -68,6 +66,9 @@ public class Emergency extends Organization{
     
     public Emergency(String name){
         this.emergencyUnitName = name;
+    }
+
+    public Emergency() {
     }
 
     @Override

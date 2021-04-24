@@ -15,7 +15,15 @@ import java.util.ArrayList;
  * @author shreyascr
  */
 public class InsuranceeAdmin extends Organization{
+    InsurancePlanDirectory insurancePlanDirectory;
 
+    public InsurancePlanDirectory getInsurancePlanDirectory() {
+        return insurancePlanDirectory;
+    }
+
+    public void setInsurancePlanDirectory(InsurancePlanDirectory insurancePlanDirectory) {
+        this.insurancePlanDirectory = insurancePlanDirectory;
+    }
     public String getName() {
         return name;
     }
