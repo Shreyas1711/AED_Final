@@ -59,21 +59,25 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        dName1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        dspe1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CompanyName.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(CompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 164, -1));
+        add(CompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 164, -1));
 
         dspe.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 164, -1));
+        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 164, -1));
 
         dUname.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 164, -1));
+        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 164, -1));
 
         dPass.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 164, -1));
+        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 164, -1));
 
         addHospital.setBackground(new java.awt.Color(24, 31, 46));
         addHospital.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,7 +88,7 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
                 addHospitalActionPerformed(evt);
             }
         });
-        add(addHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
+        add(addHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, -1, -1));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "San francisco" }));
@@ -94,7 +98,7 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 170, -1));
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel7.setText("Add Insurance");
@@ -114,19 +118,31 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
 
         jLabel2.setText("Insurance ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         jLabel3.setText("Address");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
         jLabel4.setText("Username");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         jLabel5.setText("Password");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
         jLabel6.setText("City Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+
+        jLabel10.setText("Email");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+
+        dName1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 164, -1));
+
+        jLabel11.setText("Phone");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+
+        dspe1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 164, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
@@ -144,7 +160,16 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
                 dspe.setText("");
                 return;
             }
-
+ else if(!dName1.getText().matches("^(.+)@(.+)$")){
+                JOptionPane.showMessageDialog(this, "Enter proper Email in the format of abc@gmail.com");
+                dName1.setText("");
+                return;
+            }
+            else if(!dspe1.getText().matches("^\\d{10}$")){
+                JOptionPane.showMessageDialog(this, "Enter a 10 digit phone number");
+                dspe1.setText("");
+                return;
+            }
             else if (strongUsername() == false) {
                 dUname.setText("");
                 JOptionPane.showMessageDialog(null, "should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
@@ -178,6 +203,8 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
        JOptionPane.showMessageDialog(this," Insurance created");
        CompanyName.setText("");
                 dspe.setText("");
+                dName1.setText("");
+                dspe1.setText("");
                  dUname.setText("");
                  dPass.setText("");
         }else{
@@ -213,11 +240,15 @@ public class AddInsuranceCompanyJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CompanyName;
     private javax.swing.JButton addHospital;
+    private javax.swing.JTextField dName1;
     private javax.swing.JTextField dPass;
     private javax.swing.JTextField dUname;
     private javax.swing.JTextField dspe;
+    private javax.swing.JTextField dspe1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

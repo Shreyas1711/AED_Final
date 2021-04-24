@@ -66,15 +66,19 @@ public class AddDelivery extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        dName1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        dspe1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dName.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 164, -1));
+        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 164, -1));
 
         dspe.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 164, -1));
+        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 164, -1));
 
         dUname.setPreferredSize(new java.awt.Dimension(164, 30));
         add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 164, -1));
@@ -101,7 +105,7 @@ public class AddDelivery extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 170, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setText("Add Delivery Man");
@@ -118,10 +122,10 @@ public class AddDelivery extends javax.swing.JPanel {
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         jLabel2.setText("Delivery Man Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel3.setText("Address");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jLabel4.setText("Username");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
@@ -130,10 +134,22 @@ public class AddDelivery extends javax.swing.JPanel {
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         jLabel6.setText("City Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 1 Character copy 5.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 410, 310));
+
+        jLabel10.setText("Email");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+
+        dName1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 164, -1));
+
+        jLabel11.setText("Phone");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+
+        dspe1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 164, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
@@ -151,7 +167,16 @@ public class AddDelivery extends javax.swing.JPanel {
                 dspe.setText("");
                 return;
             }
-
+else if(!dName1.getText().matches("^(.+)@(.+)$")){
+                JOptionPane.showMessageDialog(this, "Enter proper Email in the format of abc@gmail.com");
+                dName1.setText("");
+                return;
+            }
+            else if(!dspe1.getText().matches("^\\d{10}$")){
+                JOptionPane.showMessageDialog(this, "Enter a 10 digit phone number");
+                dspe1.setText("");
+                return;
+            }
             else if (strongUsername() == false) {
                 dUname.setText("");
                 JOptionPane.showMessageDialog(null, "Username should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
@@ -185,6 +210,8 @@ public class AddDelivery extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this," Delivery enterprise created");
         dName.setText("");
                 dspe.setText("");
+                dName1.setText("");
+                dspe1.setText("");
                  dUname.setText("");
                  dPass.setText("");
         }else{
@@ -220,12 +247,16 @@ public class AddDelivery extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHospital;
     private javax.swing.JTextField dName;
+    private javax.swing.JTextField dName1;
     private javax.swing.JTextField dPass;
     private javax.swing.JTextField dUname;
     private javax.swing.JTextField dspe;
+    private javax.swing.JTextField dspe1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

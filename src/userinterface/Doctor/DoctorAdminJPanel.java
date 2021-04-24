@@ -124,7 +124,6 @@ public void viewTable1(String name){
         doctorDetails1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -209,16 +208,6 @@ public void viewTable1(String name){
         enterpriseLabel.setText("Doctor Dashboard");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 180, 30));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Back");
-        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Standing.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 410, 400));
     }// </editor-fold>//GEN-END:initComponents
@@ -250,21 +239,6 @@ public void viewTable1(String name){
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-        //
-        //        Component[] comps = this.userProcessContainer.getComponents();
-        //        for(Component comp : comps){
-            //            if(comp instanceof SystemAdminWorkAreaJPanel){
-                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-                //                systemAdminWorkAreaJPanel.populateTree();
-                //            }
-            //        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable doctorDetails;
@@ -272,7 +246,6 @@ public void viewTable1(String name){
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -316,7 +316,7 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
             System.out.println(newWorkRequest.getRequestDate());
             System.out.println(newWorkRequest.getStatus());
             
-            
+            addcartBtn.setVisible(false);
         }
         populatetable();
           dB4OUtil.storeSystem(system);

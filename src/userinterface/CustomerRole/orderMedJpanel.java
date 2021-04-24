@@ -294,12 +294,12 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
             newWorkRequest.setRequestDate(new Date());
             newWorkRequest.setStatus("Ordered");
             system.getWorkQueue().addWorkRequest(newWorkRequest);
-            System.out.println("Work req size"+system.getWorkQueue().getWorkRequestList().size());
-            System.out.println("Sender000"+newWorkRequest.getSender());
-            System.out.println("Receiver000"+newWorkRequest.getReceiver());
-            System.out.println(newWorkRequest.getRequestDate());
-            System.out.println(newWorkRequest.getStatus());
-            
+//            System.out.println("Work req size"+system.getWorkQueue().getWorkRequestList().size());
+//            System.out.println("Sender000"+newWorkRequest.getSender());
+//            System.out.println("Receiver000"+newWorkRequest.getReceiver());
+//            System.out.println(newWorkRequest.getRequestDate());
+//            System.out.println(newWorkRequest.getStatus());
+            addcartBtn.setVisible(false);
             
         }
         populatetable();

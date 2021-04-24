@@ -61,21 +61,25 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        dName1 = new javax.swing.JTextField();
+        dspe1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dName.setPreferredSize(new java.awt.Dimension(15, 30));
-        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 164, -1));
+        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 164, -1));
 
         dspe.setPreferredSize(new java.awt.Dimension(15, 30));
-        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 164, -1));
+        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 164, -1));
 
         dUname.setPreferredSize(new java.awt.Dimension(15, 30));
-        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 164, -1));
+        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 164, -1));
 
         dPass.setPreferredSize(new java.awt.Dimension(15, 30));
-        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 164, -1));
+        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 164, -1));
 
         addHospital.setBackground(new java.awt.Color(24, 31, 46));
         addHospital.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,7 +90,7 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
                 addHospitalActionPerformed(evt);
             }
         });
-        add(addHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
+        add(addHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
@@ -110,25 +114,37 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 170, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 410, 310));
 
         jLabel2.setText("Hospital Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         jLabel3.setText("Address");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         jLabel4.setText("Username");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         jLabel5.setText("Password");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
 
         jLabel6.setText("City Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+
+        dName1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 164, -1));
+
+        dspe1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 164, -1));
+
+        jLabel8.setText("Email");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
+
+        jLabel9.setText("Phone");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
@@ -147,7 +163,16 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
                 dspe.setText("");
                 return;
             }
-
+            else if(!dName1.getText().matches("^(.+)@(.+)$")){
+                JOptionPane.showMessageDialog(this, "Enter proper Email in the format of abc@gmail.com");
+                dName1.setText("");
+                return;
+            }
+            else if(!dspe1.getText().matches("^\\d{10}$")){
+                JOptionPane.showMessageDialog(this, "Enter a 10 digit phone number");
+                dspe1.setText("");
+                return;
+            }
             if (strongUsername() == false) {
                 dUname.setText("");
                 JOptionPane.showMessageDialog(null, "Username should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
@@ -183,6 +208,8 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
                 JOptionPane.showMessageDialog(null, "Hospital created");
                 dName.setText("");
                 dspe.setText("");
+                dName1.setText("");
+                dspe1.setText("");
                  dUname.setText("");
                  dPass.setText("");
             } else {
@@ -216,9 +243,11 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHospital;
     private javax.swing.JTextField dName;
+    private javax.swing.JTextField dName1;
     private javax.swing.JTextField dPass;
     private javax.swing.JTextField dUname;
     private javax.swing.JTextField dspe;
+    private javax.swing.JTextField dspe1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -228,6 +257,8 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
     private boolean strongUsername() {

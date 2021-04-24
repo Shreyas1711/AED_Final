@@ -332,7 +332,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(640, 540, 610, 350);
+        jPanel3.setBounds(580, 540, 670, 350);
 
         jButton10.setBackground(new java.awt.Color(24, 31, 46));
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
@@ -349,7 +349,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(20, 540, 590, 350);
+        jPanel4.setBounds(0, 540, 590, 350);
 
         jSplitPane.setRightComponent(jPanel2);
 
@@ -688,15 +688,15 @@ for(Network network:system.getNetworkList()){
                 
             
         }}}
-            System.out.println("asss"+Doctor);
-            dataSet.setValue("Doctor", Doctor);
-            dataSet.setValue("Patient", Patient);
-            dataSet.setValue("Delivery", DeliveryMan);
-            dataSet.setValue("Insurance", InsuranceAdmin);
-            dataSet.setValue("Pharamacy", PharamacyAdmin);
-            dataSet.setValue("Lab", LabAdmin);
-            dataSet.setValue("Emergency", EmergencyAdmin);
-             dataSet.setValue("Supplier", SupplierAdmin);
+//            System.out.println("asss"+Doctor);
+            dataSet.setValue("Doctor Organization", Doctor);
+            dataSet.setValue("Patient Organization", Patient);
+            dataSet.setValue("Delivery Organization", DeliveryMan);
+            dataSet.setValue("Insurance Organization", InsuranceAdmin);
+            dataSet.setValue("Pharamacy Organization", PharamacyAdmin);
+            dataSet.setValue("Lab Organization", LabAdmin);
+            dataSet.setValue("Emergency Organization", EmergencyAdmin);
+             dataSet.setValue("Supplier Organization", SupplierAdmin);
 //
 //            dataSet.setValue("Doctor", 10);
 //            dataSet.setValue("Patient", 20);

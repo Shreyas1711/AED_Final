@@ -61,25 +61,29 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        dName1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        dspe1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Doctor Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 129, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
 
         jLabel3.setText("Specialization");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 185, -1, -1));
 
         jLabel4.setText("Username");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
 
         jLabel5.setText("Password");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
-        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 124, 164, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 164, -1));
         add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 180, 164, -1));
-        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 164, -1));
-        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 164, -1));
+        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 164, -1));
+        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 164, -1));
 
         addDeliveryMan.setBackground(new java.awt.Color(24, 31, 46));
         addDeliveryMan.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,7 +94,7 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
                 addDeliveryManActionPerformed(evt);
             }
         });
-        add(addDeliveryMan, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 377, -1, -1));
+        add(addDeliveryMan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Back");
@@ -108,6 +112,18 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel6.setText("Add Doctor");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 300, 37));
+
+        jLabel10.setText("Email");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, -1, -1));
+
+        dName1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 164, -1));
+
+        jLabel11.setText("Phone");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
+
+        dspe1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 164, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeliveryManActionPerformed
@@ -126,7 +142,16 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
                 dspe.setText("");
                 return;
             }
-
+else if(!dName1.getText().matches("^(.+)@(.+)$")){
+                JOptionPane.showMessageDialog(this, "Enter proper Email in the format of abc@gmail.com");
+                dName1.setText("");
+                return;
+            }
+            else if(!dspe1.getText().matches("^\\d{10}$")){
+                JOptionPane.showMessageDialog(this, "Enter a 10 digit phone number");
+                dspe1.setText("");
+                return;
+            }
             if (strongUsername() == false) {
                 dUname.setText("");
                 JOptionPane.showMessageDialog(null, "Username should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
@@ -151,11 +176,15 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
         Employee emp = system.getEmployeeDirectory().createEmployee(name);
         emp.setCity(city);
         UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new DoctorRole());
+                            System.out.println("oooo"+system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().findOrganization(name));
+                            System.out.println("ppp"+system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList());
         if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ||system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().findOrganization(name)==null){
          system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createOrganization(name, Organization.Type.Doctor,spcl);
          JOptionPane.showMessageDialog(this," Doctor created");
          dName.setText("");
             dspe.setText("");
+            dName1.setText("");
+                dspe1.setText("");
              dUname.setText("");
               dPass.setText("");
         }else{
@@ -193,10 +222,14 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDeliveryMan;
     private javax.swing.JTextField dName;
+    private javax.swing.JTextField dName1;
     private javax.swing.JTextField dPass;
     private javax.swing.JTextField dUname;
     private javax.swing.JTextField dspe;
+    private javax.swing.JTextField dspe1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

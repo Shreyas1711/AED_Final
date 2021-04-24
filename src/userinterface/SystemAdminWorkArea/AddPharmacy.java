@@ -65,15 +65,19 @@ public class AddPharmacy extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        dName1 = new javax.swing.JTextField();
+        dspe1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Pharmacy Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         jLabel3.setText("Address");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jLabel4.setText("Username");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
@@ -82,10 +86,10 @@ public class AddPharmacy extends javax.swing.JPanel {
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         dName.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 164, -1));
+        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 164, -1));
 
         dspe.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 164, -1));
+        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 164, -1));
 
         dUname.setPreferredSize(new java.awt.Dimension(164, 30));
         add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 164, -1));
@@ -119,7 +123,7 @@ public class AddPharmacy extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 37, 270, 37));
 
         jLabel6.setText("City Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "San francisco" }));
@@ -129,10 +133,22 @@ public class AddPharmacy extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 170, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 1 Character copy.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
+
+        dName1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 164, -1));
+
+        dspe1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 164, -1));
+
+        jLabel8.setText("Email");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+
+        jLabel9.setText("Phone");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
@@ -148,6 +164,16 @@ public class AddPharmacy extends javax.swing.JPanel {
             else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
                 JOptionPane.showMessageDialog(this, "Enter proper Address in the format 123 abcd");
                 dspe.setText("");
+                return;
+            }
+             else if(!dName1.getText().matches("^(.+)@(.+)$")){
+                JOptionPane.showMessageDialog(this, "Enter proper Email in the format of abc@gmail.com");
+                dName1.setText("");
+                return;
+            }
+            else if(!dspe1.getText().matches("^\\d{10}$")){
+                JOptionPane.showMessageDialog(this, "Enter a 10 digit phone number");
+                dspe1.setText("");
                 return;
             }
 
@@ -191,6 +217,8 @@ public class AddPharmacy extends javax.swing.JPanel {
         //System.out.println("adding p" +system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getPharmacyAdminDirectory().getPharmacyList());
           dName.setText("");
                 dspe.setText("");
+                dName1.setText("");
+                dspe1.setText("");
                  dUname.setText("");
                  dPass.setText(""); 
         }
@@ -226,9 +254,11 @@ public class AddPharmacy extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHospital;
     private javax.swing.JTextField dName;
+    private javax.swing.JTextField dName1;
     private javax.swing.JTextField dPass;
     private javax.swing.JTextField dUname;
     private javax.swing.JTextField dspe;
+    private javax.swing.JTextField dspe1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -238,6 +268,8 @@ public class AddPharmacy extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
 private boolean strongUsername() {

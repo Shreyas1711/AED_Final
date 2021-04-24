@@ -59,15 +59,19 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        dName1 = new javax.swing.JTextField();
+        dspe1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dName.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 164, -1));
+        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 164, -1));
 
         dspe.setPreferredSize(new java.awt.Dimension(164, 30));
-        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 164, -1));
+        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 164, -1));
 
         dUname.setPreferredSize(new java.awt.Dimension(164, 30));
         add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 164, -1));
@@ -94,7 +98,7 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 170, -1));
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel7.setText("Add Supplier");
@@ -111,10 +115,10 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         jLabel2.setText("Supplier Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         jLabel3.setText("Address");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jLabel4.setText("Username");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
@@ -123,10 +127,22 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
         jLabel6.setText("City Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 1 Character copy 4.png")); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 410, 310));
+
+        dName1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 164, -1));
+
+        dspe1.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 164, -1));
+
+        jLabel9.setText("Email");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+
+        jLabel10.setText("Phone");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
@@ -142,6 +158,16 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
             else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
                 JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123 abcd");
                 dspe.setText("");
+                return;
+            }
+             else if(!dName1.getText().matches("^(.+)@(.+)$")){
+                JOptionPane.showMessageDialog(this, "Enter proper Email in the format of abc@gmail.com");
+                dName1.setText("");
+                return;
+            }
+            else if(!dspe1.getText().matches("^\\d{10}$")){
+                JOptionPane.showMessageDialog(this, "Enter a 10 digit phone number");
+                dspe1.setText("");
                 return;
             }
             else if (strongUsername() == false) {
@@ -177,6 +203,8 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
                 JOptionPane.showMessageDialog(this, " Supplier Unit created");
                 dName.setText("");
                 dspe.setText("");
+                dName1.setText("");
+                dspe1.setText("");
                  dUname.setText("");
                  dPass.setText("");
             } else {
@@ -224,11 +252,14 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHospital;
     private javax.swing.JTextField dName;
+    private javax.swing.JTextField dName1;
     private javax.swing.JTextField dPass;
     private javax.swing.JTextField dUname;
     private javax.swing.JTextField dspe;
+    private javax.swing.JTextField dspe1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -236,5 +267,6 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

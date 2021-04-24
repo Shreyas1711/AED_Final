@@ -171,8 +171,11 @@ public void viewTable(){
             return;
         }
         Doctor doc = (Doctor)doctorDetails.getValueAt(selectedRow,0);
-         system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().deleteOrganization(doc.getName());
+         system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().deleteOrganization(doc);
+         System.out.println("doctor deleted"+doc);
          system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getDoctorDirectory().deleteDoctor(doc);
+          UserAccount ua = system.getUserAccountDirectory().findUserAccount(doc.getName());
+         system.getUserAccountDirectory().getUserAccountList().remove(ua);
         viewTable();
            dB4OUtil.storeSystem(system); 
     }//GEN-LAST:event_deleteDoctorActionPerformed

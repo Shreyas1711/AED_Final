@@ -154,7 +154,7 @@ public class ViewInventoryOrderJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 //        System.out.println("R is");
             Object[] row = new Object[3];
-            row[0] = request.getReceiver();
+            row[0] = request.getReceiver().getEmployee().getName();
             row[1] = request.getRequestDate();
             row[2] = request.getStatus();
 

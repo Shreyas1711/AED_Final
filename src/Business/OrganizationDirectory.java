@@ -34,7 +34,7 @@ import java.util.ArrayList;
  * @author shreyascr
  */
 public class OrganizationDirectory {
-     private ArrayList<Organization> organizationList;
+      ArrayList<Organization> organizationList;
 DoctorDirectory doctorDirectory;
     PatientDirectory patientDirectory;
     LabDirectory labDirectory;
@@ -131,8 +131,15 @@ DoctorDirectory doctorDirectory;
          }
          return null;
      }
-     public void deleteOrganization(String name){
-        organizationList.remove(name);
+     public void deleteOrganization(Organization name){
+          System.out.println("orggg"+name);
+          for(int i=0;i<organizationList.size();i++){
+              if(organizationList.get(i).getName().equals(name.getName())){
+                  organizationList.remove(i);
+              }
+          }
+        
+        
         
      }
       public ArrayList<Organization> findOrganizationType(Type type){
