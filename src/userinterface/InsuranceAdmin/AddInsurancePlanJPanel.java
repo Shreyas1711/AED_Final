@@ -88,6 +88,7 @@ public class AddInsurancePlanJPanel extends javax.swing.JPanel {
             }
         });
 
+        totalTxtField.setEditable(false);
         totalTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalTxtFieldActionPerformed(evt);
@@ -187,9 +188,22 @@ public class AddInsurancePlanJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
              if (nameTxtField.getText().isEmpty() || yrsTxtField.getText().isEmpty() || monthlTxtField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter all details of the Test");
+            JOptionPane.showMessageDialog(null, "Please enter all details of the Insurance Plan");
             return;
         } else {
+                                if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Insurance Plan name");
+                nameTxtField.setText("");
+                return;
+            } else if (!yrsTxtField.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Years duration in integers");
+                yrsTxtField.setText("");
+                return;
+            }    else if (!monthlTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter monthly premium rate like 14.3");
+                monthlTxtField.setText("");
+                return;
+            }
             double totalAmount = Double.parseDouble(monthlTxtField.getText()) * Integer.parseInt(yrsTxtField.getText());
             totalTxtField.setText(String.valueOf(totalAmount));
             InsurancePlan i = new InsurancePlan(nameTxtField.getText(),Integer.parseInt(yrsTxtField.getText()),Double.parseDouble(monthlTxtField.getText()),Double.parseDouble(totalTxtField.getText()));

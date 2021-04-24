@@ -121,6 +121,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) orderTbl.getModel();
         dtm.setRowCount(0);
         for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
+            if(request instanceof PlaceNewOrderWorkRequest){
         placeWorkRequest = (PlaceNewOrderWorkRequest) request;
         for (PharmacyOrder orderItemTotal : placeWorkRequest.getOrderTotal()){
                 Object row[] = new Object[4];
@@ -130,7 +131,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
                 row[3] = request.getStatus();
 
                 dtm.addRow(row);
-                
+        }      
         }
         }
     }
@@ -292,10 +293,14 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         if (selectedValue >= 0) {
             DeliveryMan deliveryMan = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().findDeliveryMan(selectedPharmacy);
            placeWorkRequest.setDeliveryMan(system.getUserAccountDirectory().findUserAccount(deliveryMan.getDeliveryManName()));
-            System.out.println("assignment");
+           System.out.println(placeWorkRequest.getDeliveryMan());
+           placeWorkRequest.setStatus("Assigned");
+           System.out.println("assignment");
             System.out.println(placeWorkRequest.getDeliveryMan().getUsername());
             JOptionPane.showMessageDialog(null, "Delivery man has been assigned");
+            
         }
+        populatetable();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

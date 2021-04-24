@@ -151,15 +151,23 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Enter proper manufacturer name");
                 manufacTxtField.setText("");
                 return;
-            } else {
-            }   
+            } else if (!priceTxtField.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Enter price in Integers");
+                priceTxtField.setText("");
+                return;
+            }  else if (!availTxtField.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Enter availability in Integers");
+                availTxtField.setText("");
+                return;
+            } 
+            else{}
             String name = nameTxtField.getText();
             String manufacturer = manufacTxtField.getText();
             Integer price = Integer.parseInt(priceTxtField.getText());
             int avail = Integer.parseInt(availTxtField.getText());
             Inventory i = new Inventory(name,manufacturer,price,avail);
                 if( system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getSupplierDirectory().findSupplier(userAccount.getEmployee().getName()).getInventoryDirectory()==null ||
-                        system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getSupplierDirectory().findSupplier(i.getName()) == null ) {
+                        system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getSupplierDirectory().findSupplier(userAccount.getEmployee().getName()) == null ) {
                     InventoryDirectory inventoryList = new InventoryDirectory();
                     inventoryList.addInventory(i);
                     system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getSupplierDirectory().findSupplier(userAccount.getEmployee().getName()).setInventoryDirectory(inventoryList);

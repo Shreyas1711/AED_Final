@@ -176,10 +176,40 @@ public class AddTestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
                 // TODO add your handling code here:
 
-        if (nameTxtField.getText().isEmpty() || priceTxtField.getText().isEmpty()) {
+        if (nameTxtField.getText().isEmpty() || priceTxtField.getText().isEmpty() || sampleTxtField.getText().isEmpty()||lowerRangeTxtField.getText().isEmpty()||upperRangeTxtField.getText().isEmpty()||apparatusTxtField.getText().isEmpty()||priceTxtField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter all details of the Test");
             return;
         } else {
+               if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Test name");
+                nameTxtField.setText("");
+                return;
+            } else if (!sampleTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper sample required");
+                priceTxtField.setText("");
+                return;
+            }    else if (!lowerRangeTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter lower range like 4.3");
+                lowerRangeTxtField.setText("");
+                return;
+            } else if (!upperRangeTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter upper range like 7.3");
+                upperRangeTxtField.setText("");
+                return;
+            } else if (Double.parseDouble(upperRangeTxtField.getText())-Double.parseDouble(lowerRangeTxtField.getText())<0) {
+                JOptionPane.showMessageDialog(this, "Upper range cannot be lesser than lower range value");
+                upperRangeTxtField.setText("");
+                return;
+            }else if (!apparatusTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper apparatus required");
+                apparatusTxtField.setText("");
+                return;
+            }else if (!priceTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter price like :23.5");
+                priceTxtField.setText("");
+                return;
+            }else{}
+               
             Test t = new Test(nameTxtField.getText(),sampleTxtField.getText(),Double.parseDouble(lowerRangeTxtField.getText()),Double.parseDouble(upperRangeTxtField.getText()),apparatusTxtField.getText(), Double.parseDouble(priceTxtField.getText()));
                 if( system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getLabDirectory().findLab(userAccount.getEmployee().getName()).getTestlist()==null ||
                         system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getLabDirectory().findLab(t.getName()) == null ) {

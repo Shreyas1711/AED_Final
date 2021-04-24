@@ -261,7 +261,8 @@ DoctorDirectory doctorDirectory;
 //            organizationList.add(organization);
 //        }
             else if (type.getValue().equals(Type.PharamacyAdmin.getValue())){
-            organization = new VoluntaryyAdmin();
+            organization = new PharamacyAdmin();
+            organization.setName(name);
             organization.setEnterpriseType1(type);
             if(getPharmacyAdminDirectory()==null){
             PharamacyAdminDirectory pharmacydirectory =new PharamacyAdminDirectory();
@@ -277,12 +278,6 @@ DoctorDirectory doctorDirectory;
             }
             organizationList.add(organization);
         }
-//         else if (type.getValue().equals(Type.EmergencyAdmin.getValue())){
-//            organization = new DeliveryMan();
-//             organization.setName(name);
-//             organization.setEnterpriseType1(type);
-//            organizationList.add(organization);
-//        }
          else if (type.getValue().equals(Type.LabAdmin.getValue())){
             organization = new Lab();
             organization.setName(name);

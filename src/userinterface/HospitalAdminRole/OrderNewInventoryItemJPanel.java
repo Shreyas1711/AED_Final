@@ -273,7 +273,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         int rowCount = InventoryOrderJTable.getRowCount();
         for (int i = 0; i < rowCount; i++) {
         Inventory inv = (Inventory) InventoryOrderJTable.getValueAt(i, 0);
-        sup.getInventoryDirectory().addInventory(inv);
+//        sup.getInventoryDirectory().addInventory(inv);
         }
 
         Boolean flag = true;
@@ -284,7 +284,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
             
             OrderInventoryWorkRequest orderInventoryWorkRequest = new OrderInventoryWorkRequest();
             orderInventoryWorkRequest.setInventoryList(sup.getInventoryDirectory().getInventoryList());
-
+            System.out.println("list of items "+sup.getInventoryDirectory().getInventoryList());
             orderInventoryWorkRequest.setSender(this.userAccount);
             int selectedValue = SupplierJComboBox.getSelectedIndex();
 //           System.out.println(lab.getName());
@@ -331,6 +331,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        System.out.println("list of items "+system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(supplierName).getOrganizationDirectory().getSupplierDirectory().findSupplier(supplierName).getInventoryDirectory().getInventoryList());
         int selectedValue = InventoryItemJComboBox.getSelectedIndex();
         String name = InventoryItemJComboBox.getItemAt(selectedValue);
         Inventory i1 = new Inventory();

@@ -267,11 +267,8 @@ public class BookTestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) LabTable.getModel();
         dtm.setRowCount(0);
-        int selectedValue = LabComboBox.getSelectedIndex();
-        if (selectedValue >= 0) {
-            String name = LabComboBox.getItemAt(selectedValue);
-            this.populateTestItems(name);
-        }
+        int selectedValue = testJComboBox.getSelectedIndex();
+        String name = testJComboBox.getItemAt(selectedValue);
     }//GEN-LAST:event_testJComboBoxActionPerformed
 
     private void totalTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTxtFieldActionPerformed
@@ -392,6 +389,7 @@ public class BookTestJPanel extends javax.swing.JPanel {
     }
 
     private void populateTestItems(String name) {
+        
 System.out.println("its coming here");
 System.out.println(system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getOrganizationList());
 System.out.println("test list " +system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getLabDirectory().findLab(name).getTestlist().getTestList());

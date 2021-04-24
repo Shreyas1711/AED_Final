@@ -121,14 +121,14 @@ public class AddHospital extends javax.swing.JPanel {
                 return;
             }
             else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
-                JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123, abcd");
+                JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123 abcd");
                 dspe.setText("");
                 return;
             }
 
             if (strongUsername() == false) {
                 dUname.setText("");
-                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                JOptionPane.showMessageDialog(null, "Username should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
                 return;
             } else {
                 String userName = dUname.getText();
@@ -158,8 +158,10 @@ public class AddHospital extends javax.swing.JPanel {
 
             if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
                 system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Hospital);
+                JOptionPane.showMessageDialog(null, "Hospital created");
             } else {
                 System.out.println("already there");
+                JOptionPane.showMessageDialog(null, "Hospital already exists");
             }
         }
     }//GEN-LAST:event_addHospitalActionPerformed
@@ -201,7 +203,7 @@ public class AddHospital extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private boolean strongUsername() {
-        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Pattern pat = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
         Matcher m = pat.matcher(dUname.getText());
         boolean boo = m.matches();
         return boo;

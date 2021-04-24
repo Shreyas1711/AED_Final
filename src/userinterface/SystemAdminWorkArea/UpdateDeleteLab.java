@@ -249,7 +249,7 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
             else if (strongUsername() == false) {
         
                 addrTxtField.setText("");
-                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                JOptionPane.showMessageDialog(null, "should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
                 return;
             } 
             else if (strongPassword() == false) {
@@ -351,7 +351,7 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
     }
 
     private boolean strongUsername() {
-        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Pattern pat = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
         Matcher m = pat.matcher(addrTxtField.getText());
         boolean boo = m.matches();
         return boo;

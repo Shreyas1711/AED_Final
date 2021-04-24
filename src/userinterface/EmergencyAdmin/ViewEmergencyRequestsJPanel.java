@@ -47,6 +47,7 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
         emergencyRequestJTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EMERGENCY ADMIN JPANEL");
@@ -78,6 +79,13 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,6 +94,8 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
@@ -100,13 +110,16 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backBtn)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -124,8 +137,16 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+                userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JTable emergencyRequestJTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -141,15 +162,17 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
         System.out.println(system.getWorkQueue().getWorkRequestList());
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
             
-            EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
 //            System.out.println("REC "+request.getReceiver().getUsername());
 //            System.out.println("class: " +request.getSender().getUsername());
 //            System.out.println("class: " +request.getSender().getPassword());
 //            System.out.println("HELLO "+this.userAccount);
 System.out.println("asasqqqq111 " + this.ua.getEmployee().getName());
   System.out.println("asasqqqq " + request.getReceiver());
+  System.out.println("t/f" +request.getReceiver().equals(this.ua));
+  System.out.println("receiver is " + this.ua);
    
             if (request.getReceiver().equals(this.ua)) {
+                  System.out.println("receiver is " + request.getReceiver());
                 Object[] row = new Object[3];
                 row[0] = request;
                 row[1] = request.getRequestDate();

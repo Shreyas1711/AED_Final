@@ -30,10 +30,10 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
         this.ua=ua;
         this.system=system;
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
-         EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
+
             if (request.getReceiver().equals(this.ua)) {
-                pNameTxtField.setText(emergencyWorkRequest.getSender().getEmployee().getName());
-                pAgeTxtField.setText(emergencyWorkRequest.getStatus());
+                pNameTxtField.setText(request.getSender().getEmployee().getName());
+                pAgeTxtField.setText(request.getStatus());
 //                pPhoneTxtField.setText(emergencyWorkRequest.getP().getPhoneNumber());
 //                pAddrTxtField.setText(emergencyWorkRequest.getP().getAddress());
             }
@@ -151,9 +151,9 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
                         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
-         EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
+
             if (request.getReceiver().equals(this.ua)) {
-                emergencyWorkRequest.setStatus("Help awaited!");
+                request.setStatus("Help awaited!");
             }
                 }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -161,9 +161,9 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
                 for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
-         EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
+
             if (request.getReceiver().equals(this.ua)) {
-                emergencyWorkRequest.setStatus("Help completed");
+                request.setStatus("Help completed");
             }
                 }
             

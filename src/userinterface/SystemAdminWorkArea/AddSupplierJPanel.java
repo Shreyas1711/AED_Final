@@ -186,13 +186,13 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
                 return;
             }
             else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
-                JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123, abcd");
+                JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123 abcd");
                 dspe.setText("");
                 return;
             }
             else if (strongUsername() == false) {
                 dUname.setText("");
-                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                JOptionPane.showMessageDialog(null, "should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
                 return;
             } 
             else if (strongPassword() == false) {
@@ -220,15 +220,17 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
             if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
                 system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Supplier);
                 system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.SupplierAdmin, "Test");
+                JOptionPane.showMessageDialog(this, " Supplier Unit created");
             } else {
                 System.out.println("already there");
+                JOptionPane.showMessageDialog(this, " Supplier Unit already exist");
             }
 
-            JOptionPane.showMessageDialog(this, " Supplier Unit created");
+            
         }
     }//GEN-LAST:event_addHospitalActionPerformed
     private boolean strongUsername() {
-        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Pattern pat = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
         Matcher m = pat.matcher(dUname.getText());
         boolean boo = m.matches();
         return boo;

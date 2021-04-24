@@ -5,12 +5,17 @@
  */
 package userinterface.SupplierAdmin;
 
+import Business.DeliveryMan.DeliveryMan;
 import userinterface.Labadmin.*;
 import Business.EcoSystem;
+import Business.Enterprise;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderInventoryWorkRequest;
+import Business.WorkQueue.PlaceNewOrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +30,7 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     EcoSystem system;
     OrderInventoryWorkRequest request;
+    String selectedPharmacy;
     public CompleteOrderJPanel(JPanel userProcessContainer,UserAccount userAccount,EcoSystem system, OrderInventoryWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -33,7 +39,8 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         this.request= request;
         patientNameTxtField.setText(request.getInventoryList().toString());
         DateBookedTxtField.setText(String.valueOf(request.getRequestDate()));
-        
+        populatetable();
+        populateComboBox();
         
         
     }
@@ -52,12 +59,13 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         patientNameTxtField = new javax.swing.JTextField();
         DateBookedTxtField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        InventoryTable = new javax.swing.JTable();
+        acceptOrder = new javax.swing.JButton();
+        declineOrder = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        delManCombo = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("COMPLETE TESTING");
@@ -72,35 +80,46 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Date Ordered");
 
-        jLabel6.setText("Order Completed");
+        InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Sender", "Items", "Date ordered", "status"
+            }
+        ));
+        jScrollPane1.setViewportView(InventoryTable);
 
-        jLabel7.setText("Order Declined");
-
-        jRadioButton1.setText("YES");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        acceptOrder.setText("Accept");
+        acceptOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                acceptOrderActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("NO");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        declineOrder.setText("Decline");
+        declineOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                declineOrderActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("YES");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("Assign DeliveryMan:");
+
+        delManCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        delManCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                delManComboActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setText("NO");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Assign");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -109,60 +128,67 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton4))
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(DateBookedTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                    .addComponent(patientNameTxtField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2)))))
-                .addContainerGap(226, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(patientNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DateBookedTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 293, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(acceptOrder))
+                        .addGap(137, 137, 137)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(declineOrder)
+                            .addComponent(delManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(patientNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(92, 92, 92)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DateBookedTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(acceptOrder)
+                            .addComponent(declineOrder))
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel8))
+                    .addComponent(delManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(jButton1)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,39 +196,115 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_patientNameTxtFieldActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
         // TODO add your handling code here:
-        
-        this.request.setStatus("Order delivered");
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+        int selectedRow = InventoryTable.getSelectedRow();
+//        System.out.println("Status "+InventoryTable.getValueAt(selectedRow, 3));
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "You must select a row first!");
+        } else {
+            if (InventoryTable.getValueAt(selectedRow, 3).equals("Completed")) {
+                JOptionPane.showMessageDialog(null, "Order is already completed!");
+            } else {
+                WorkRequest request = (WorkRequest) InventoryTable.getValueAt(selectedRow, 0);
+                request.setStatus("Accepted");
+                populatetable();
+            }
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-       this.request.setStatus("Delivery in progess");
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+        }
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-        this.request.setStatus("Order declined, please try again");
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+        //stsTxt.setText(placeWorkRequest.getStatus());
+    }//GEN-LAST:event_acceptOrderActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void declineOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineOrderActionPerformed
         // TODO add your handling code here:
-        this.request.setStatus("Awaiting order confirmation");
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+        int selectedRow = InventoryTable.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "You must select a row first!");
+        }
+
+        WorkRequest request = (WorkRequest) InventoryTable.getValueAt(selectedRow, 0);
+        if (InventoryTable.getValueAt(selectedRow, 1).equals("Completed")) {
+            JOptionPane.showMessageDialog(null, "Order is already processed and completed!");
+        } else {
+
+            request.setStatus("Declined");
+            populatetable();
+        }
+
+        //stsTxt.setText(placeWorkRequest.getStatus());
+    }//GEN-LAST:event_declineOrderActionPerformed
+
+    private void delManComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delManComboActionPerformed
+        // TODO add your handling code here:
+        selectedPharmacy = String.valueOf(delManCombo.getSelectedItem());
+
+    }//GEN-LAST:event_delManComboActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        PlaceNewOrderWorkRequest p = new PlaceNewOrderWorkRequest();
+        System.out.println("Selected del++"+selectedPharmacy+"++");
+        System.out.println("Testing "+system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().getDeliveryList().get(0).getDeliveryManName());
+        System.out.println("Testing111 "+system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().getDeliveryList().size());
+        int selectedValue = delManCombo.getSelectedIndex();
+        if (selectedValue >= 0) {
+            DeliveryMan deliveryMan = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().findDeliveryMan(selectedPharmacy);
+            p.setDeliveryMan(system.getUserAccountDirectory().findUserAccount(deliveryMan.getDeliveryManName()));
+            p.setStatus("Assigned");
+                        request.setDeliveryMan(system.getUserAccountDirectory().findUserAccount(deliveryMan.getDeliveryManName()));
+            request.setStatus("Assigned");
+            System.out.println("assignment");
+            System.out.println(request.getDeliveryMan().getUsername());
+            JOptionPane.showMessageDialog(null, "Delivery man has been assigned");
+
+        }
+        populatetable();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DateBookedTxtField;
+    private javax.swing.JTable InventoryTable;
+    private javax.swing.JButton acceptOrder;
+    private javax.swing.JButton declineOrder;
+    private javax.swing.JComboBox<String> delManCombo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField patientNameTxtField;
     // End of variables declaration//GEN-END:variables
+
+    private void populatetable(){
+        DefaultTableModel dtm = (DefaultTableModel) InventoryTable.getModel();
+        dtm.setRowCount(0);
+
+                Object row[] = new Object[4];
+                row[0] = request;
+                row[1] = request.getInventoryList().toString();
+                row[2] = request.getRequestDate();
+                row[3] = request.getStatus();
+
+                dtm.addRow(row);
+                
+        
+        
+    }
+    
+    
+    public void populateComboBox(){
+         for(Enterprise res: system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList()){
+             if(res.getEnterpriseType().getValue().equals("Delivery")){
+            delManCombo.addItem(res.getName());
+         
+        }else{
+                 System.out.println("nothing");
+             }
+         }
+    }
 }

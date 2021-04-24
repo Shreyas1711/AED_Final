@@ -2,16 +2,60 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/Users/shreyascr/Desktop/AED%20final/AED_final_project/src/userinterface/InsuranceAdmin/ViewUpdateDeleteIPlansJPanel.java</file>
-            <file>file:/Users/shreyascr/Desktop/AED%20final/AED_final_project/src/userinterface/SystemAdminWorkArea/AddInsuranceCompanyJPanel.java</file>
-            <file>file:/Users/shreyascr/Desktop/AED%20final/AED_final_project/src/userinterface/InsuranceAdmin/InsuranceAdminJPanel.java</file>
-            <file>file:/Users/shreyascr/Desktop/AED%20final/AED_final_project/src/userinterface/InsuranceAdmin/ManageInsuranceOrdersJPanel.java</file>
-            <file>file:/Users/shreyascr/Desktop/AED%20final/AED_final_project/src/userinterface/InsuranceAdmin/AddInsurancePlanJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SupplierAdmin/ViewUpdateDeleteInventoryJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/UpdateDeleteSupplier.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddHospital.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddDelivery.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/EmergencyAdmin/CompleteEmergencyRequest.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/UpdateDeletePharmacy.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SupportAdmin/SupportJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/orderMedHospitalJpanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Doctor/DoctorJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddLabJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/ViewEmergencyRequestStatusJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Doctor/PrescriptionJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/ViewCurrentPlans.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddPharmacy.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/OrderNewInventoryItemJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Doctor/AddDoctorJpanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/ClientJFrame.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/PharamacyAdmin/PharamacyAdminJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Labadmin/ViewUpdateDeleteTestJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/InsuranceAdmin/AddInsurancePlanJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/BookTestJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Labadmin/LabAdminJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddSupplierJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/PharamacyAdmin/addMedicineJpanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/ManageInventoryJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/EmergencyAdmin/EmergencyAdminJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/Business/SupplierAdmin/Inventory.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/Business/InsuraceAdmin/InsurancePlan.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/AddSupportJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/UpdateDeleteLab.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/Business/EcoSystem.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddInsuranceCompanyJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/UpdateDeleteInsuranceCompany.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/EmergencyAdmin/ViewEmergencyRequestsJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/PharamacyAdmin/manageOrderJpanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/Business/Organization.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/orderMedJpanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/AddPatientJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/ViewTestBookingsJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/DeliveryManRole/DeliveryManWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/CustomerAreaJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Doctor/DoctorAdminJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/ViewInventoryOrderJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Labadmin/CompleteTestJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/Labadmin/AddTestJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/HospitalAdminRole/AdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SupplierAdmin/AddInventoryItemJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/InsuranceAdmin/ViewUpdateDeleteIPlansJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/AddEmergencyUnitJPanel.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/SystemAdminWorkArea/UpdateDeleteEmergencyUnit.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/userinterface/CustomerRole/ViewInsurancePlans.java</file>
+            <file>file:/C:/Users/Apoorva/CareZone/AED_Final/src/Business/Enterprise.java</file>
         </group>
-=======
-        <group/>
->>>>>>> 379db28daa4bd0d75e4024761c292f9ba60fb3c0
     </open-files>
 </project-private>

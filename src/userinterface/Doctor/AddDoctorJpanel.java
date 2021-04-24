@@ -14,6 +14,9 @@ import Business.Role.DoctorRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -96,6 +99,34 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
 
     private void addDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeliveryManActionPerformed
         // TODO add your handling code here:
+                        if (dUname.getText().isEmpty() || dPass.getText().isEmpty() || dName.getText().isEmpty() || dspe.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
+        } else {
+            
+           if (!dName.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name! Name should be string!");
+                dName.setText("");
+                return;
+            }
+            else if(!dspe.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper specialization name");
+                dspe.setText("");
+                return;
+            }
+
+            if (strongUsername() == false) {
+                dUname.setText("");
+                JOptionPane.showMessageDialog(null, "Username should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+                String userName = dUname.getText();
+            }
+            if (strongPassword() == false) {
+                dPass.setText("");
+                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+            }
         String hospname = user.getEmployee().getName();
         System.out.println("HospitalName"+hospname);
         String name = dName.getText();
@@ -109,9 +140,10 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
         UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new DoctorRole());
         if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ||system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().findOrganization(name)==null){
          system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createOrganization(name, Organization.Type.Doctor,spcl);
-       
+         JOptionPane.showMessageDialog(this," Doctor created");
         }else{
              System.out.println("Already exists");
+             JOptionPane.showMessageDialog(this," Doctor already exists");
             // System.out.println(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList().size());
 //            DoctorDirectory doctordirectory =new DoctorDirectory();
 //            Doctor doctor = new Doctor();
@@ -122,6 +154,7 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
 //            doctordirectory.setDoctorList(doclist);
 //            system.getHospitalDirectory().findHospital(hospname).setDoctorDirectory(doctordirectory);
         }
+                        }
     }//GEN-LAST:event_addDeliveryManActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -154,4 +187,19 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+
+    private boolean strongUsername() {
+        Pattern pat = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m = pat.matcher(dUname.getText());
+        boolean boo = m.matches();
+        return boo;
+    }
+
+    private boolean strongPassword() {
+        Pattern pat1;
+        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = pat1.matcher(dPass.getText());
+        boolean bat1 = m1.matches();
+        return bat1;
+    }
 }

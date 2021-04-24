@@ -255,7 +255,19 @@ public class ViewUpdateDeleteIPlansJPanel extends javax.swing.JPanel {
             return;
         } else {
 //            updateJPanel.setVisible(true);
-
+                                if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Insurance Plan name");
+                nameTxtField.setText("");
+                return;
+            } else if (!yrsTxtField.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Years duration in integers");
+                yrsTxtField.setText("");
+                return;
+            }    else if (!monthlTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter monthly premium rate like 14.3");
+                monthlTxtField.setText("");
+                return;
+            }
             InsurancePlan ip = (InsurancePlan) plansJTable.getValueAt(selectedRow, 0);
 //            System.out.println("item : " + t.getName());
             ip.setName(nameTxtField.getText());

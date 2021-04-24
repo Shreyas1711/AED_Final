@@ -210,6 +210,24 @@ public class ViewUpdateDeleteInventoryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         } else {
+                                     if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper inventory item name");
+                nameTxtField.setText("");
+                return;
+            } else if (!yrsTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper manufacturer name");
+                yrsTxtField.setText("");
+                return;
+            } else if (!monthlTxtField.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Enter price in Integers");
+                monthlTxtField.setText("");
+                return;
+            }  else if (!unitsTxtField.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "Enter availability in Integers");
+                unitsTxtField.setText("");
+                return;
+            } 
+            else{}
             //            updateJPanel.setVisible(true);
 
             Inventory i = (Inventory) plansJTable.getValueAt(selectedRow, 0);
@@ -236,7 +254,7 @@ public class ViewUpdateDeleteInventoryJPanel extends javax.swing.JPanel {
         } else {
             Inventory i = (Inventory) plansJTable.getValueAt(selectedRow, 0);
             Supplier supplier= system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getSupplierDirectory().findSupplier(userAccount.getEmployee().getName());
-            supplier.deleteInventory(i);
+            supplier.getInventoryDirectory().deleteInventoryItem(i);
             JOptionPane.showMessageDialog(null, "Inventory item " + nameTxtField.getText() + " deleted");
             populateTable();
             nameTxtField.setText("");
@@ -273,7 +291,7 @@ public class ViewUpdateDeleteInventoryJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) plansJTable.getModel();
         String name = dtm.getValueAt(plansJTable.getSelectedRow(), 0).toString();
         String manufacturer = (dtm.getValueAt(plansJTable.getSelectedRow(), 1).toString());
-        Double price = Double.parseDouble(dtm.getValueAt(plansJTable.getSelectedRow(), 2).toString());
+        int price = Integer.parseInt(dtm.getValueAt(plansJTable.getSelectedRow(), 2).toString());
         int avail = Integer.parseInt(dtm.getValueAt(plansJTable.getSelectedRow(), 3).toString());
 
         nameTxtField.setText(name);

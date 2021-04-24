@@ -70,6 +70,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        manPhar = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -157,7 +158,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton5.setText("Add Logistics");
+        jButton5.setText("Add Supplier");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -178,10 +179,17 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton8.setText("View Logistics");
+        jButton8.setText("View Supplier");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
+            }
+        });
+
+        manPhar.setText("Manage Pharmacy");
+        manPhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manPharActionPerformed(evt);
             }
         });
 
@@ -214,7 +222,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(10, 10, 10)
                                                 .addComponent(jButton5))
-                                            .addComponent(jButton4))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jButton4)
+                                                .addGap(100, 100, 100)
+                                                .addComponent(manPhar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -227,7 +238,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton8)
                                     .addComponent(jButton7))
-                                .addGap(0, 154, Short.MAX_VALUE)))))
+                                .addGap(0, 198, Short.MAX_VALUE)))))
                 .addGap(191, 191, 191))
         );
         jPanel2Layout.setVerticalGroup(
@@ -248,7 +259,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnManageAdmin)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(manPhar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5)
                 .addGap(5, 5, 5)
@@ -260,7 +272,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel2);
@@ -378,6 +390,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void manPharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manPharActionPerformed
+        // TODO add your handling code here:
+        UpdateDeletePharmacy updatePharJPanel = new UpdateDeletePharmacy(userProcessContainer, system, user);
+        userProcessContainer.add("CreateHospital", updatePharJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manPharActionPerformed
         
 
 
@@ -401,6 +421,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JTree jTree;
     private javax.swing.JLabel lblSelectedNode;
+    private javax.swing.JButton manPhar;
     // End of variables declaration//GEN-END:variables
         }
                 

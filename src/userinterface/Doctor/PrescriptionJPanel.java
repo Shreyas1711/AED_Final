@@ -12,6 +12,7 @@ import Business.WorkQueue.BookAppointment;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -154,13 +155,36 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String med1 = dmed.getText();
-        String med2 = dmed2.getText();
-        String med3 = dmed3.getText();
-        ArrayList<String    > med = new ArrayList<>();
-        med.add(med1);
-        med.add(med2);
-        med.add(med3);
+    if (dmed.getText().isEmpty() && dmed2.getText().isEmpty() && dmed2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter atleast one medicine");
+            return;
+        } else {
+            if ((!dmed.getText().matches("[a-zA-Z_]+")) &&(!dmed3.getText().matches("[a-zA-Z_]+"))&& (!dmed2.getText().matches("[a-zA-Z_]+"))) {
+                JOptionPane.showMessageDialog(this, "Enter proper medicine name");
+                dmed.setText("");
+                dmed2.setText("");
+                dmed3.setText("");
+                return;
+            }
+//            }
+//            else if(!dmed2.getText().matches("[a-zA-Z_]+")) {
+//                JOptionPane.showMessageDialog(this, "Enter proper medicine name");
+//                dmed2.setText("");
+//                return;
+//            } else if(!dmed3.getText().matches("[a-zA-Z_]+")) {
+//                JOptionPane.showMessageDialog(this, "Enter proper medicine name");
+//                dmed3.setText("");
+//                return;
+//            }
+            else{}
+            ArrayList<String> med = new ArrayList<>();
+        if(!dmed.getText().isEmpty()) {String med1 = dmed.getText(); med.add(med1);}
+        if(!dmed2.getText().isEmpty()) {String med2 = dmed2.getText();med.add(med2);}
+        if(!dmed3.getText().isEmpty()) {String med3 = dmed3.getText();med.add(med3);}
+//        
+//        med.add(med1);
+//        med.add(med2);
+//        med.add(med3);
         Medicine md = new Medicine();
         md.setMedicines(med);
        
@@ -171,7 +195,7 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
          userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-
+                    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

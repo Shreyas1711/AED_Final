@@ -184,7 +184,7 @@ public class AddLabJPanel extends javax.swing.JPanel {
                 return;
             } else if (strongUsername() == false) {
                 labUName.setText("");
-                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                JOptionPane.showMessageDialog(null, "should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
                 return;
             } else if (strongPassword() == false) {
                 labPwd.setText("");
@@ -212,11 +212,13 @@ public class AddLabJPanel extends javax.swing.JPanel {
             if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
                 system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Lab);
                 system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.LabAdmin, "Test");
+                JOptionPane.showMessageDialog(this, " Lab created");
             } else {
                 System.out.println("already there");
+                JOptionPane.showMessageDialog(this, " Lab already Exist");
             }
 
-            JOptionPane.showMessageDialog(this, " Lab created");
+            
         }
     }//GEN-LAST:event_addLabActionPerformed
 
@@ -243,7 +245,7 @@ public class AddLabJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_labNameActionPerformed
     private boolean strongUsername() {
-        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Pattern pat = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
         Matcher m = pat.matcher(labUName.getText());
         boolean boo = m.matches();
         return boo;

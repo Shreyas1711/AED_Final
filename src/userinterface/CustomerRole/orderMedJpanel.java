@@ -17,6 +17,7 @@ import Business.WorkQueue.BookAppointment;
 import Business.WorkQueue.PharmacyOrder;
 import Business.WorkQueue.PlaceNewOrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 //import com.sun.org.apache.xml.internal.resolver.Catalog;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,19 +108,21 @@ public class orderMedJpanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
+            if(request instanceof PlaceNewOrderWorkRequest){
         placeworkRequest = (PlaceNewOrderWorkRequest) request;
         for (PharmacyOrder orderItemTotal : placeworkRequest.getOrderTotal()){
-             if(request.getSender().getUsername().equals(user.getEmployee().getName())){
-                Object row[] = new Object[6];
+             if(request.getSender().getUsername().equals(user.getUsername())){
+                Object row[] = new Object[5];
                 row[0] = placeworkRequest.getOrderId();
                 row[1] = orderItemTotal.getCatalog().getItemName();
                 row[2] = orderItemTotal.getCatalog().getItemPrice();
                 row[3] = request.getStatus();
-                row[5] = request;
+     
 
                 dtm.addRow(row);
              }
-                
+             System.out.println(request);
+        }
         }
         }
     }
@@ -164,6 +167,7 @@ public class orderMedJpanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         orderBtn.setText("Order");
         orderBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -211,13 +215,13 @@ public class orderMedJpanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Order ID", "Medicine", "Price", "Status", "Customer Name"
+                "Order ID", "Medicine", "Price", "Status"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -226,6 +230,13 @@ public class orderMedJpanel extends javax.swing.JPanel {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -243,24 +254,29 @@ public class orderMedJpanel extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel5)
-                        .addGap(52, 52, 52)
-                        .addComponent(pharmacyCom, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(78, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel5)
+                .addGap(52, 52, 52)
+                .addComponent(pharmacyCom, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backBtn)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pharmacyCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pharmacyCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backBtn))
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,7 +287,7 @@ public class orderMedJpanel extends javax.swing.JPanel {
                     .addComponent(jButton1))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -356,9 +372,17 @@ public class orderMedJpanel extends javax.swing.JPanel {
         populatetable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+                userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addcartBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;

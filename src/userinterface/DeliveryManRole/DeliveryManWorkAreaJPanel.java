@@ -11,6 +11,7 @@ import Business.Pharmacist.PharamacyAdmin;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.OrderInventoryWorkRequest;
 import Business.WorkQueue.PharmacyOrder;
 import Business.WorkQueue.PlaceNewOrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -64,9 +65,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
             System.out.println(request);
+            System.out.println(this.user);
+            if(request instanceof PlaceNewOrderWorkRequest|| request instanceof OrderInventoryWorkRequest) {
+                if(request.getDeliveryMan()!=null){
             System.out.println(request.getDeliveryMan());
-            System.out.println(request.getDeliveryMan().getUsername());
-                if (request.getDeliveryMan().getUsername().equals(user.getUsername())) {
+                if (request.getDeliveryMan().equals(this.user)) {
                 Object[] row = new Object[2];
                 //row[0] = request;
                 row[0] = request;
@@ -74,6 +77,8 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 row[1] = request.getStatus();
                 //row[4] = request.getRequestDate();
                 dtm.addRow(row);
+            }
+                }
             }
         }
     }
@@ -92,6 +97,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         refreshJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         delManTbl = new javax.swing.JTable();
+        backBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -133,6 +139,14 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(delManTbl);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 520, 100));
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
@@ -176,8 +190,16 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
+    private javax.swing.JButton backBtn;
     private javax.swing.JTable delManTbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;

@@ -266,6 +266,35 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         } else {
+            if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Test name");
+                nameTxtField.setText("");
+                return;
+            } else if (!sampleTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper sample required");
+                priceTxtField.setText("");
+                return;
+            }    else if (!lowerRangeTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter lower range like 4.3");
+                lowerRangeTxtField.setText("");
+                return;
+            } else if (!upperRangeTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter upper range like 7.3");
+                upperRangeTxtField.setText("");
+                return;
+            } else if (Double.parseDouble(upperRangeTxtField.getText())-Double.parseDouble(lowerRangeTxtField.getText())<0) {
+                JOptionPane.showMessageDialog(this, "Upper range cannot be lesser than lower range value");
+                upperRangeTxtField.setText("");
+                return;
+            }else if (!apparatusTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper apparatus required");
+                apparatusTxtField.setText("");
+                return;
+            }else if (!priceTxtField.getText().matches("^-?\\d+(\\.\\d+)?$")) {
+                JOptionPane.showMessageDialog(this, "Enter price like :23.5");
+                priceTxtField.setText("");
+                return;
+            }else{}
 //            updateJPanel.setVisible(true);
             System.out.println("I am here");
 

@@ -125,6 +125,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -239,6 +240,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 80, -1));
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void restListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restListActionPerformed
@@ -419,6 +428,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         ArrayList<Enterprise> e = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList();
         
         int index = 0;
+        UserAccount name3 = null;
         for (Enterprise res:e)
         {
              System.out.println("sss1" + e);
@@ -426,6 +436,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             if(res.getEnterpriseType().getValue().equals("Emergency")){
                 System.out.println("sss" + res.getName());
                               index = random_method.nextInt(e.size());
+                              name3 = system.getUserAccountDirectory().findUserAccount(e.get(index).getName());
          
         }
          
@@ -436,7 +447,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         emergencyWorkRequest.setSender(this.user);
         
         //            System.out.println("getting sender uname "+bookNewTestWorkRequest.getSender().getUsername());
-        emergencyWorkRequest.setReceiver(system.getUserAccountDirectory().findUserAccount(e.get(index).getName()));
+        emergencyWorkRequest.setReceiver(name3);
         
         System.out.println("asasqqqq555 " + emergencyWorkRequest.getReceiver());
         emergencyWorkRequest.setStatus("emergency assistance needed");
@@ -453,6 +464,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         system.getWorkQueue().addWorkRequest(emergencyWorkRequest);
         JOptionPane.showMessageDialog(this, "Help is on the way!");
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+                userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
 // public void getDoctors(String resName){
@@ -476,6 +494,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton InsuranceJButton;
     private javax.swing.JButton OrderBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JTable doctorDetails1;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;

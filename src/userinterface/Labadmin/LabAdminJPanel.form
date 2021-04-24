@@ -31,19 +31,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="userJButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Lab Info"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userJButtonActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="200" y="250" width="180" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="javax.swing.JButton" name="manageEmployeeJButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Complete Test Process"/>
@@ -59,7 +46,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="manageOrganizationJButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Tests"/>
+        <Property name="text" type="java.lang.String" value="Add Tests"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageOrganizationJButtonActionPerformed"/>

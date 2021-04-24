@@ -185,12 +185,12 @@ public class addMedicineJpanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
         } else {
             if (!medNameTxt.getText().matches("[a-zA-Z_]+")) {
-                JOptionPane.showMessageDialog(this, "Enter proper name");
+                JOptionPane.showMessageDialog(this, "Enter proper medicine name");
                 medNameTxt.setText("");
                 return;
             }
             else if(!medPriceTxt.getText().matches("[0-9]+")) {
-                JOptionPane.showMessageDialog(this, "Address should be ");
+                JOptionPane.showMessageDialog(this, "Medice price should be in integers");
                 medPriceTxt.setText("");
                 return;
             }
@@ -214,10 +214,13 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         System.out.println(pharname);
        System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()));     
        //System.out.println();
+       System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(pharname).getOrganizationDirectory().getPharmacyAdminDirectory().getPharmacyList());
+       System.out.println("trying "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise("phar").getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy("phar"));
         PharamacyAdmin pha = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname);
         
         m.setItemName(menuIt);
         m.setItemPrice(ip);
+//                System.out.println("Directory +++++"+pha.getPharDir());
             
             if( pha.getPharDir()!= null){
             //PharmacyDirectory d = new PharmacyCatalogDirectory();
@@ -243,6 +246,7 @@ public class addMedicineJpanel extends javax.swing.JPanel {
             }
             viewTable();
             }
+            JOptionPane.showMessageDialog(null, "Medicine Added");
     }//GEN-LAST:event_addMedBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
