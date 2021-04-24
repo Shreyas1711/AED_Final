@@ -15,6 +15,7 @@ import Business.WorkQueue.OrderInventoryWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -34,11 +35,14 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         JPanel userProcessContainer;
     EcoSystem system;
     UserAccount userAccount;
+    String supplierName;
+    ArrayList<Inventory> order;
     public OrderNewInventoryItemJPanel(JPanel userProcessContainer,UserAccount userAccount,EcoSystem system ) {
         initComponents();
                 this.userProcessContainer=userProcessContainer;
         this.userAccount=userAccount;
         this.system=system;
+        order = new ArrayList<>();
         populateLogComboBox();
     }
 
@@ -93,9 +97,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
 
         InventoryOrderJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 " Item Name", "Manufacturer", "Pricer per unit", "Quantity"
@@ -240,8 +242,9 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
 
     private void SupplierJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierJComboBoxActionPerformed
         // TODO add your handling code here:
+       
         InventoryItemJComboBox.removeAllItems();
-        String supplierName = String.valueOf(SupplierJComboBox.getSelectedItem());
+         supplierName = String.valueOf(SupplierJComboBox.getSelectedItem());
         System.out.println("supplier" +supplierName);
         populateInventoryItems(supplierName);
         
@@ -288,7 +291,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
 //           System.out.println(lab.getClass());
  //
             orderInventoryWorkRequest.setReceiver(system.getUserAccountDirectory().findUserAccount(supplierName));
-            
+            orderInventoryWorkRequest.setMessage(CommentsTxtArea.getText());
             orderInventoryWorkRequest.setRequestDate(new Date());
             orderInventoryWorkRequest.setStatus("Item ordered");
             system.getWorkQueue().addWorkRequest(orderInventoryWorkRequest);
@@ -328,6 +331,14 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int selectedValue = InventoryItemJComboBox.getSelectedIndex();
+        String name = InventoryItemJComboBox.getItemAt(selectedValue);
+        Inventory i1 = new Inventory();
+        i1.setAvailability(Integer.parseInt(QuantityJTxtField.getText()));
+        i1.setName(name);
+        i1.setManufacturer(system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(supplierName).getOrganizationDirectory().getSupplierDirectory().findSupplier(supplierName).getInventoryDirectory().findInventory(name).getManufacturer());
+        i1.setPrice(system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(supplierName).getOrganizationDirectory().getSupplierDirectory().findSupplier(supplierName).getInventoryDirectory().findInventory(name).getPrice());
+        order.add(i1);
         populateTable();
         TotalJTxtField.setText(getTotal());
         int rowCount = InventoryOrderJTable.getRowCount();
@@ -341,9 +352,10 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         //        int index = MenuItemJComboBox.getSelectedIndex();
         //clear of the selected items
+        
         int selectedValue = InventoryItemJComboBox.getSelectedIndex();
         String name = InventoryItemJComboBox.getItemAt(selectedValue);
-        populateInventoryItems(name);
+       
         
     }//GEN-LAST:event_InventoryItemJComboBoxActionPerformed
 
@@ -374,22 +386,18 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
              if(res.getEnterpriseType().getValue().equals("Supplier")){
                             SupplierJComboBox.addItem(res.getName());
          
-        }else{
-                 System.out.println("nothing supplier");
-             }
+        }
         }
     }
 
     private void populateInventoryItems(String name2) {
-        //To change body of generated methods, choose Tools | Templates.
-        System.out.println("name is" +name2);
-        System.out.println(" HEY 123 " +system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise("s"));
-        System.out.println(" HEY 1234 " +system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name2).getOrganizationDirectory().getSupplierDirectory().findSupplier(name2));
-        System.out.println(" HEY 12345 " +system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name2).getOrganizationDirectory().getSupplierDirectory().findSupplier(name2).getInventoryDirectory().getInventoryList());
-        System.out.println("Is it going here");
-        System.out.println(name2);
-                 for(Inventory i: system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name2).getOrganizationDirectory().getSupplierDirectory().findSupplier(name2).getInventoryDirectory().getInventoryList()){
-                     System.out.println(i.getName());
+       int si = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(supplierName).getOrganizationDirectory().getOrganizationList().size();
+        int si1 = system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(supplierName).getOrganizationDirectory().getSupplierDirectory().getSupplierDirectory().size();
+        System.out.println(si);
+        System.out.println(si1);
+                 for(Inventory i: system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(supplierName).getOrganizationDirectory().getSupplierDirectory().findSupplier(supplierName).getInventoryDirectory().getInventoryList()){
+                     
+                   
                  InventoryItemJComboBox.addItem(i.getName());
                  }
 
@@ -404,15 +412,15 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         Supplier sup =system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().getSupplierDirectory().findSupplier(name);
 
 
-        for (Inventory i : sup.getInventoryDirectory().getInventoryList()) {
-            if (i.getName().equalsIgnoreCase(InventoryItemJComboBox.getSelectedItem().toString())) {
+        for (Inventory i : order) {
+          
                 Object[] row = new Object[4];
                 row[0] = i;
                 row[1] = i.getManufacturer();
                 row[2] = i.getPrice();
                 row[3] = i.getAvailability();
                 dtm.addRow(row);
-            }
+            
     }
     }
 

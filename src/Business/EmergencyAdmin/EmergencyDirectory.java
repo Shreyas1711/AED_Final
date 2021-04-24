@@ -24,9 +24,9 @@ public class EmergencyDirectory {
 
 
     
-        public Emergency createEmergencyUnit(String name,String id, String address, String phone){
+        public Emergency createEmergencyUnit(String name){
         
-        Emergency unit = new Emergency(name,address,phone,id);
+        Emergency unit = new Emergency(name);
         emergencyUnitDirectory.add(unit);
         return unit;
     
@@ -42,7 +42,7 @@ public class EmergencyDirectory {
         return false;
     }
     
-    public Emergency findLab(String name){
+    public Emergency findEmergency(String name){
         for(Emergency l: emergencyUnitDirectory) {
             if(l.getEmergencyUnitName().equals(name)){
                 return l;
@@ -52,7 +52,7 @@ public class EmergencyDirectory {
         return l;
     }
     
-    public void deleteLab(Emergency l){
+    public void deleteEmergency(Emergency l){
         emergencyUnitDirectory.remove(l);
     }
 }

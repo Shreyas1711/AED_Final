@@ -212,7 +212,7 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
 
             //            LabDirectory ld = system.getLabDirectory();
             //            ld.deleteLab(l);
-            JOptionPane.showMessageDialog(null, "Menu Item " + nameTxtField.getText() + " deleted");
+            JOptionPane.showMessageDialog(null, "Emergency " + nameTxtField.getText() + " is deleted");
             populateTable();
             nameTxtField.setText("");
             addrTxtField.setText("");
@@ -252,6 +252,7 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        populateTable();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

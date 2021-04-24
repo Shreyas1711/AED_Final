@@ -25,11 +25,10 @@ public class PatientDirectory {
     public void setPatientList(ArrayList<Patient> patientList) {
         this.patientList = patientList;
     }
-     public Patient createPatient(String name, String age){
+     public Patient createPatient(String name){
         
         Patient pa = new Patient();
         pa.setName(name);
-        pa.setAge(age);
         
         patientList.add(pa);
         return pa;

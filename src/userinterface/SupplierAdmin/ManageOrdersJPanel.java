@@ -52,7 +52,7 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MANAGE BOOKED TESTS");
+        jLabel1.setText("MANAGE ORDERS");
 
         jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +69,7 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Item name", "Manufacturer", "ordered on ", "Status"
+                "Customer", "Comments", "Ordered Date ", "Status"
             }
         ));
         jScrollPane1.setViewportView(bookedTestTable);
@@ -167,17 +167,17 @@ public class ManageOrdersJPanel extends javax.swing.JPanel {
         System.out.println(system.getWorkQueue().getWorkRequestList());
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
             
-            System.out.println("REC "+request.getReceiver().getUsername());
-            System.out.println("class: " +request.getSender().getUsername());
-            System.out.println("class: " +request.getSender().getPassword());
-            System.out.println("HELLO "+this.userAccount);
+//            System.out.println("REC "+request.getReceiver().getUsername());
+//            System.out.println("class: " +request.getSender().getUsername());
+//            System.out.println("class: " +request.getSender().getPassword());
+//            System.out.println("HELLO "+this.userAccount);
  
             if (request.getReceiver().getUsername().equals(this.userAccount.getUsername())) {
-                BookTestWorkRequest bookrequest = (BookTestWorkRequest) request;
+                OrderInventoryWorkRequest bookrequest = (OrderInventoryWorkRequest) request;
                 Object[] row = new Object[4];
                 row[0] = request;
-                row[1] = request.getRequestDate();
-                row[2] = bookrequest.getDateBooked();
+                row[1] = request.getMessage();
+                row[2] = request.getRequestDate();
                 row[3] = request.getStatus();
                 model.addRow(row);
             }
