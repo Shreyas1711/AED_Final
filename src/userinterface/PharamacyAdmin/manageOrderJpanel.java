@@ -5,6 +5,7 @@
  */
 package userinterface.PharamacyAdmin;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
@@ -15,6 +16,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.PharmacyOrder;
 import Business.WorkQueue.PlaceNewOrderWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -34,6 +36,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount user;
     private EcoSystem system;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     Patient pat;
     DefaultTableModel dtm;
     ArrayList<Patient> array1;
@@ -141,7 +144,6 @@ public class manageOrderJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         acceptOrder = new javax.swing.JButton();
         declineOrder = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -149,24 +151,37 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         orderTbl = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        jLabel1.setText("Pharmacy");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        acceptOrder.setBackground(new java.awt.Color(24, 31, 46));
+        acceptOrder.setForeground(new java.awt.Color(255, 255, 255));
         acceptOrder.setText("Accept");
+        acceptOrder.setPreferredSize(new java.awt.Dimension(156, 43));
         acceptOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acceptOrderActionPerformed(evt);
             }
         });
+        add(acceptOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
 
+        declineOrder.setBackground(new java.awt.Color(24, 31, 46));
+        declineOrder.setForeground(new java.awt.Color(255, 255, 255));
         declineOrder.setText("Decline");
+        declineOrder.setPreferredSize(new java.awt.Dimension(156, 43));
         declineOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 declineOrderActionPerformed(evt);
             }
         });
+        add(declineOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, -1, -1));
 
         jLabel6.setText("Assign DeliveryMan:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
 
         delManCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         delManCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -174,13 +189,18 @@ public class manageOrderJpanel extends javax.swing.JPanel {
                 delManComboActionPerformed(evt);
             }
         });
+        add(delManCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 150, -1));
 
+        jButton1.setBackground(new java.awt.Color(24, 31, 46));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Assign");
+        jButton1.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
 
         orderTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,52 +215,24 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(orderTbl);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(acceptOrder))
-                        .addGap(137, 137, 137)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(declineOrder)
-                            .addComponent(delManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jButton1)))
-                .addContainerGap(261, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(acceptOrder)
-                            .addComponent(declineOrder))
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel6))
-                    .addComponent(delManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jButton1)
-                .addContainerGap(412, Short.MAX_VALUE))
-        );
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 395, 104));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Manage Orders");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 260, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Standing copy 10.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 410, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
@@ -259,7 +251,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
             }
 
         }
-
+   dB4OUtil.storeSystem(system);  
         //stsTxt.setText(placeWorkRequest.getStatus());
     }//GEN-LAST:event_acceptOrderActionPerformed
 
@@ -280,7 +272,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
                 populatetable();
         }
 
-        
+           dB4OUtil.storeSystem(system);  
         //stsTxt.setText(placeWorkRequest.getStatus());
     }//GEN-LAST:event_declineOrderActionPerformed
 
@@ -301,7 +293,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
             
         }
         populatetable();
-
+   dB4OUtil.storeSystem(system);  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void delManComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delManComboActionPerformed
@@ -310,14 +302,31 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_delManComboActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptOrder;
     private javax.swing.JButton declineOrder;
     private javax.swing.JComboBox<String> delManCombo;
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable orderTbl;
     // End of variables declaration//GEN-END:variables

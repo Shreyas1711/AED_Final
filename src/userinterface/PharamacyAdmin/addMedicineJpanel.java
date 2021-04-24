@@ -5,6 +5,7 @@
  */
 package userinterface.PharamacyAdmin;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise;
 import Business.Organization;
@@ -15,6 +16,7 @@ import Business.PharmacyCatalog.PharmacyCatalogDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.PharmacyOrder;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -33,6 +35,7 @@ public class addMedicineJpanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount user;
     private EcoSystem system;
+      private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private String pharmName;
     ArrayList<Patient> array1;
     List<PharmacyOrder> orderItemList = new ArrayList<PharmacyOrder>();
@@ -89,6 +92,12 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         medPriceTxt = new javax.swing.JTextField();
         addMedBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         addMedTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,76 +112,60 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(addMedTbl);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 408, 103));
+
         jLabel1.setText("Medicine Name:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
 
         jLabel2.setText("Medicine Price:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
 
         medNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 medNameTxtActionPerformed(evt);
             }
         });
+        add(medNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 170, -1));
+        add(medPriceTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 170, -1));
 
+        addMedBtn.setBackground(new java.awt.Color(24, 31, 46));
+        addMedBtn.setForeground(new java.awt.Color(255, 255, 255));
         addMedBtn.setText("Add");
+        addMedBtn.setPreferredSize(new java.awt.Dimension(156, 43));
         addMedBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addMedBtnActionPerformed(evt);
             }
         });
+        add(addMedBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(24, 31, 46));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Refresh");
+        jButton1.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(addMedBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(medNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(medPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(101, 101, 101))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {medNameTxt, medPriceTxt});
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Add Medicine");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 260, 30));
 
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(medNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(medPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(addMedBtn)
-                .addContainerGap())
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Standing copy 9.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 410, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void medNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medNameTxtActionPerformed
@@ -247,6 +240,7 @@ public class addMedicineJpanel extends javax.swing.JPanel {
             viewTable();
             }
             JOptionPane.showMessageDialog(null, "Medicine Added");
+             dB4OUtil.storeSystem(system);  
     }//GEN-LAST:event_addMedBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -254,13 +248,31 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         viewTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMedBtn;
     private javax.swing.JTable addMedTbl;
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField medNameTxt;
     private javax.swing.JTextField medPriceTxt;

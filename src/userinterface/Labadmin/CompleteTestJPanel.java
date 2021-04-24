@@ -5,6 +5,7 @@
  */
 package userinterface.Labadmin;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookTestWorkRequest;
@@ -27,6 +28,7 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     EcoSystem system;
     BookTestWorkRequest request;
+       private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public CompleteTestJPanel(JPanel userProcessContainer,UserAccount userAccount,EcoSystem system, BookTestWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -50,7 +52,6 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         patientNameTxtField = new javax.swing.JTextField();
         testIdTxtField = new javax.swing.JTextField();
@@ -65,26 +66,36 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
         jRadioButton4 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("COMPLETE TESTING");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Patient Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 100, -1));
 
         patientNameTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patientNameTxtFieldActionPerformed(evt);
             }
         });
+        add(patientNameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 160, -1));
+        add(testIdTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 160, -1));
+        add(DateBookedTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 160, -1));
 
         jLabel3.setText("Test ID");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 75, -1));
 
         jLabel5.setText("Date booked");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 100, -1));
 
         jLabel6.setText("Sample collected:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
 
         jLabel7.setText("Results published:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         jRadioButton1.setText("YES");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +103,7 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
                 jRadioButton1ActionPerformed(evt);
             }
         });
+        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
 
         jRadioButton2.setText("NO");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +111,7 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
                 jRadioButton2ActionPerformed(evt);
             }
         });
+        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
 
         jRadioButton3.setText("YES");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +119,7 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
                 jRadioButton3ActionPerformed(evt);
             }
         });
+        add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, -1, -1));
 
         jRadioButton4.setText("NO");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -113,104 +127,46 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
                 jRadioButton4ActionPerformed(evt);
             }
         });
+        add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(24, 31, 46));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Submit");
+        jButton1.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 230, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(24, 31, 46));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Submit");
+        jButton2.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, -1, -1));
 
-        jButton3.setText("BACK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Complete Testing");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 190, 30));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(DateBookedTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                    .addComponent(testIdTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                    .addComponent(patientNameTxtField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(138, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(patientNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(testIdTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DateBookedTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jButton2))
-                .addContainerGap(163, Short.MAX_VALUE))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Standing copy 6.png")); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 260, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void patientNameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNameTxtFieldActionPerformed
@@ -252,7 +208,7 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
         }
 //               jRadioButton1.setSelected(false);
 //                      jRadioButton2.setSelected(false);
-                
+               dB4OUtil.storeSystem(system);     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -263,27 +219,37 @@ public class CompleteTestJPanel extends javax.swing.JPanel {
         else if(request.getStatus().equals("Awaiting results ")){
             JOptionPane.showMessageDialog(this, "Awaiting test results");
         }
+                 dB4OUtil.storeSystem(system);   
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DateBookedTxtField;
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;

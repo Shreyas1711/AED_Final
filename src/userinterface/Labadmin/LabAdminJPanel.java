@@ -39,49 +39,55 @@ public class LabAdminJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         manageEmployeeJButton = new javax.swing.JButton();
         manageOrganizationJButton = new javax.swing.JButton();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("My Work Area -Adminstrative Role");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
-
+        manageEmployeeJButton.setBackground(new java.awt.Color(24, 31, 46));
+        manageEmployeeJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageEmployeeJButton.setText("Complete Test Process");
+        manageEmployeeJButton.setPreferredSize(new java.awt.Dimension(156, 43));
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageEmployeeJButtonActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 150, -1));
+        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 160, -1));
 
+        manageOrganizationJButton.setBackground(new java.awt.Color(24, 31, 46));
+        manageOrganizationJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageOrganizationJButton.setText("Add Tests");
+        manageOrganizationJButton.setPreferredSize(new java.awt.Dimension(156, 43));
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Lab admin");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 30));
-
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
-
+        jButton1.setBackground(new java.awt.Color(24, 31, 46));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("View Tests");
+        jButton1.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 100, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 160, -1));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Lab Admin");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 260, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 410, 310));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
@@ -111,9 +117,8 @@ public class LabAdminJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

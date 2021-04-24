@@ -5,6 +5,7 @@
  */
 package userinterface.Labadmin;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.LabAdmin.Lab;
 import Business.LabAdmin.Test;
@@ -28,6 +29,7 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
     EcoSystem system;
     UserAccount userAccount;
     Lab lab;
+      private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ViewUpdateDeleteTestJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -45,8 +47,6 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -63,47 +63,64 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
         priceTxtField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TestDetailsTable = new javax.swing.JTable();
+        enterpriseLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
-        jButton1.setText("<< BACK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("TEST DETAILS");
-
+        jButton2.setBackground(new java.awt.Color(24, 31, 46));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("UPDATE");
+        jButton2.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, -1, -1));
 
+        jButton3.setBackground(new java.awt.Color(24, 31, 46));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("DELETE");
+        jButton3.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, -1, -1));
 
         jLabel5.setText("Lower Range:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
+        add(lowerRangeTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 116, -1));
 
         jLabel6.setText("Apparatus:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, -1, -1));
+        add(apparatusTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 116, -1));
 
         jLabel7.setText("Upper Range:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, -1));
 
         jLabel2.setText("Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
 
         upperRangeTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 upperRangeTxtFieldActionPerformed(evt);
             }
         });
+        add(upperRangeTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 116, -1));
 
         jLabel3.setText("Price: ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, -1, -1));
 
         jLabel4.setText("Sample Required:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, -1, -1));
+        add(nameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 116, -1));
+        add(sampleTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 116, -1));
+        add(priceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 116, -1));
 
         TestDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,83 +140,24 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(TestDetailsTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(181, 181, 181))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton1)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(49, 49, 49)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7))
-                            .addGap(28, 28, 28)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(nameTxtField)
-                                .addComponent(priceTxtField)
-                                .addComponent(sampleTxtField)
-                                .addComponent(lowerRangeTxtField)
-                                .addComponent(apparatusTxtField)
-                                .addComponent(upperRangeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(sampleTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lowerRangeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(upperRangeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(apparatusTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(priceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 479, 122));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Test Details");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 180, 30));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters.png")); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 410, 310));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -226,18 +184,12 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
             priceTxtField.setText("");
 
         }
+         dB4OUtil.storeSystem(system); 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void upperRangeTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperRangeTxtFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_upperRangeTxtFieldActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TestDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TestDetailsTableMouseClicked
         // TODO add your handling code here:
@@ -256,6 +208,7 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
         upperRangeTxtField.setText(String.valueOf(upperRange));
         apparatusTxtField.setText(apparatus);
         priceTxtField.setText(String.valueOf(price));
+        
     }//GEN-LAST:event_TestDetailsTableMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -315,22 +268,39 @@ public class ViewUpdateDeleteTestJPanel extends javax.swing.JPanel {
             apparatusTxtField.setText("");
             priceTxtField.setText("");
         }
+         dB4OUtil.storeSystem(system);  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TestDetailsTable;
     private javax.swing.JTextField apparatusTxtField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lowerRangeTxtField;
     private javax.swing.JTextField nameTxtField;

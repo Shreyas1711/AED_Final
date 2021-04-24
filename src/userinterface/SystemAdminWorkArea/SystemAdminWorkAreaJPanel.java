@@ -72,6 +72,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         manPhar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -252,6 +253,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(490, 30, 320, 40);
 
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Space.png")); // NOI18N
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(-20, 140, 355, 400);
+
         jSplitPane.setRightComponent(jPanel2);
 
         add(jSplitPane, java.awt.BorderLayout.CENTER);
@@ -386,6 +391,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

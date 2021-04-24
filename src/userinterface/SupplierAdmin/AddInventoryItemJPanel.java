@@ -5,11 +5,13 @@
  */
 package userinterface.SupplierAdmin;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.SupplierAdmin.Inventory;
 import Business.SupplierAdmin.InventoryDirectory;
 import Business.SupplierAdmin.Supplier;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -25,6 +27,7 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
         JPanel userProcessContainer;
     EcoSystem system;
     UserAccount userAccount;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public AddInventoryItemJPanel(JPanel userProcessContainer,UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -41,8 +44,6 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nameTxtField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -52,88 +53,56 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         availTxtField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        jButton1.setText("BACK");
-
-        jLabel1.setText("ADD INVENTORY ITEMS");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
+        add(nameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 150, -1));
 
         jLabel3.setText("Manufacturer:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
+        add(manufacTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 150, -1));
 
         jLabel4.setText("Price per Item:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
+        add(priceTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 150, -1));
 
         jLabel5.setText("Number of units available: ");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+        add(availTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 150, -1));
 
+        jButton2.setBackground(new java.awt.Color(24, 31, 46));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Add");
+        jButton2.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(manufacTxtField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton2)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(priceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(availTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(manufacTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(priceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(availTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Add Inventory Items");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 260, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Sitting.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 80, 410, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -183,19 +152,37 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
             manufacTxtField.setText("");
             priceTxtField.setText("");
             availTxtField.setText("");
+           
     } 
+              dB4OUtil.storeSystem(system);  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField availTxtField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField manufacTxtField;
     private javax.swing.JTextField nameTxtField;
     private javax.swing.JTextField priceTxtField;
