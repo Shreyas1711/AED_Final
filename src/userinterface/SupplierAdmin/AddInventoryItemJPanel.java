@@ -143,6 +143,16 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter all details of the Inventory Item");
             return;
         } else {
+                         if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper inventory item name");
+                nameTxtField.setText("");
+                return;
+            } else if (!manufacTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper manufacturer name");
+                manufacTxtField.setText("");
+                return;
+            } else {
+            }   
             String name = nameTxtField.getText();
             String manufacturer = manufacTxtField.getText();
             Integer price = Integer.parseInt(priceTxtField.getText());
