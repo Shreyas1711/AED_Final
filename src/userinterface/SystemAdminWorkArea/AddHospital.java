@@ -115,7 +115,7 @@ private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 410, 310));
 
-        jLabel2.setText("Pharmacy Name");
+        jLabel2.setText("Hospital Name");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
         jLabel3.setText("Address");

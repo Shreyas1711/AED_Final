@@ -50,7 +50,7 @@ public void viewTable(){
          
         if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()!=null){
         for(Organization org : system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()) {
-           System.out.println(org.getEnterpriseType1().getClass()+" "+ org.getEnterpriseType1().getValue());
+           //System.out.println(org.getEnterpriseType1().getClass()+" "+ org.getEnterpriseType1().getValue());
                 if(org.getEnterpriseType1().getValue().equals("Doctor")){
                     
           
@@ -84,7 +84,6 @@ public void viewTable(){
         jScrollPane1 = new javax.swing.JScrollPane();
         doctorDetails = new javax.swing.JTable();
         createNewDoctor = new javax.swing.JButton();
-        updateDoctor = new javax.swing.JButton();
         deleteDoctor = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -117,17 +116,6 @@ public void viewTable(){
             }
         });
         add(createNewDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
-
-        updateDoctor.setBackground(new java.awt.Color(24, 31, 46));
-        updateDoctor.setForeground(new java.awt.Color(255, 255, 255));
-        updateDoctor.setText("Update Doctor Details");
-        updateDoctor.setPreferredSize(new java.awt.Dimension(156, 43));
-        updateDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateDoctorActionPerformed(evt);
-            }
-        });
-        add(updateDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
 
         deleteDoctor.setBackground(new java.awt.Color(24, 31, 46));
         deleteDoctor.setForeground(new java.awt.Color(255, 255, 255));
@@ -164,21 +152,6 @@ public void viewTable(){
         layout.next(userProcessContainer);
     }//GEN-LAST:event_createNewDoctorActionPerformed
 
-    private void updateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateDoctorActionPerformed
-        // TODO add your handling code here:
-//        int selectedRow = doctorDetails.getSelectedRow();
-//        if(selectedRow < 0) {
-//            JOptionPane.showMessageDialog(null,"Please Select a row from table first", "Warining", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//        Customer customer = (Customer)doctorDetails.getValueAt(selectedRow,0);
-//        CustomerDetailsUpdateJPanel customerDetailsUpdateJPanel = new CustomerDetailsUpdateJPanel(userProcessContainer, system, customer);
-//        userProcessContainer.add("Update Customer", customerDetailsUpdateJPanel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-
-    }//GEN-LAST:event_updateDoctorActionPerformed
-
     private void deleteDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDoctorActionPerformed
         // TODO add your handling code here:
 
@@ -188,7 +161,8 @@ public void viewTable(){
             return;
         }
         Doctor doc = (Doctor)doctorDetails.getValueAt(selectedRow,0);
-        //system.getDoctorDirectory().deleteDoctor(doc);
+         system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().deleteOrganization(doc.getName());
+         system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getDoctorDirectory().deleteDoctor(doc);
         viewTable();
            dB4OUtil.storeSystem(system); 
     }//GEN-LAST:event_deleteDoctorActionPerformed
@@ -216,6 +190,5 @@ public void viewTable(){
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton updateDoctor;
     // End of variables declaration//GEN-END:variables
 }

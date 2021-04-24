@@ -103,28 +103,28 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
         }
     }
 
-         private void populatetable(){
+    private void populatetable(){
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
         for(WorkRequest request : system.getWorkQueue().getWorkRequestList()){
             if(request instanceof PlaceNewOrderWorkRequest){
-                placeworkRequest = (PlaceNewOrderWorkRequest) request;
-                System.out.println("getOrderTotal  " +placeworkRequest.getOrderTotal().toString());
+        placeworkRequest = (PlaceNewOrderWorkRequest) request;
         for (PharmacyOrder orderItemTotal : placeworkRequest.getOrderTotal()){
-             if(request.getSender().getUsername().equals(user.getEmployee().getName())){
-                Object row[] = new Object[3];
+             if(request.getSender().getUsername().equals(user.getUsername())){
+                Object row[] = new Object[5];
                 row[0] = placeworkRequest.getOrderId();
                 row[1] = orderItemTotal.getCatalog().getItemName();
                 row[2] = orderItemTotal.getCatalog().getItemPrice();
                 row[3] = request.getStatus();
-                row[5] = request;
+     
 
                 dtm.addRow(row);
              }
-        }     
+             System.out.println(request);
         }
         }
-    }       
+        }
+    }      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,7 +135,7 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        orderBtn = new javax.swing.JButton();
+        trackBtn = new javax.swing.JButton();
         pharmacyCom = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -146,20 +146,21 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        orderBtn1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        orderBtn.setBackground(new java.awt.Color(24, 31, 46));
-        orderBtn.setForeground(new java.awt.Color(255, 255, 255));
-        orderBtn.setText("Order");
-        orderBtn.setPreferredSize(new java.awt.Dimension(156, 43));
-        orderBtn.addActionListener(new java.awt.event.ActionListener() {
+        trackBtn.setBackground(new java.awt.Color(24, 31, 46));
+        trackBtn.setForeground(new java.awt.Color(255, 255, 255));
+        trackBtn.setText("Track");
+        trackBtn.setPreferredSize(new java.awt.Dimension(156, 43));
+        trackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderBtnActionPerformed(evt);
+                trackBtnActionPerformed(evt);
             }
         });
-        add(orderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
+        add(trackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, -1, -1));
 
         pharmacyCom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Pharmacy" }));
         pharmacyCom.addActionListener(new java.awt.event.ActionListener() {
@@ -208,13 +209,13 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Order ID", "Medicine", "Price"
+                "Order ID", "Medicine", "Price", "Status"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -237,41 +238,23 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
 
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Standing.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 410, 400));
+
+        orderBtn1.setBackground(new java.awt.Color(24, 31, 46));
+        orderBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        orderBtn1.setText("Order");
+        orderBtn1.setPreferredSize(new java.awt.Dimension(156, 43));
+        orderBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderBtn1ActionPerformed(evt);
+            }
+        });
+        add(orderBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
+    private void trackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackBtnActionPerformed
         // TODO add your handling code here:
-         Boolean flag = true;
-         System.out.println(selectedPharmacy);
-        System.out.println("Receiver "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy));
-        
-        if (orderItemList.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error: There are no medicines chosen!");
-            flag = false;
-        } else {
-            PlaceNewOrderWorkRequest newWorkRequest = new PlaceNewOrderWorkRequest();
-            System.out.println("orderItemList "+orderItemList.get(0).toString());
-            newWorkRequest.setOrderTotal(orderItemList);
-            System.out.println("should work" +newWorkRequest.getOrderTotal().get(0));
-            //System.out.println(this.user.getEmployee().getName());
-            newWorkRequest.setSender(user);
-            //Lab = (Lab) LabTable.getValueAt(0, 0);
-            newWorkRequest.setReceiver(system.getUserAccountDirectory().findUserAccount(selectedPharmacy));
-            newWorkRequest.setRequestDate(new Date());
-            newWorkRequest.setStatus("Ordered");
-            system.getWorkQueue().addWorkRequest(newWorkRequest);
-            System.out.println("Work req size"+system.getWorkQueue().getWorkRequestList().size());
-            System.out.println("Sender000"+newWorkRequest.getSender());
-            System.out.println("Receiver000"+newWorkRequest.getReceiver());
-            System.out.println(newWorkRequest.getRequestDate());
-            System.out.println(newWorkRequest.getStatus());
-             populatetable();
-            JOptionPane.showMessageDialog(null, "Order Placed!");
-            
-        }
-        dB4OUtil.storeSystem(system);
-        
-    }//GEN-LAST:event_orderBtnActionPerformed
+     populatetable();
+    }//GEN-LAST:event_trackBtnActionPerformed
 
     private void pharmacyComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacyComActionPerformed
         // TODO add your handling code here:
@@ -308,6 +291,38 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
             //        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void orderBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtn1ActionPerformed
+        // TODO add your handling code here:
+                 Boolean flag = true;
+         System.out.println(selectedPharmacy);
+        System.out.println("Receiver "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy));
+        
+        if (orderItemList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: There are no tests chosen!");
+            flag = false;
+        } else {
+            PlaceNewOrderWorkRequest newWorkRequest = new PlaceNewOrderWorkRequest();
+            newWorkRequest.setOrderTotal(orderItemList);
+            //System.out.println(this.user.getEmployee().getName());
+            newWorkRequest.setSender(user);
+            //Lab = (Lab) LabTable.getValueAt(0, 0);
+            newWorkRequest.setReceiver(system.getUserAccountDirectory().findUserAccount(selectedPharmacy));
+            newWorkRequest.setRequestDate(new Date());
+            newWorkRequest.setStatus("Ordered");
+            system.getWorkQueue().addWorkRequest(newWorkRequest);
+            System.out.println("Work req size"+system.getWorkQueue().getWorkRequestList().size());
+            System.out.println("Sender000"+newWorkRequest.getSender());
+            System.out.println("Receiver000"+newWorkRequest.getReceiver());
+            System.out.println(newWorkRequest.getRequestDate());
+            System.out.println(newWorkRequest.getStatus());
+            
+            
+        }
+        populatetable();
+          dB4OUtil.storeSystem(system);
+        
+    }//GEN-LAST:event_orderBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addcartBtn;
@@ -319,7 +334,8 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable medTable;
-    private javax.swing.JButton orderBtn;
+    private javax.swing.JButton orderBtn1;
     private javax.swing.JComboBox<String> pharmacyCom;
+    private javax.swing.JButton trackBtn;
     // End of variables declaration//GEN-END:variables
 }

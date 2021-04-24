@@ -131,6 +131,10 @@ DoctorDirectory doctorDirectory;
          }
          return null;
      }
+     public void deleteOrganization(String name){
+        organizationList.remove(name);
+        
+     }
       public ArrayList<Organization> findOrganizationType(Type type){
         
          
