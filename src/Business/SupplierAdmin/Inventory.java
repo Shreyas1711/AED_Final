@@ -12,8 +12,12 @@ package Business.SupplierAdmin;
 public class Inventory {
     String name;
     String manufacturer;
-    Double price;
+    int price;
     int availability;
+
+    public Inventory() {
+       
+    }
 
     public String getName() {
         return name;
@@ -31,11 +35,11 @@ public class Inventory {
         this.manufacturer = manufacturer;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -47,7 +51,7 @@ public class Inventory {
         this.availability = availability;
     }
 
-    public Inventory(String name, String manufacturer, Double price, int availability) {
+    public Inventory(String name, String manufacturer, Integer price, int availability) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.price = price;

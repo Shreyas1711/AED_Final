@@ -120,7 +120,7 @@ public class AddPatientJPanel extends javax.swing.JPanel {
         UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new CustomerRole());
         
         if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ||system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ){
-           system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createOrganization(name, Organization.Type.Patient,age);
+           system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createOrganization(name, Organization.Type.Patient,"test");
         }else{
             System.out.println("Already exists");
 //            Patient patient = new Patient();
