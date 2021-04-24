@@ -18,6 +18,8 @@ import Business.Role.PharamacyAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -113,6 +115,31 @@ public class AddDelivery extends javax.swing.JPanel {
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
         // TODO add your handling code here:
+               if (dUname.getText().isEmpty() || dPass.getText().isEmpty() || dName.getText().isEmpty() || dspe.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
+        } else {
+            if (!dName.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name");
+                dName.setText("");
+                return;
+            }
+            else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
+                JOptionPane.showMessageDialog(this, "Address should be ");
+                dspe.setText("");
+                return;
+            }
+
+            else if (strongUsername() == false) {
+                dUname.setText("");
+                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                return;
+            } 
+            else if (strongPassword() == false) {
+                dPass.setText("");
+                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+            }
         String name = dName.getText();
         String add = dspe.getText();
         String username = dUname.getText();
@@ -132,11 +159,13 @@ public class AddDelivery extends javax.swing.JPanel {
         if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
         system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Delivery );
         system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.DeliveryMan, "Test");
+        JOptionPane.showMessageDialog(this," Delivery created");
         }else{
             System.out.println("already there");
         }
         
-        JOptionPane.showMessageDialog(this," Delivery created");
+        
+               }
     }//GEN-LAST:event_addHospitalActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -174,4 +203,19 @@ public class AddDelivery extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
+
+private boolean strongUsername() {
+        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Matcher m = pat.matcher(dUname.getText());
+        boolean boo = m.matches();
+        return boo;
+    }
+
+    private boolean strongPassword() {
+        Pattern pat1;
+        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = pat1.matcher(dPass.getText());
+        boolean bat1 = m1.matches();
+        return bat1;
+    }
 }

@@ -17,6 +17,7 @@ import Business.WorkQueue.PharmacyOrder;
 import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -180,6 +181,32 @@ public class addMedicineJpanel extends javax.swing.JPanel {
 
     private void addMedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedBtnActionPerformed
         // TODO add your handling code here:
+            if (medNameTxt.getText().isEmpty() || medPriceTxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
+        } else {
+            if (!medNameTxt.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name");
+                medNameTxt.setText("");
+                return;
+            }
+            else if(!medPriceTxt.getText().matches("[0-9]+")) {
+                JOptionPane.showMessageDialog(this, "Address should be ");
+                medPriceTxt.setText("");
+                return;
+            }
+
+//            else if (strongUsername() == false) {
+//                dUname.setText("");
+//                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+//                return;
+//            } 
+//            else if (strongPassword() == false) {
+//                dPass.setText("");
+//                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+//                return;
+//            } 
+            else {
+            }
         String menuIt = medNameTxt.getText();
         Double ip = Double.valueOf(medPriceTxt.getText());
         PharmacyCatalog m = new PharmacyCatalog();
@@ -215,6 +242,7 @@ public class addMedicineJpanel extends javax.swing.JPanel {
 //            System.out.println(m.getItemName());
             }
             viewTable();
+            }
     }//GEN-LAST:event_addMedBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
