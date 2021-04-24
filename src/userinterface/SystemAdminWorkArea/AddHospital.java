@@ -14,6 +14,9 @@ import Business.Role.HospitalAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -27,10 +30,11 @@ public class AddHospital extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
-    public AddHospital(JPanel userProcessContainer,EcoSystem system) {
+
+    public AddHospital(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
-         this.userProcessContainer=userProcessContainer;
-        this.system=system;
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**
@@ -107,27 +111,56 @@ public class AddHospital extends javax.swing.JPanel {
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
         // TODO add your handling code here:
-        String name = dName.getText();
-        String add = dspe.getText();
-        String username = dUname.getText();
-        String pass = dPass.getText();
-        Object selectedItem = jComboBox1.getSelectedItem();
+        if (dUname.getText().isEmpty() || dPass.getText().isEmpty() || dName.getText().isEmpty() || dspe.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
+        } else {
+            
+           if (!dName.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name! Name should be string!");
+                dName.setText("");
+                return;
+            }
+            else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123, abcd");
+                dspe.setText("");
+                return;
+            }
 
-        String city = selectedItem.toString();
-         //  System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().createOrganization(Organization.Type.HospitalAdmin));
-        Employee emp = system.getEmployeeDirectory().createEmployee(name);
-        emp.setCity(city);
-        UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new HospitalAdminRole());
-        if(system.getNetworkList()==null || system.findNetwork(city)==null){
-            system.createNetwork(city);
-             System.out.println("cities"+system.findNetwork(city));
-             
-        }
-      
-        if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
-        system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Hospital );
-        }else{
-            System.out.println("already there");
+            if (strongUsername() == false) {
+                dUname.setText("");
+                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                return;
+            } else {
+                String userName = dUname.getText();
+            }
+            if (strongPassword() == false) {
+                dPass.setText("");
+                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+            }
+            String name = dName.getText();
+            String add = dspe.getText();
+            String username = dUname.getText();
+            String pass = dPass.getText();
+            Object selectedItem = jComboBox1.getSelectedItem();
+
+            String city = selectedItem.toString();
+            //  System.out.println(system.getNetworkList().get(0).getEnterpriseDirectory().getEnterpriseList().get(0).getOrganizationDirectory().createOrganization(Organization.Type.HospitalAdmin));
+            Employee emp = system.getEmployeeDirectory().createEmployee(name);
+            emp.setCity(city);
+            UserAccount account = system.getUserAccountDirectory().createUserAccount(username, pass, emp, new HospitalAdminRole());
+            if (system.getNetworkList() == null || system.findNetwork(city) == null) {
+                system.createNetwork(city);
+                System.out.println("cities" + system.findNetwork(city));
+
+            }
+
+            if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
+                system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Hospital);
+            } else {
+                System.out.println("already there");
+            }
         }
     }//GEN-LAST:event_addHospitalActionPerformed
 
@@ -139,11 +172,11 @@ public class AddHospital extends javax.swing.JPanel {
         //
         //        Component[] comps = this.userProcessContainer.getComponents();
         //        for(Component comp : comps){
-            //            if(comp instanceof SystemAdminWorkAreaJPanel){
-                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-                //                systemAdminWorkAreaJPanel.populateTree();
-                //            }
-            //        }
+        //            if(comp instanceof SystemAdminWorkAreaJPanel){
+        //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+        //                systemAdminWorkAreaJPanel.populateTree();
+        //            }
+        //        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -166,4 +199,19 @@ public class AddHospital extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
+
+    private boolean strongUsername() {
+        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Matcher m = pat.matcher(dUname.getText());
+        boolean boo = m.matches();
+        return boo;
+    }
+
+    private boolean strongPassword() {
+        Pattern pat1;
+        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = pat1.matcher(dPass.getText());
+        boolean bat1 = m1.matches();
+        return bat1;
+    }
 }
