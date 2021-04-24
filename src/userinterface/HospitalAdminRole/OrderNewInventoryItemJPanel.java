@@ -5,6 +5,7 @@
  */
 package userinterface.HospitalAdminRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise;
 import Business.SupplierAdmin.Inventory;
@@ -37,6 +38,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     String supplierName;
     ArrayList<Inventory> order;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public OrderNewInventoryItemJPanel(JPanel userProcessContainer,UserAccount userAccount,EcoSystem system ) {
         initComponents();
                 this.userProcessContainer=userProcessContainer;
@@ -61,7 +63,6 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         CommentsTxtArea = new javax.swing.JTextArea();
         QuantityJTxtField = new javax.swing.JTextField();
         SupplierJComboBox = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         InventoryOrderJTable = new javax.swing.JTable();
         TotalJLabel = new javax.swing.JLabel();
@@ -73,27 +74,31 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         MenuItemJLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         InventoryItemJComboBox = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Additional Comments:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 83, -1, -1));
 
         QuantityJLabel.setText("Quantity");
+        add(QuantityJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 174, -1, -1));
 
         CommentsTxtArea.setColumns(20);
         CommentsTxtArea.setRows(5);
         jScrollPane2.setViewportView(CommentsTxtArea);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 79, -1, -1));
+        add(QuantityJTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 169, 138, -1));
 
         SupplierJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupplierJComboBoxActionPerformed(evt);
             }
         });
-
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        add(SupplierJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 79, 138, -1));
 
         InventoryOrderJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,134 +115,81 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(InventoryOrderJTable);
 
-        TotalJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, 100));
+
         TotalJLabel.setText("Total:");
+        add(TotalJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
         TotalJTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TotalJTxtFieldActionPerformed(evt);
             }
         });
+        add(TotalJTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 130, -1));
 
         NewOrderJLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         NewOrderJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NewOrderJLabel.setText("New Order");
+        NewOrderJLabel.setText("Hospital Order Dashboard");
+        add(NewOrderJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 560, 23));
 
-        ConfirmJButton.setBackground(new java.awt.Color(204, 204, 204));
+        ConfirmJButton.setBackground(new java.awt.Color(24, 31, 46));
+        ConfirmJButton.setForeground(new java.awt.Color(255, 255, 255));
         ConfirmJButton.setText("Confim");
+        ConfirmJButton.setPreferredSize(new java.awt.Dimension(156, 43));
         ConfirmJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmJButtonActionPerformed(evt);
             }
         });
+        add(ConfirmJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, -1, -1));
 
         RestaurantJLabel.setText("Logistics Company");
+        add(RestaurantJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 83, -1, -1));
 
-        DeleteJButton.setBackground(new java.awt.Color(204, 204, 204));
+        DeleteJButton.setBackground(new java.awt.Color(24, 31, 46));
+        DeleteJButton.setForeground(new java.awt.Color(255, 255, 255));
         DeleteJButton.setText("Delete");
+        DeleteJButton.setPreferredSize(new java.awt.Dimension(156, 43));
         DeleteJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteJButtonActionPerformed(evt);
             }
         });
+        add(DeleteJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         MenuItemJLabel.setText("Inventory Item");
+        add(MenuItemJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 128, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setBackground(new java.awt.Color(24, 31, 46));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
+        jButton1.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 229, -1, -1));
 
         InventoryItemJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InventoryItemJComboBoxActionPerformed(evt);
             }
         });
+        add(InventoryItemJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 124, 138, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(DeleteJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RestaurantJLabel)
-                            .addComponent(MenuItemJLabel)
-                            .addComponent(QuantityJLabel))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(InventoryItemJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(QuantityJTxtField)
-                            .addComponent(SupplierJComboBox, 0, 138, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TotalJLabel)
-                        .addGap(41, 41, 41)
-                        .addComponent(TotalJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)
-                        .addComponent(ConfirmJButton)))
-                .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NewOrderJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NewOrderJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(RestaurantJLabel)
-                            .addComponent(SupplierJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MenuItemJLabel)
-                            .addComponent(InventoryItemJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(QuantityJLabel)
-                            .addComponent(QuantityJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(DeleteJButton))
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TotalJLabel)
-                    .addComponent(TotalJTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConfirmJButton))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Back");
+        jButton2.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 380, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void SupplierJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierJComboBoxActionPerformed
@@ -249,13 +201,6 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         populateInventoryItems(supplierName);
         
     }//GEN-LAST:event_SupplierJComboBoxActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void InventoryOrderJTableComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_InventoryOrderJTableComponentAdded
         // TODO add your handling code here:
@@ -309,7 +254,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
-
+dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_ConfirmJButtonActionPerformed
 
     private void DeleteJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteJButtonActionPerformed
@@ -360,6 +305,21 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_InventoryItemJComboBoxActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea CommentsTxtArea;
@@ -378,6 +338,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

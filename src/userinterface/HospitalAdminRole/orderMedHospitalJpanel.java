@@ -5,6 +5,7 @@
  */
 package userinterface.HospitalAdminRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import userinterface.CustomerRole.*;
 import Business.EcoSystem;
 import Business.Enterprise;
@@ -39,6 +40,7 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
     private String hospitalName;
      private String docname;
      private String timings;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private Hospital hosObj;
     Patient pat;
     PharmacyCatalog catalog;
@@ -141,14 +143,23 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
         addcartBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        backBtn = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        orderBtn.setBackground(new java.awt.Color(24, 31, 46));
+        orderBtn.setForeground(new java.awt.Color(255, 255, 255));
         orderBtn.setText("Order");
+        orderBtn.setPreferredSize(new java.awt.Dimension(156, 43));
         orderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderBtnActionPerformed(evt);
             }
         });
+        add(orderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
 
         pharmacyCom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Pharmacy" }));
         pharmacyCom.addActionListener(new java.awt.event.ActionListener() {
@@ -156,8 +167,10 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
                 pharmacyComActionPerformed(evt);
             }
         });
+        add(pharmacyCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 170, -1));
 
-        jLabel5.setText("Pharmacy:");
+        jLabel5.setText("Select Pharmacy:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
         medTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -180,12 +193,18 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(medTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 410, 101));
+
+        addcartBtn.setBackground(new java.awt.Color(24, 31, 46));
+        addcartBtn.setForeground(new java.awt.Color(255, 255, 255));
         addcartBtn.setText("Add");
+        addcartBtn.setPreferredSize(new java.awt.Dimension(156, 43));
         addcartBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addcartBtnActionPerformed(evt);
             }
         });
+        add(addcartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,59 +219,24 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 392, 115));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Hospital Pharmacy Order ");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 260, 30));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(addcartBtn)
-                        .addGap(63, 63, 63)
-                        .addComponent(orderBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel5)
-                .addGap(52, 52, 52)
-                .addComponent(pharmacyCom, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backBtn)
-                .addGap(26, 26, 26))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(pharmacyCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addComponent(backBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(orderBtn)
-                    .addComponent(addcartBtn))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - Standing.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 410, 400));
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnActionPerformed
@@ -285,7 +269,7 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Order Placed!");
             
         }
-        
+        dB4OUtil.storeSystem(system);
         
     }//GEN-LAST:event_orderBtnActionPerformed
 
@@ -309,18 +293,28 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_addcartBtnActionPerformed
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backBtnActionPerformed
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addcartBtn;
-    private javax.swing.JButton backBtn;
+    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;

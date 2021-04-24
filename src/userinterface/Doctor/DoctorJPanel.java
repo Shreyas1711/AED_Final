@@ -5,6 +5,7 @@
  */
 package userinterface.Doctor;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.Doctor.Doctor;
 import Business.EcoSystem;
 import Business.HospitalAdmin.Hospital;
@@ -28,6 +29,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private  UserAccount user;
     private Hospital resObj;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private String hosname;
     public DoctorJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount user) {
         initComponents();
@@ -79,26 +81,16 @@ public void viewTable(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         doctorDetails = new javax.swing.JTable();
         createNewDoctor = new javax.swing.JButton();
         updateDoctor = new javax.swing.JButton();
         deleteDoctor = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Customer Dashboard");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 21, 214, 59));
-
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 51, -1, -1));
 
         doctorDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,46 +107,53 @@ public void viewTable(){
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 125, 580, 119));
 
+        createNewDoctor.setBackground(new java.awt.Color(24, 31, 46));
+        createNewDoctor.setForeground(new java.awt.Color(255, 255, 255));
         createNewDoctor.setText("Create New Doctor");
+        createNewDoctor.setPreferredSize(new java.awt.Dimension(156, 43));
         createNewDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createNewDoctorActionPerformed(evt);
             }
         });
-        add(createNewDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 320, -1, -1));
+        add(createNewDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
 
+        updateDoctor.setBackground(new java.awt.Color(24, 31, 46));
+        updateDoctor.setForeground(new java.awt.Color(255, 255, 255));
         updateDoctor.setText("Update Doctor Details");
+        updateDoctor.setPreferredSize(new java.awt.Dimension(156, 43));
         updateDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateDoctorActionPerformed(evt);
             }
         });
-        add(updateDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 320, -1, -1));
+        add(updateDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
 
+        deleteDoctor.setBackground(new java.awt.Color(24, 31, 46));
+        deleteDoctor.setForeground(new java.awt.Color(255, 255, 255));
         deleteDoctor.setText("Delete Doctor");
+        deleteDoctor.setPreferredSize(new java.awt.Dimension(156, 43));
         deleteDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteDoctorActionPerformed(evt);
             }
         });
-        add(deleteDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 320, -1, -1));
+        add(deleteDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, -1, -1));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setText("Manage Doctors");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 180, 30));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Back");
+        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-
-//        Component[] comps = this.userProcessContainer.getComponents();
-//        for(Component comp : comps){
-//            if(comp instanceof SystemAdminWorkAreaJPanel){
-//                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-//                systemAdminWorkAreaJPanel.populateTree();
-//            }
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void createNewDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewDoctorActionPerformed
         // TODO add your handling code here:
@@ -191,15 +190,31 @@ public void viewTable(){
         Doctor doc = (Doctor)doctorDetails.getValueAt(selectedRow,0);
         //system.getDoctorDirectory().deleteDoctor(doc);
         viewTable();
+           dB4OUtil.storeSystem(system); 
     }//GEN-LAST:event_deleteDoctorActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createNewDoctor;
     private javax.swing.JButton deleteDoctor;
     private javax.swing.JTable doctorDetails;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton updateDoctor;
     // End of variables declaration//GEN-END:variables
