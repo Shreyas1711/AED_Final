@@ -120,6 +120,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         doctorDetails1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        InsuranceJButton = new javax.swing.JButton();
         OrderBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -191,13 +192,21 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 620, 160));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Support");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, -1));
+
+        InsuranceJButton.setText("Insurance");
+        InsuranceJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsuranceJButtonActionPerformed(evt);
+            }
+        });
+        add(InsuranceJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
 
         OrderBtn.setText("Order");
         OrderBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -351,6 +360,25 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jsupport.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void InsuranceJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsuranceJButtonActionPerformed
+        // TODO add your handling code here:
+        if(this.user.getEmployee().isHasInsurance()){
+            
+                    ViewCurrentPlans viewCurrentPlans = new ViewCurrentPlans(userProcessContainer, user, system);
+        userProcessContainer.add("viewCurentPlans", viewCurrentPlans);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+            }
+        else {
+        ViewInsurancePlans viewInsurance = new ViewInsurancePlans(userProcessContainer, user, system);
+        userProcessContainer.add("viewInsurance", viewInsurance);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+        }
+    }//GEN-LAST:event_InsuranceJButtonActionPerformed
+
 
     private void OrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderBtnActionPerformed
         // TODO add your handling code here:
@@ -387,25 +415,45 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         Random random_method = new Random();
-        ArrayList<Emergency> e = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterpriseType("Emergency").getOrganizationDirectory().getEmergencyDirectory().getEmergencyUnitDirectory();
+        
+        ArrayList<Enterprise> e = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList();
+        
         int index = 0;
-        for (int i = 0; i < e.size(); i++)
+        for (Enterprise res:e)
         {
-            index = random_method.nextInt(e.size());
+             System.out.println("sss1" + e);
+              System.out.println("sss1" + res.getEnterpriseType().getValue());
+            if(res.getEnterpriseType().getValue().equals("Emergency")){
+                System.out.println("sss" + res.getName());
+                              index = random_method.nextInt(e.size());
+         
+        }
+         
 
         }
         EmergencyWorkRequest emergencyWorkRequest = new EmergencyWorkRequest();
 
         emergencyWorkRequest.setSender(this.user);
+        
         //            System.out.println("getting sender uname "+bookNewTestWorkRequest.getSender().getUsername());
-        emergencyWorkRequest.setReceiver(e.get(index).getUserAccountDirectory().findUserAccount(e.get(index).getName()));
+        emergencyWorkRequest.setReceiver(system.getUserAccountDirectory().findUserAccount(e.get(index).getName()));
+        
+        System.out.println("asasqqqq555 " + emergencyWorkRequest.getReceiver());
         emergencyWorkRequest.setStatus("emergency assistance needed");
-       // Patient patient = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).ge
-//        System.out.println(patient.getName());
+       
+//         Patient patient = new Patient();
+//        for(int i= 0;i<system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().size();i++){
+//            System.out.println("asok "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().size());
+//            if(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().get(i).getOrganizationDirectory().findOrganization(this.user.getEmployee().getName()).equals(user.getEmployee().getName()))
+//             patient = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().get(i).getOrganizationDirectory().getPatientDirectory().getPatientList().get(0);
+//       
+//        }
+//         System.out.println(patient.getName());
 //        emergencyWorkRequest.setP(patient);
         system.getWorkQueue().addWorkRequest(emergencyWorkRequest);
         JOptionPane.showMessageDialog(this, "Help is on the way!");
     }//GEN-LAST:event_jButton5ActionPerformed
+
 
 // public void getDoctors(String resName){
 //      
@@ -426,6 +474,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 //        }
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton InsuranceJButton;
     private javax.swing.JButton OrderBtn;
     private javax.swing.JTable doctorDetails1;
     private javax.swing.JLabel enterpriseLabel;

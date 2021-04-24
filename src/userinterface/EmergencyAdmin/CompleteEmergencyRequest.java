@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EmergencyWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -30,9 +31,9 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
         this.system=system;
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
          EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
-            if (request.getReceiver().getUsername().equals(this.ua.getUsername())) {
-                pNameTxtField.setText(emergencyWorkRequest.getP().getName());
-                pAgeTxtField.setText(emergencyWorkRequest.getP().getAge());
+            if (request.getReceiver().equals(this.ua)) {
+                pNameTxtField.setText(emergencyWorkRequest.getSender().getEmployee().getName());
+                pAgeTxtField.setText(emergencyWorkRequest.getStatus());
 //                pPhoneTxtField.setText(emergencyWorkRequest.getP().getPhoneNumber());
 //                pAddrTxtField.setText(emergencyWorkRequest.getP().getAddress());
             }
@@ -70,7 +71,7 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
 
         jLabel2.setText("Patient Name:");
 
-        jLabel5.setText("Patient Age:");
+        jLabel5.setText("Patient Status:");
 
         jButton2.setText("MARK AS COMPLETE");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -142,13 +143,16 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
                         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
          EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
-            if (request.getReceiver().getUsername().equals(this.ua.getUsername())) {
+            if (request.getReceiver().equals(this.ua)) {
                 emergencyWorkRequest.setStatus("Help awaited!");
             }
                 }
@@ -158,7 +162,7 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
         // TODO add your handling code here:
                 for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
          EmergencyWorkRequest emergencyWorkRequest = (EmergencyWorkRequest ) request;
-            if (request.getReceiver().getUsername().equals(this.ua.getUsername())) {
+            if (request.getReceiver().equals(this.ua)) {
                 emergencyWorkRequest.setStatus("Help completed");
             }
                 }
