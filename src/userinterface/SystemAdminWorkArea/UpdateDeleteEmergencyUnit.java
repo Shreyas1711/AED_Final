@@ -5,6 +5,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise;
 import Business.UserAccount.UserAccount;
@@ -27,12 +28,17 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
             JPanel userProcessContainer;
     EcoSystem system;
     UserAccount user;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public UpdateDeleteEmergencyUnit(JPanel userProcessContainer, EcoSystem system, UserAccount user) {
         initComponents();
                 this.userProcessContainer = userProcessContainer;
         this.system=system;
         this.user = user;
-        populateTable();
+         if(system.getNetworkList().size()>0 ){
+            populateTable();
+        }else{
+             JOptionPane.showMessageDialog(null, "No Emergency added");
+        }
     }
 
     /**
@@ -47,64 +53,62 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
         addrTxtField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         nameTxtField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         labTable = new javax.swing.JTable();
-        phoneTxtField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
+        setSize(new java.awt.Dimension(156, 43));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addrTxtField.setPreferredSize(new java.awt.Dimension(164, 30));
+        add(addrTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 368, 94, -1));
 
         jLabel3.setText("Username:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 373, -1, -1));
 
-        jLabel2.setText("NAME:");
+        nameTxtField.setPreferredSize(new java.awt.Dimension(164, 30));
+        add(nameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 324, 94, -1));
 
+        jButton3.setBackground(new java.awt.Color(24, 31, 46));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("DELETE");
+        jButton3.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(24, 31, 46));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("UPDATE");
+        jButton2.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LAB DETAILS");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "San francisco" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("<< Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("City Name");
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
 
         labTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name", "UserName", "Password"
+                "Name", "UserName"
             }
         ));
         labTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,86 +118,40 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(labTable);
 
-        jLabel4.setText("PASSWORD:");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 147, 452, 110));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(phoneTxtField)
-                                    .addComponent(addrTxtField)
-                                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(136, 136, 136)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(103, 103, 103))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel6)
-                        .addGap(55, 55, 55)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(addrTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(phoneTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46))
-        );
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel5.setText("Emergency Details");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 390, 37));
+
+        jLabel6.setText("City Name");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, 20));
+
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "San francisco" }));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(140, 30));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 170, -1));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Back");
+        jButton4.setPreferredSize(new java.awt.Dimension(80, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jLabel2.setText("Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 335, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 1 Character copy 3.png")); // NOI18N
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -218,9 +176,9 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
             populateTable();
             nameTxtField.setText("");
             addrTxtField.setText("");
-            phoneTxtField.setText("");
 
         }
+         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -249,37 +207,20 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
             else if (strongUsername() == false) {
         
                 addrTxtField.setText("");
-                JOptionPane.showMessageDialog(null, "should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                JOptionPane.showMessageDialog(null, "Username should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
                 return;
             } 
-            else if (strongPassword() == false) {
-                phoneTxtField.setText("");
-                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
-                return;
-            } else {
+             else {
             }
             lab.setName(nameTxtField.getText());
             ua.getEmployee().setName(nameTxtField.getText());
             ua.setUsername(addrTxtField.getText());
-            ua.setPassword(phoneTxtField.getText());
             populateTable();
             nameTxtField.setText("");
             addrTxtField.setText("");
-            phoneTxtField.setText("");
         }
+         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        populateTable();
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void labTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labTableMouseClicked
         // TODO add your handling code here:
@@ -288,28 +229,44 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
 
         String name = dtm.getValueAt(labTable.getSelectedRow(), 0).toString();
         String address = dtm.getValueAt(labTable.getSelectedRow(), 1).toString();
-        String phone = dtm.getValueAt(labTable.getSelectedRow(), 2).toString();
         nameTxtField.setText(name);
         addrTxtField.setText(address);
-        phoneTxtField.setText(phone);
     }//GEN-LAST:event_labTableMouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        //
+        //        Component[] comps = this.userProcessContainer.getComponents();
+        //        for(Component comp : comps){
+            //            if(comp instanceof SystemAdminWorkAreaJPanel){
+                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+                //                systemAdminWorkAreaJPanel.populateTree();
+                //            }
+            //        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addrTxtField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable labTable;
     private javax.swing.JTextField nameTxtField;
-    private javax.swing.JTextField phoneTxtField;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
@@ -317,8 +274,8 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
         String city = selectedItem.toString();
         DefaultTableModel model = (DefaultTableModel) labTable.getModel();
         model.setRowCount(0);
-        System.out.println("Ap was here " +city);
-        System.out.println("ap here " +system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList());
+//        System.out.println("Ap was here " +city);
+//        System.out.println("ap here " +system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList());
 
         for(Enterprise lab: system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()){
                      System.out.println(lab.getEnterpriseType().getValue().equals("Emergency"));
@@ -326,16 +283,15 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
                      System.out.println(lab.getName());
                      System.out.println(lab.getUserAccountDirectory().findUserAccount(lab.getName()));
                 if(lab.getEnterpriseType().getValue().equals("Emergency")){
-            Object[] row = new Object[3];
+            Object[] row = new Object[2];
             row[0] = lab;
-            System.out.println("LISTING IT" +system.getUserAccountDirectory().getUserAccountList());
-            System.out.println(lab.getName());
+//            System.out.println("LISTING IT" +system.getUserAccountDirectory().getUserAccountList());
+//            System.out.println(lab.getName());
                      for(UserAccount net : system.getUserAccountDirectory().getUserAccountList()){
                          System.out.println(net.getEmployee().getName());
          }
             UserAccount ua = system.getUserAccountDirectory().findUserAccount(lab.getName());
             row[1] = ua.getUsername();
-            row[2] = ua.getPassword();
             model.addRow(row);
  
         }
@@ -349,11 +305,5 @@ public class UpdateDeleteEmergencyUnit extends javax.swing.JPanel {
         return boo;
     }
 
-    private boolean strongPassword() {
-        Pattern pat1;
-        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
-        Matcher m1 = pat1.matcher(phoneTxtField.getText());
-        boolean bat1 = m1.matches();
-        return bat1;
-    }
+  
 }

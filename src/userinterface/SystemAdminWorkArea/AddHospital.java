@@ -5,6 +5,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise;
@@ -30,7 +31,7 @@ public class AddHospital extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
-
+private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public AddHospital(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -46,10 +47,6 @@ public class AddHospital extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         dName = new javax.swing.JTextField();
         dspe = new javax.swing.JTextField();
         dUname = new javax.swing.JTextField();
@@ -57,56 +54,81 @@ public class AddHospital extends javax.swing.JPanel {
         addHospital = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Hospial Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+        dName.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 164, -1));
 
-        jLabel3.setText("Address");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+        dspe.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 164, -1));
 
-        jLabel4.setText("Username");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
+        dUname.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 164, -1));
 
-        jLabel5.setText("Password");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
-        add(dName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 164, -1));
-        add(dspe, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 164, -1));
-        add(dUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 164, -1));
-        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 164, -1));
+        dPass.setPreferredSize(new java.awt.Dimension(15, 30));
+        add(dPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 164, -1));
 
+        addHospital.setBackground(new java.awt.Color(24, 31, 46));
+        addHospital.setForeground(new java.awt.Color(255, 255, 255));
         addHospital.setText("Add Hospital");
+        addHospital.setPreferredSize(new java.awt.Dimension(156, 43));
         addHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addHospitalActionPerformed(evt);
             }
         });
-        add(addHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 360, -1, -1));
+        add(addHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");
+        jButton2.setPreferredSize(new java.awt.Dimension(80, 30));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 37, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setText("Add Hospital");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 37, 155, 37));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 300, 37));
 
-        jLabel6.setText("City Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
-
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "San francisco" }));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(140, 30));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 170, -1));
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 170, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters.png")); // NOI18N
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 410, 310));
+
+        jLabel2.setText("Pharmacy Name");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+
+        jLabel3.setText("Address");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        jLabel4.setText("Username");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+
+        jLabel5.setText("Password");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+
+        jLabel6.setText("City Name");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
@@ -159,11 +181,16 @@ public class AddHospital extends javax.swing.JPanel {
             if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
                 system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Hospital);
                 JOptionPane.showMessageDialog(null, "Hospital created");
+                dName.setText("");
+                dspe.setText("");
+                 dUname.setText("");
+                 dPass.setText("");
             } else {
-                System.out.println("already there");
+               // System.out.println("already there");
                 JOptionPane.showMessageDialog(null, "Hospital already exists");
             }
         }
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_addHospitalActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -200,6 +227,7 @@ public class AddHospital extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 
     private boolean strongUsername() {
