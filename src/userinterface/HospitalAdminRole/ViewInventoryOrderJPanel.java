@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.OrderInventoryWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,6 +32,7 @@ public class ViewInventoryOrderJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.userAccount=userAccount;
         this.system=system;
+        populateRequestTable();
     }
 
     /**
@@ -85,6 +87,11 @@ public class ViewInventoryOrderJPanel extends javax.swing.JPanel {
         });
 
         jButton1.setText("BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,6 +130,12 @@ public class ViewInventoryOrderJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable InventoryRequestJTable;
@@ -136,8 +149,8 @@ public class ViewInventoryOrderJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) InventoryRequestJTable.getModel();
         for (WorkRequest request :  system.getWorkQueue().getWorkRequestList()) {
             
-            OrderInventoryWorkRequest od = (OrderInventoryWorkRequest) request;
-            if (request.getSender().getUsername().equals(userAccount.getUsername())){
+        
+            if (request.getSender().equals(userAccount)){
         model.setRowCount(0);
 //        System.out.println("R is");
             Object[] row = new Object[3];

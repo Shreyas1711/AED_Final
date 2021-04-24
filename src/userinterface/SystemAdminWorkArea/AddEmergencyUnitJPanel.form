@@ -121,7 +121,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Hospial Name"/>
+        <Property name="text" type="java.lang.String" value="Emergency unit Name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -149,7 +149,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="addHospital">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Hospital"/>
+        <Property name="text" type="java.lang.String" value="Add Emergency Unit"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addHospitalActionPerformed"/>
@@ -165,7 +165,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Hospital"/>
+        <Property name="text" type="java.lang.String" value="Add Emergency Unit"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
