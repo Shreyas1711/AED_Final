@@ -55,7 +55,7 @@ public class AddEmergencyUnitJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        jLabel2.setText("Hospial Name");
+        jLabel2.setText("Emergency unit Name");
 
         jLabel3.setText("Address");
 
@@ -63,7 +63,7 @@ public class AddEmergencyUnitJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Password");
 
-        addHospital.setText("Add Hospital");
+        addHospital.setText("Add Emergency Unit");
         addHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addHospitalActionPerformed(evt);
@@ -77,7 +77,7 @@ public class AddEmergencyUnitJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Add Hospital");
+        jLabel1.setText("Add Emergency Unit");
 
         jLabel6.setText("City Name");
 

@@ -59,7 +59,7 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Patient", "Request Date and Time", "Patient Age"
+                "Patient", "Request Date and Time", "Patient Status"
             }
         ));
         jScrollPane1.setViewportView(emergencyRequestJTable);
@@ -146,12 +146,14 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
 //            System.out.println("class: " +request.getSender().getUsername());
 //            System.out.println("class: " +request.getSender().getPassword());
 //            System.out.println("HELLO "+this.userAccount);
- 
-            if (request.getReceiver().getUsername().equals(this.ua.getUsername())) {
+System.out.println("asasqqqq111 " + this.ua.getEmployee().getName());
+  System.out.println("asasqqqq " + request.getReceiver());
+   
+            if (request.getReceiver().equals(this.ua)) {
                 Object[] row = new Object[3];
                 row[0] = request;
                 row[1] = request.getRequestDate();
-                row[2] = emergencyWorkRequest.getP().getAge();
+                row[2] = request.getStatus();
 //                row[3] = emergencyWorkRequest.getP().get();
                 model.addRow(row);
             }

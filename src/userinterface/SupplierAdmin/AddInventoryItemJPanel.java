@@ -145,7 +145,7 @@ public class AddInventoryItemJPanel extends javax.swing.JPanel {
         } else {
             String name = nameTxtField.getText();
             String manufacturer = manufacTxtField.getText();
-            double price = Double.parseDouble(priceTxtField.getText());
+            Integer price = Integer.parseInt(priceTxtField.getText());
             int avail = Integer.parseInt(availTxtField.getText());
             Inventory i = new Inventory(name,manufacturer,price,avail);
                 if( system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getSupplierDirectory().findSupplier(userAccount.getEmployee().getName()).getInventoryDirectory()==null ||

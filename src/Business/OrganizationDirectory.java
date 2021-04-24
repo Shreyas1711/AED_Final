@@ -191,6 +191,18 @@ DoctorDirectory doctorDirectory;
             organization = new Patient();
              organization.setName(name);
              organization.setEnterpriseType1(type);
+              if(getPatientDirectory()==null){
+             PatientDirectory paD =new PatientDirectory();
+             Patient pa = new Patient();
+            ArrayList<Patient> paList = new ArrayList<>();
+            pa.setName(name);
+            //doctor.setSpecialization(random);
+            paList.add(pa);
+            paD.setPatientList(paList);
+            setPatientDirectory(paD);
+            }else{
+                getPatientDirectory().createPatient(name);
+            }
             organizationList.add(organization);
         }
         
@@ -323,7 +335,7 @@ DoctorDirectory doctorDirectory;
             emergencyDirectory.setEmergencyUnitDirectory(emergencyList);
             setEmergencyDirectory(emergencyDirectory);
             }else{
-                getLabDirectory().createLab(name);
+                getEmergencyDirectory().createEmergencyUnit(name);
             }
             organizationList.add(organization);
             
