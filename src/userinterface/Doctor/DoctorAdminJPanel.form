@@ -29,7 +29,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="200" y="80" width="600" height="119"/>
+          <AbsoluteConstraints x="200" y="80" width="680" height="119"/>
         </Constraint>
       </Constraints>
 
@@ -42,7 +42,7 @@
                 <Column editable="true" title="Patient name" type="java.lang.Object"/>
                 <Column editable="true" title="Patient symtoms" type="java.lang.Object"/>
                 <Column editable="true" title="Patient Booking Status" type="java.lang.Object"/>
-                <Column editable="true" title="Scheduled Date" type="java.lang.Object"/>
+                <Column editable="true" title="Booked Time" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -94,7 +94,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="650" y="210" width="-1" height="-1"/>
+          <AbsoluteConstraints x="730" y="210" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -113,12 +113,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="685" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="588" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="673" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -211,7 +211,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="210" y="210" width="-1" height="-1"/>
+          <AbsoluteConstraints x="200" y="210" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

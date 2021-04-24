@@ -122,7 +122,8 @@ public class ViewTestBookingsJPanel extends javax.swing.JPanel {
 //            System.out.println("Receiver would be");
 //            System.out.println(request.getReceiver());
             if (request.getSender().getUsername().equals(userAccount.getUsername())) {
-                BookTestWorkRequest testRequest = (BookTestWorkRequest) request;
+                if(request instanceof BookTestWorkRequest)
+                {                BookTestWorkRequest testRequest = (BookTestWorkRequest) request;
             Object[] row = new Object[4];
             row[0] = request.getReceiver();
             row[1] = request.getRequestDate();
@@ -131,6 +132,7 @@ public class ViewTestBookingsJPanel extends javax.swing.JPanel {
 
 
             model.addRow(row);
+            }
             }
         }
     }

@@ -48,19 +48,17 @@ public void viewTable(){
          //System.out.println("Res len "+ system.getDoctorDirectory().getDoctorList());
        String city = user.getEmployee().getCity();
          
-        if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()!=null){
-        for(Organization org : system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()) {
+        if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()!=null &&system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getDoctorDirectory()!=null){
+        for(Doctor org : system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getDoctorDirectory().getDoctorList()) {
            //System.out.println(org.getEnterpriseType1().getClass()+" "+ org.getEnterpriseType1().getValue());
-                if(org.getEnterpriseType1().getValue().equals("Doctor")){
+              
                     
           
             Object row[] = new Object[3];
             row[0] = org;
-            row[1] = org.getName();
+            row[1] = org.getSpecialization();
             dtm.addRow(row);
-        }else{
-                    System.out.println("nothing");
-                }
+        
         }
         System.out.println("hooos "+hosname);
 //        if(resObj!=null && resObj.getDoctorDirectory()!=null){
@@ -87,6 +85,7 @@ public void viewTable(){
         deleteDoctor = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        deleteDoctor1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,7 +114,7 @@ public void viewTable(){
                 createNewDoctorActionPerformed(evt);
             }
         });
-        add(createNewDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
+        add(createNewDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
 
         deleteDoctor.setBackground(new java.awt.Color(24, 31, 46));
         deleteDoctor.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,7 +125,7 @@ public void viewTable(){
                 deleteDoctorActionPerformed(evt);
             }
         });
-        add(deleteDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, -1, -1));
+        add(deleteDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, -1, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("Manage Doctors");
@@ -141,6 +140,17 @@ public void viewTable(){
             }
         });
         add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        deleteDoctor1.setBackground(new java.awt.Color(24, 31, 46));
+        deleteDoctor1.setForeground(new java.awt.Color(255, 255, 255));
+        deleteDoctor1.setText("Refresh");
+        deleteDoctor1.setPreferredSize(new java.awt.Dimension(156, 43));
+        deleteDoctor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteDoctor1ActionPerformed(evt);
+            }
+        });
+        add(deleteDoctor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createNewDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewDoctorActionPerformed
@@ -182,10 +192,16 @@ public void viewTable(){
             //        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void deleteDoctor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDoctor1ActionPerformed
+        // TODO add your handling code here:
+        viewTable();
+    }//GEN-LAST:event_deleteDoctor1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createNewDoctor;
     private javax.swing.JButton deleteDoctor;
+    private javax.swing.JButton deleteDoctor1;
     private javax.swing.JTable doctorDetails;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton6;

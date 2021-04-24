@@ -31,7 +31,9 @@ public class ViewCurrentPlans extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.userAccount=userAccount;
         this.system=system;
+        
         for (WorkRequest request :  system.getWorkQueue().getWorkRequestList()) {
+            if(request instanceof BuyInsuranceWorkRequest){
             if (request.getSender().getUsername().equals(userAccount.getUsername())){
                 BuyInsuranceWorkRequest buyInsurance = (BuyInsuranceWorkRequest) request;
                 nameTxtField.setText(buyInsurance.getPlan().getName());
@@ -49,7 +51,7 @@ public class ViewCurrentPlans extends javax.swing.JPanel {
                 
 //            System.out.println("Receiver would be");
 //            System.out.println(request.getReceiver());
-            }}
+            }}}
     }
 
     /**

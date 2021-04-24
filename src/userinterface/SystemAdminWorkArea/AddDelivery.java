@@ -105,7 +105,7 @@ public class AddDelivery extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setText("Add Delivery Man");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 300, 37));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 360, 37));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Back");

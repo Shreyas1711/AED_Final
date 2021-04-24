@@ -49,7 +49,7 @@ public class InsuranceAdminJPanel extends javax.swing.JPanel {
 
         userJButton.setBackground(new java.awt.Color(24, 31, 46));
         userJButton.setForeground(new java.awt.Color(255, 255, 255));
-        userJButton.setText("Manage Insurance company");
+        userJButton.setText("Manage Insurance Plan");
         userJButton.setPreferredSize(new java.awt.Dimension(156, 43));
         userJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

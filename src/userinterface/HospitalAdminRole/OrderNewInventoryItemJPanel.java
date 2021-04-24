@@ -93,6 +93,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 79, -1, -1));
         add(QuantityJTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 169, 138, -1));
 
+        SupplierJComboBox.setBackground(new java.awt.Color(255, 255, 255));
         SupplierJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SupplierJComboBoxActionPerformed(evt);
@@ -171,6 +172,7 @@ public class OrderNewInventoryItemJPanel extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 229, -1, -1));
 
+        InventoryItemJComboBox.setBackground(new java.awt.Color(255, 255, 255));
         InventoryItemJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InventoryItemJComboBoxActionPerformed(evt);

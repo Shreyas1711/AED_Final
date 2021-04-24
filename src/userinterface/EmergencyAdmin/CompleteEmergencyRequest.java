@@ -11,6 +11,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EmergencyWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -122,6 +123,7 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
             }
                 }
                          dB4OUtil.storeSystem(system);
+                          JOptionPane.showMessageDialog(this, "Help Awaited.");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -133,6 +135,7 @@ public class CompleteEmergencyRequest extends javax.swing.JPanel {
             }
                 }
              dB4OUtil.storeSystem(system);
+             JOptionPane.showMessageDialog(this, "Help completed");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

@@ -205,7 +205,7 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
                 addcartBtnActionPerformed(evt);
             }
         });
-        add(addcartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
+        add(addcartBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -248,7 +248,7 @@ public class orderMedHospitalJpanel extends javax.swing.JPanel {
                 orderBtn1ActionPerformed(evt);
             }
         });
-        add(orderBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
+        add(orderBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void trackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackBtnActionPerformed

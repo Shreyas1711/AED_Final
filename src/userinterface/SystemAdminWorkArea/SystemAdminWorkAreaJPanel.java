@@ -7,14 +7,30 @@ package userinterface.SystemAdminWorkArea;
 
 import userinterface.HospitalAdminRole.AddPatientJPanel;
 import Business.EcoSystem;
+import Business.Enterprise;
+import Business.Network;
 
 import Business.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Locale;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 
 /**
  *
@@ -28,19 +44,59 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     UserAccount user;
+       Network network;
+        Enterprise enterprise;
+        Organization organization;
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system,UserAccount user) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.system=system;
         this.user = user;
+        
         populateTree();
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
+        
     }
     
     public void populateTree(){
        // DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-       // Add the code for draw your system structure shown by JTree
-       
-        //model.reload();
+      DefaultTreeModel model = (DefaultTreeModel) jTree.getModel();
+        ArrayList<Network> networkList = system.getNetworkList();
+        ArrayList<Enterprise> enterpriseList;
+        ArrayList<Organization> organizationList;
+
+    
+
+        DefaultMutableTreeNode networks = new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        root.removeAllChildren();
+        root.insert(networks, 0);
+
+        DefaultMutableTreeNode networkNode;
+        DefaultMutableTreeNode enterpriseNode;
+        DefaultMutableTreeNode organizationNode;
+
+        for (int i = 0; i < networkList.size(); i++) {
+            network = networkList.get(i);
+            networkNode = new DefaultMutableTreeNode(network.getName());
+            networks.insert(networkNode, i);
+
+            enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+            for (int j = 0; j < enterpriseList.size(); j++) {
+                enterprise = enterpriseList.get(j);
+                enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                networkNode.insert(enterpriseNode, j);
+
+                organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                for (int k = 0; k < organizationList.size(); k++) {
+                    organization = organizationList.get(k);
+                    organizationNode = new DefaultMutableTreeNode(organization.getName());
+                    enterpriseNode.insert(organizationNode, k);
+                }
+            }
+        }
+        model.reload();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +129,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         manPhar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -95,7 +155,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 321, Short.MAX_VALUE))
+                .addGap(0, 635, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -257,6 +317,40 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2.add(jLabel7);
         jLabel7.setBounds(-20, 140, 355, 400);
 
+        jButton9.setBackground(new java.awt.Color(24, 31, 46));
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Chart Enterprises ");
+        jButton9.setPreferredSize(new java.awt.Dimension(156, 43));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton9);
+        jButton9.setBounds(310, 370, 156, 43);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(640, 540, 610, 350);
+
+        jButton10.setBackground(new java.awt.Color(24, 31, 46));
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Chart Organizations");
+        jButton10.setPreferredSize(new java.awt.Dimension(156, 43));
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton10);
+        jButton10.setBounds(820, 370, 156, 43);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(20, 540, 590, 350);
+
         jSplitPane.setRightComponent(jPanel2);
 
         add(jSplitPane, java.awt.BorderLayout.CENTER);
@@ -373,14 +467,267 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manPharActionPerformed
-        
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+      populateData();
+     
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+          populateData1();
+    }//GEN-LAST:event_jButton10ActionPerformed
+     public void populateData() {
+         
+        
+        DefaultPieDataset dataSet = new DefaultPieDataset();
+        int Hospital = 0;
+        int Pharmacy = 0;
+        int Lab = 0;
+        int Delivery = 0;
+        int Insurance = 0;
+        int Emergency = 0;
+        int Supplier = 0;
+        
+        
+        try {
+//            System.out.println("yesss"+ enterprise.getOrganizationDirectory().getOrganizationList());
+//            for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//                if (org.getEnterpriseType1().equals("Doctor")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    Doctor = array1.size();
+//                } else if (org.getEnterpriseType1().equals("Patient")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    Patient = array1.size();
+//                } else if (org.getEnterpriseType1().equals("DeliveryMan")) {
+//                  ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    DeliveryMan = array1.size();
+//                } else if (org.getEnterpriseType1().equals("InsuranceAdmin")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    InsuranceAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("PharamacyAdmin")) {
+//                   ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    PharamacyAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("LabAdmin")){
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    LabAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("SupplierAdmin")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    SupplierAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("EmergencyAdmin")) {
+//                   ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    EmergencyAdmin = array1.size();
+//                }
+//            }
+for(Network network:system.getNetworkList()){
+    System.out.println("nett"+network);
+            for(Enterprise org : network.getEnterpriseDirectory().getEnterpriseList()){
+                   System.out.println("nett"+network.getEnterpriseDirectory().getEnterpriseList());
+               
+//                    for(UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()){
+//                        System.out.println("nett"+ua);
+//                       if(ua.getRole().equals("Doctor")) {
+//                           Doctor++;
+//                       }else if(ua.getRole().equals("Patient")) {
+//                           Patient++;
+//                       }
+//                       else if(ua.getRole().equals("DeliveryMan")) {
+//                           DeliveryMan++;
+//                       }
+//                       else if(ua.getRole().equals("InsuranceAdmin")) {
+//                           InsuranceAdmin++;
+//                       }else if(ua.getRole().equals("PharamacyAdmin")) {
+//                           PharamacyAdmin++;
+//                       }
+//                       else if(ua.getRole().equals("LabAdmin")) {
+//                           LabAdmin++;
+//                       }
+//                       else if(ua.getRole().equals("SupplierAdmin")) {
+//                           SupplierAdmin++;
+//                       }
+//                       else if(ua.getRole().equals("Patient")) {
+//                           EmergencyAdmin++;
+//                       }
+//                       
+//                       
+//                    }
+                     if (org.getEnterpriseType().getValue().equals("Hospital")) {
+                          System.out.println("nett111"+org);
+                    Hospital++;
+                } else if (org.getEnterpriseType().getValue().equals("Pharmacy")) {
+                    Pharmacy++;
+                } else if (org.getEnterpriseType().getValue().equals("Lab")) {
+                  Lab++;
+                } else if (org.getEnterpriseType().getValue().equals("Delivery")) {
+                    Delivery++;
+                } else if (org.getEnterpriseType().getValue().equals("Insurance")) {
+                   Insurance++;
+                } else if (org.getEnterpriseType().getValue().equals("Emergency")){
+                    Emergency++;
+                } else if (org.getEnterpriseType().getValue().equals("Supplier")) {
+                     Supplier++;
+                } 
+                }
+            
+        }
+            System.out.println("asss"+Hospital);
+            dataSet.setValue("Hospitals", Hospital);
+            dataSet.setValue("Pharmacy", Pharmacy);
+            dataSet.setValue("Lab", Lab);
+            dataSet.setValue("Delivery", Delivery);
+            dataSet.setValue("Insurance", Insurance);
+            dataSet.setValue("Emergency", Emergency);
+            dataSet.setValue("Supplier", Supplier);
+//
+//            dataSet.setValue("Doctor", 10);
+//            dataSet.setValue("Patient", 20);
+//            dataSet.setValue("Delivery", 10);
+//            dataSet.setValue("Insurance", 30);
+//            dataSet.setValue("Pharamacy", 10);
+//            dataSet.setValue("Lab", 40);
+//            dataSet.setValue("Supplier", 50);
+//            dataSet.setValue("Emergency", 30);
+            JFreeChart chart = ChartFactory.createPieChart3D("Enterprises", dataSet, true, true, Locale.ENGLISH);
+            chart.setBackgroundPaint(Color.WHITE);
+            chart.getTitle().setPaint(Color.DARK_GRAY);
+            ChartPanel chartpanel = new ChartPanel(chart);
+            chartpanel.setDomainZoomable(true);
+
+            jPanel4.setLayout(new BorderLayout());
+            jPanel4.add(chartpanel, BorderLayout.EAST);
+            jPanel4.setVisible(true);
+        } catch (NullPointerException npe) {
+            JOptionPane.showMessageDialog(null, " No Data to display");
+            return;
+        }
+
+    }
+      public void populateData1() {
+         
+        
+        DefaultPieDataset dataSet = new DefaultPieDataset();
+        int Doctor = 0;
+        int Patient = 0;
+        int DeliveryMan = 0;
+        int InsuranceAdmin = 0;
+        int PharamacyAdmin = 0;
+        int LabAdmin = 0;
+        int SupplierAdmin = 0;
+        int EmergencyAdmin=0;
+        
+        
+        try {
+//            System.out.println("yesss"+ enterprise.getOrganizationDirectory().getOrganizationList());
+//            for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//                if (org.getEnterpriseType1().equals("Doctor")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    Doctor = array1.size();
+//                } else if (org.getEnterpriseType1().equals("Patient")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    Patient = array1.size();
+//                } else if (org.getEnterpriseType1().equals("DeliveryMan")) {
+//                  ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    DeliveryMan = array1.size();
+//                } else if (org.getEnterpriseType1().equals("InsuranceAdmin")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    InsuranceAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("PharamacyAdmin")) {
+//                   ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    PharamacyAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("LabAdmin")){
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    LabAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("SupplierAdmin")) {
+//                    ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    SupplierAdmin = array1.size();
+//                } else if (org.getEnterpriseType1().equals("EmergencyAdmin")) {
+//                   ArrayList<Organization> array1 =  new ArrayList<>();
+//                    array1.add(org);
+//                    EmergencyAdmin = array1.size();
+//                }
+//            }
+for(Network network:system.getNetworkList()){
+    System.out.println("nett"+network);
+            for(Enterprise ent : network.getEnterpriseDirectory().getEnterpriseList()){
+                   System.out.println("nett"+network.getEnterpriseDirectory().getEnterpriseList());
+               
+                   for (Organization org : ent.getOrganizationDirectory().getOrganizationList()) {
+                if (org.getEnterpriseType1().getValue().equals("Doctor")) {
+                   Doctor++;
+                } else if (org.getEnterpriseType1().getValue().equals("Patient")) {
+                    Patient++;
+                } else if (org.getEnterpriseType1().getValue().equals("DeliveryMan")) {
+                 DeliveryMan++;
+                } else if (org.getEnterpriseType1().getValue().equals("InsuranceAdmin")) {
+                   InsuranceAdmin++;
+                } else if (org.getEnterpriseType1().getValue().equals("PharamacyAdmin")) {
+                   PharamacyAdmin++;
+                } else if (org.getEnterpriseType1().getValue().equals("LabAdmin")){
+                    LabAdmin++;
+                } else if (org.getEnterpriseType1().getValue().equals("SupplierAdmin")) {
+                   SupplierAdmin++;
+                } else if (org.getEnterpriseType1().getValue().equals("EmergencyAdmin")) {
+                 EmergencyAdmin++;
+                }
+                
+            
+        }}}
+            System.out.println("asss"+Doctor);
+            dataSet.setValue("Doctor", Doctor);
+            dataSet.setValue("Patient", Patient);
+            dataSet.setValue("Delivery", DeliveryMan);
+            dataSet.setValue("Insurance", InsuranceAdmin);
+            dataSet.setValue("Pharamacy", PharamacyAdmin);
+            dataSet.setValue("Lab", LabAdmin);
+            dataSet.setValue("Emergency", EmergencyAdmin);
+             dataSet.setValue("Supplier", SupplierAdmin);
+//
+//            dataSet.setValue("Doctor", 10);
+//            dataSet.setValue("Patient", 20);
+//            dataSet.setValue("Delivery", 10);
+//            dataSet.setValue("Insurance", 30);
+//            dataSet.setValue("Pharamacy", 10);
+//            dataSet.setValue("Lab", 40);
+//            dataSet.setValue("Supplier", 50);
+//            dataSet.setValue("Emergency", 30);
+            JFreeChart chart = ChartFactory.createPieChart3D("Organizations", dataSet, true, true, Locale.ENGLISH);
+            chart.setBackgroundPaint(Color.WHITE);
+            chart.getTitle().setPaint(Color.DARK_GRAY);
+            ChartPanel chartpanel = new ChartPanel(chart);
+            chartpanel.setDomainZoomable(true);
+
+            jPanel3.setLayout(new BorderLayout());
+            jPanel3.add(chartpanel, BorderLayout.EAST);
+            jPanel3.setVisible(true);
+        } catch (NullPointerException npe) {
+            JOptionPane.showMessageDialog(null, " No Data to display");
+            return;
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageAdmin;
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JButton btnManageNetwork1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -388,12 +735,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JTree jTree;

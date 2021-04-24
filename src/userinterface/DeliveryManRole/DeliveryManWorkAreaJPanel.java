@@ -72,12 +72,12 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 if(request.getDeliveryMan()!=null){
             System.out.println(request.getDeliveryMan());
                 if (request.getDeliveryMan().equals(this.user)) {
-                Object[] row = new Object[2];
+                Object[] row = new Object[4];
                 //row[0] = request;
                 row[0] = request;
-                //row[2] = request.getReceiver();
-                row[1] = request.getStatus();
-                //row[4] = request.getRequestDate();
+                row[1] = request.getReceiver().getEmployee().getName();
+                row[2] = request.getStatus();
+                row[3] = request.getRequestDate();
                 dtm.addRow(row);
             }
                 }
@@ -100,7 +100,6 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         delManTbl = new javax.swing.JTable();
         enterpriseLabel = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -126,7 +125,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, -1, -1));
 
         refreshJButton.setBackground(new java.awt.Color(24, 31, 46));
         refreshJButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,36 +136,26 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 refreshJButtonActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
 
         delManTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Customer Name", "Status"
+                "Customer Name", "Assigned by", "Status", "Date Assigned"
             }
         ));
         jScrollPane1.setViewportView(delManTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 520, 100));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 730, 100));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("Delivery Man Dashboard");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 230, 30));
-
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Back");
-        jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 2 Characters copy.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 470, 250));
@@ -214,26 +203,10 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-        //
-        //        Component[] comps = this.userProcessContainer.getComponents();
-        //        for(Component comp : comps){
-            //            if(comp instanceof SystemAdminWorkAreaJPanel){
-                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-                //                systemAdminWorkAreaJPanel.populateTree();
-                //            }
-            //        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
     private javax.swing.JTable delManTbl;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;

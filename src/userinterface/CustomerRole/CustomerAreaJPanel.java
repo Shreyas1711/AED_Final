@@ -18,6 +18,7 @@ import Business.WorkQueue.BookAppointment;
 import Business.WorkQueue.EmergencyWorkRequest;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import com.toedter.calendar.DateUtil;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -25,6 +26,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -121,13 +123,16 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         doctorDetails1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
         InsuranceJButton = new javax.swing.JButton();
         OrderBtn = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,6 +141,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("Patient Dashboard");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 180, 30));
 
+        restList.setBackground(new java.awt.Color(255, 255, 255));
         restList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restListActionPerformed(evt);
@@ -143,6 +149,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         });
         add(restList, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 293, -1));
 
+        restList1.setBackground(new java.awt.Color(255, 255, 255));
         restList1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restList1ActionPerformed(evt);
@@ -150,12 +157,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         });
         add(restList1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 293, -1));
 
+        restList2.setBackground(new java.awt.Color(255, 255, 255));
         restList2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restList2ActionPerformed(evt);
             }
         });
-        add(restList2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 293, -1));
+        add(restList2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 293, -1));
 
         jButton1.setBackground(new java.awt.Color(24, 31, 46));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,13 +174,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 220, 290, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 290, -1));
 
         jButton2.setBackground(new java.awt.Color(24, 31, 46));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -183,7 +191,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -205,17 +213,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 570, 190));
 
-        jButton3.setBackground(new java.awt.Color(24, 31, 46));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Support");
-        jButton3.setPreferredSize(new java.awt.Dimension(156, 43));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
-
         InsuranceJButton.setBackground(new java.awt.Color(24, 31, 46));
         InsuranceJButton.setForeground(new java.awt.Color(255, 255, 255));
         InsuranceJButton.setText("Insurance");
@@ -225,7 +222,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 InsuranceJButtonActionPerformed(evt);
             }
         });
-        add(InsuranceJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
+        add(InsuranceJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
 
         OrderBtn.setBackground(new java.awt.Color(24, 31, 46));
         OrderBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,7 +233,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 OrderBtnActionPerformed(evt);
             }
         });
-        add(OrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
+        add(OrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(24, 31, 46));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -247,7 +244,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
 
         jButton5.setBackground(new java.awt.Color(24, 31, 46));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
@@ -258,20 +255,23 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, -1, -1));
-
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Back");
-        jButton7.setPreferredSize(new java.awt.Dimension(80, 30));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 1 Character copy 5.png")); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 410, 310));
+
+        jLabel1.setText("Select Time");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+
+        jLabel2.setText("Select Hospital");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+
+        jLabel3.setText("Select Doctor");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        jLabel4.setText("DATE");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 157, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void restListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restListActionPerformed
@@ -301,15 +301,16 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          timings = String.valueOf(restList2.getSelectedItem());
-         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-    Date date = new Date(); 
+          SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            Date d = jDateChooser2.getDate();
          BookAppointment appointment = new BookAppointment();
          appointment.setSender(user);
          System.out.println("ajcjac       "+system.getUserAccountDirectory().findUserAccount(docname));
          appointment.setReceiver( system.getUserAccountDirectory().findUserAccount(docname));
          appointment.setStatus("Appointment Booked");
          appointment.setMessage(jTextArea1.getText());
-         appointment.setRequestDate(date);
+         
+         appointment.setRequestDate(d);
           system.getWorkQueue().addWorkRequest(appointment);
           system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(hospitalName).getOrganizationDirectory().getDoctorDirectory().findDoctor(docname).updateTimings(timings);
            JOptionPane.showMessageDialog(this, "Appointment fixed");
@@ -388,13 +389,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-         ClientJFrame jsupport = new ClientJFrame();
-        jsupport.setVisible(true);
-        jsupport.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void InsuranceJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsuranceJButtonActionPerformed
         // TODO add your handling code here:
         if(this.user.getEmployee().isHasInsurance()){
@@ -445,8 +439,10 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
               System.out.println("sss1" + res.getEnterpriseType().getValue());
             if(res.getEnterpriseType().getValue().equals("Emergency")){
                 System.out.println("sss" + res.getName());
-                              index = random_method.nextInt(e.size());
-                              name3 = system.getUserAccountDirectory().findUserAccount(e.get(index).getName());
+                              ArrayList<Enterprise> array1 =new ArrayList<>();
+                              array1.add(res);
+                              index = random_method.nextInt(array1.size());
+                              name3 = system.getUserAccountDirectory().findUserAccount(array1.get(index).getName());
          
         }
          
@@ -456,39 +452,17 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         emergencyWorkRequest.setSender(this.user);
         
-        //            System.out.println("getting sender uname "+bookNewTestWorkRequest.getSender().getUsername());
+        //            System.out.println("getting sender uname "+name3.getEmployee().getName());
         emergencyWorkRequest.setReceiver(name3);
         
         System.out.println("asasqqqq555 " + emergencyWorkRequest.getReceiver());
         emergencyWorkRequest.setStatus("emergency assistance needed");
        
-//         Patient patient = new Patient();
-//        for(int i= 0;i<system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().size();i++){
-//            System.out.println("asok "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().size());
-//            if(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().get(i).getOrganizationDirectory().findOrganization(this.user.getEmployee().getName()).equals(user.getEmployee().getName()))
-//             patient = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().getEnterpriseList().get(i).getOrganizationDirectory().getPatientDirectory().getPatientList().get(0);
-//       
-//        }
-//         System.out.println(patient.getName());
-//        emergencyWorkRequest.setP(patient);
+
         system.getWorkQueue().addWorkRequest(emergencyWorkRequest);
+        System.out.println("wooook" + system.getWorkQueue().getWorkRequestList());
         JOptionPane.showMessageDialog(this, "Help is on the way!");
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-        //
-        //        Component[] comps = this.userProcessContainer.getComponents();
-        //        for(Component comp : comps){
-            //            if(comp instanceof SystemAdminWorkAreaJPanel){
-                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-                //                systemAdminWorkAreaJPanel.populateTree();
-                //            }
-            //        }
-    }//GEN-LAST:event_jButton7ActionPerformed
 
 
 // public void getDoctors(String resName){
@@ -516,10 +490,13 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

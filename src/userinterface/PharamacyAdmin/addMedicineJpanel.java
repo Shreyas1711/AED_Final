@@ -51,6 +51,7 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         this.pharname = pharname;
         this.user = user;
         System.out.println("user"+pharname);
+        viewTable();
         //this.pharm = pharm;
     }
 
@@ -203,12 +204,12 @@ public class addMedicineJpanel extends javax.swing.JPanel {
         String menuIt = medNameTxt.getText();
         Double ip = Double.valueOf(medPriceTxt.getText());
         PharmacyCatalog m = new PharmacyCatalog();
-        System.out.println("Test "+user.getEmployee().getCity());
-        System.out.println(pharname);
-       System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()));     
-       //System.out.println();
-       System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(pharname).getOrganizationDirectory().getPharmacyAdminDirectory().getPharmacyList());
-       System.out.println("trying "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise("phar").getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy("phar"));
+//        System.out.println("Test "+user.getEmployee().getCity());
+//        System.out.println(pharname);
+//       System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()));     
+//       //System.out.println();
+//       System.out.println(system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(pharname).getOrganizationDirectory().getPharmacyAdminDirectory().getPharmacyList());
+//       System.out.println("trying "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise("phar").getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy("phar"));
         PharamacyAdmin pha = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getPharmacyAdminDirectory().findPharmacy(pharname);
         
         m.setItemName(menuIt);
@@ -241,6 +242,8 @@ public class addMedicineJpanel extends javax.swing.JPanel {
             }
             JOptionPane.showMessageDialog(null, "Medicine Added");
              dB4OUtil.storeSystem(system);  
+             medNameTxt.setText("");
+             medPriceTxt.setText("");
     }//GEN-LAST:event_addMedBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

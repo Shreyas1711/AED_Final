@@ -59,19 +59,20 @@ public void viewTable(){
 //         }
         
        if( system.getWorkQueue()!=null){
-        for(WorkRequest wq :system.getWorkQueue().findWorkRequest(user)) {
+        for(WorkRequest wq :system.getWorkQueue().getWorkRequestList()) {
             // System.out.println("ssssss"+ wq.getSender().getEmployee().getName());
            
                // System.out.println("wq  "+wq );
                 // System.out.println("work  "+work );
                // System.out.println("ssssss"+ wq.getSender().getEmployee().getName());
+               if(wq instanceof BookAppointment){
             Object row[] = new Object[4];
             row[0] = wq;
              row[1] = wq.getMessage();
             row[2] = wq.getStatus();
             row[3] = wq.getRequestDate();
             dtm.addRow(row);
-        }}
+        }}}
     }
 public void viewTable1(String name){
 //        
@@ -83,18 +84,18 @@ public void viewTable1(String name){
          int row1 = doctorDetails.getSelectedRow();
         int column = 0;
         String value = doctorDetails.getModel().getValueAt(row1, column).toString();
-        for(WorkRequest wq : system.getWorkQueue().findWorkRequest(user)) {
+        for(WorkRequest wq : system.getWorkQueue().getWorkRequestList()) {
             if(wq instanceof BookAppointment){
                 System.out.println("reciever "+value);
                 if(wq.getSender().getEmployee().getName().equals(value)){
-                System.out.println("comm" + ((BookAppointment) wq).getComments());
+//                System.out.println("comm" + ((BookAppointment) wq).getComments());
            Object row[] = new Object[5];
             row[0] = wq.getSender().getEmployee().getName();
-            System.out.println("meds are" +((BookAppointment) wq).getMeds().getMedicines());
+//            System.out.println("meds are" +((BookAppointment) wq).getMeds().getMedicines());
             
                 for(int i=1;i<=(((BookAppointment) wq).getMeds().getMedicines()).size();i++){
                     for(String m:((BookAppointment) wq).getMeds().getMedicines()){
-                    System.out.println(((BookAppointment) wq).getMeds().getMedicines());
+//                    System.out.println(((BookAppointment) wq).getMeds().getMedicines());
                     row[i] = m;
                     i++;
             }
@@ -137,12 +138,12 @@ public void viewTable1(String name){
                 {null, null, null, null}
             },
             new String [] {
-                "Patient name", "Patient symtoms", "Patient Booking Status", "Scheduled Date"
+                "Patient name", "Patient symtoms", "Patient Booking Status", "Booked Time"
             }
         ));
         jScrollPane1.setViewportView(doctorDetails);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 600, 119));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 680, 119));
 
         jButton1.setBackground(new java.awt.Color(24, 31, 46));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,7 +154,7 @@ public void viewTable1(String name){
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -174,12 +175,12 @@ public void viewTable1(String name){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 685, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +203,7 @@ public void viewTable1(String name){
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("Doctor Dashboard");

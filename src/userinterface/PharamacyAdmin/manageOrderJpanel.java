@@ -215,7 +215,7 @@ public class manageOrderJpanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(orderTbl);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 395, 104));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 500, 104));
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
@@ -238,8 +238,8 @@ public class manageOrderJpanel extends javax.swing.JPanel {
     private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
         // TODO add your handling code here:
                 int selectedRow = orderTbl.getSelectedRow();
-                System.out.println("Status "+orderTbl.getValueAt(selectedRow, 3)); 
-       if (selectedRow < 0) {
+               // System.out.println("Status "+orderTbl.getValueAt(selectedRow, 3)); 
+       if (selectedRow <0) {
             JOptionPane.showMessageDialog(null, "You must select a row first!");
         } else {
             if (orderTbl.getValueAt(selectedRow, 3).equals("Completed")) {
@@ -278,9 +278,9 @@ public class manageOrderJpanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Selected del++"+selectedPharmacy+"++");
-        System.out.println("Testing "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().getDeliveryList().get(0).getDeliveryManName());
-         System.out.println("Testing111 "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().getDeliveryList().size());
+//        System.out.println("Selected del++"+selectedPharmacy+"++");
+//        System.out.println("Testing "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().getDeliveryList().get(0).getDeliveryManName());
+//         System.out.println("Testing111 "+system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().getDeliveryList().size());
                 int selectedValue = delManCombo.getSelectedIndex();
         if (selectedValue >= 0) {
             DeliveryMan deliveryMan = system.findNetwork(user.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(selectedPharmacy).getOrganizationDirectory().getDeliveryManDirectory().findDeliveryMan(selectedPharmacy);

@@ -37,7 +37,11 @@ public class ViewUpdateDeleteIPlansJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.system = system;
-        populateTable();
+           if(system.findNetwork(userAccount.getEmployee().getCity()).getEnterpriseDirectory().findEnterprise(userAccount.getEmployee().getName()).getOrganizationDirectory().getInsuranceAdminDirectory().findInsuranceAdmin(userAccount.getEmployee().getName()).getInsurancePlanDirectory()!=null ){
+            populateTable();
+        }else{
+             JOptionPane.showMessageDialog(null, "No Insurance Plan added");
+        }
     }
 
     /**

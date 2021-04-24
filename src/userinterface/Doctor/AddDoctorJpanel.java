@@ -154,6 +154,10 @@ public class AddDoctorJpanel extends javax.swing.JPanel {
         if(system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().getOrganizationList()==null ||system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().findOrganization(name)==null){
          system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createOrganization(name, Organization.Type.Doctor,spcl);
          JOptionPane.showMessageDialog(this," Doctor created");
+         dName.setText("");
+            dspe.setText("");
+             dUname.setText("");
+              dPass.setText("");
         }else{
              System.out.println("Already exists");
              JOptionPane.showMessageDialog(this," Doctor already exists");

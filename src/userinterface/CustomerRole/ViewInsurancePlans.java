@@ -46,6 +46,8 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
         insuranceCompanyJComboBox.removeAllItems();
 //        populateInsuranceJComboBox(id);
         populateLogComboBox();
+        jButton2.setVisible(false);
+        
     }
 
     /**
@@ -74,6 +76,7 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,14 +94,14 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
 
         jButton2.setBackground(new java.awt.Color(24, 31, 46));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("PAY");
+        jButton2.setText("Pay");
         jButton2.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, -1, -1));
 
         plansJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,7 +168,6 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
         add(totalTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 500, 160, -1));
 
         jButton3.setBackground(new java.awt.Color(24, 31, 46));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("VIEW PLANS");
         jButton3.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +193,17 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
 
         jLabel9.setIcon(new javax.swing.ImageIcon("/Users/shreyascr/Desktop/AED final/AED_final_project/icons/Humaaans - 1 Character copy 2.png")); // NOI18N
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(24, 31, 46));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Check Plans");
+        jButton4.setPreferredSize(new java.awt.Dimension(156, 43));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void plansJTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plansJTableMouseClicked
@@ -207,6 +220,7 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
         yrsTxtField.setText(String.valueOf(years));
         monthlTxtField.setText(String.valueOf(monthlyPremiumAmount));
         totalTxtField.setText(String.valueOf(totalAmount));
+         jButton2.setVisible(true);
     }//GEN-LAST:event_plansJTableMouseClicked
 
     private void nameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtFieldActionPerformed
@@ -316,7 +330,7 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        populateTable();
+     
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -334,12 +348,18 @@ public class ViewInsurancePlans extends javax.swing.JPanel {
             //        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+           populateTable();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JComboBox<String> insuranceCompanyJComboBox;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

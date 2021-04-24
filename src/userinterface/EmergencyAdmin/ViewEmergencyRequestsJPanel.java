@@ -32,6 +32,7 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.ua=ua;
         this.system=system;
+        
         populateTable();
     }
 
@@ -110,20 +111,6 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 410, 400));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        CompleteEmergencyRequest completeRequest = new CompleteEmergencyRequest(userProcessContainer, ua, system);
-        userProcessContainer.add("CompleteEmergencyRequest", completeRequest);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-         dB4OUtil.storeSystem(system);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        populateTable();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
@@ -138,6 +125,20 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
                 //            }
             //        }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CompleteEmergencyRequest completeRequest = new CompleteEmergencyRequest(userProcessContainer, ua, system);
+        userProcessContainer.add("CompleteEmergencyRequest", completeRequest);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        dB4OUtil.storeSystem(system);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,20 +163,25 @@ public class ViewEmergencyRequestsJPanel extends javax.swing.JPanel {
 //            System.out.println("class: " +request.getSender().getUsername());
 //            System.out.println("class: " +request.getSender().getPassword());
 //            System.out.println("HELLO "+this.userAccount);
-System.out.println("asasqqqq111 " + this.ua.getEmployee().getName());
-  System.out.println("asasqqqq " + request.getReceiver());
-  System.out.println("t/f" +request.getReceiver().equals(this.ua));
-  System.out.println("receiver is " + this.ua);
-   
-            if (request.getReceiver().equals(this.ua)) {
+//System.out.println("asasqqqq111 " + this.ua.getEmployee().getName());
+//  System.out.println("asasqqqq " + request.getReceiver());
+//  System.out.println("t/f" +request.getReceiver().equals(this.ua));
+//  System.out.println("receiver is " + this.ua);
+            if(request instanceof EmergencyWorkRequest){
+                EmergencyWorkRequest er =(EmergencyWorkRequest) request;
+                System.out.println("errrr"+er.getSender());
+                System.out.println("errrr"+er.getStatus());
+                System.out.println("errrr"+er.getRequestDate());
+            if (er.getReceiver().equals(this.ua)) {
+                
                   System.out.println("receiver is " + request.getReceiver());
                 Object[] row = new Object[3];
-                row[0] = request;
-                row[1] = request.getRequestDate();
-                row[2] = request.getStatus();
+                row[0] = er;
+                row[1] = er.getRequestDate();
+                row[2] = er.getStatus();
 //                row[3] = emergencyWorkRequest.getP().get();
                 model.addRow(row);
             }
-    }
+    }}
     }
 }

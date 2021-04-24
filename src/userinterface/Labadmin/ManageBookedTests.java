@@ -161,13 +161,14 @@ public class ManageBookedTests extends javax.swing.JPanel {
 //        System.out.println("R is");
         System.out.println(system.getWorkQueue().getWorkRequestList());
         for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
-            
-            System.out.println("REC "+request.getReceiver().getUsername());
-            System.out.println("class: " +request.getSender().getUsername());
-            System.out.println("class: " +request.getSender().getPassword());
-            System.out.println("HELLO "+this.userAccount);
- 
+//            
+//            System.out.println("REC "+request.getReceiver().getUsername());
+//            System.out.println("class: " +request.getSender().getUsername());
+//            System.out.println("class: " +request.getSender().getPassword());
+//            System.out.println("HELLO "+this.userAccount);
+            if(request instanceof BookTestWorkRequest){
             if (request.getReceiver().getUsername().equals(this.userAccount.getUsername())) {
+                
                 BookTestWorkRequest bookrequest = (BookTestWorkRequest) request;
                 Object[] row = new Object[4];
                 row[0] = request;
@@ -176,6 +177,6 @@ public class ManageBookedTests extends javax.swing.JPanel {
                 row[3] = request.getStatus();
                 model.addRow(row);
             }
-    }
+    }}
     }
 }

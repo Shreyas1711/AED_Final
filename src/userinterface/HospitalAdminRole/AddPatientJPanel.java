@@ -102,6 +102,7 @@ public class AddPatientJPanel extends javax.swing.JPanel {
         jLabel6.setText("City");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "San francisco" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +115,7 @@ public class AddPatientJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("Add Patient");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 230, 30));
 
-        jButton6.setBackground(new java.awt.Color(24, 31, 46));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.setPreferredSize(new java.awt.Dimension(80, 30));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +174,10 @@ public class AddPatientJPanel extends javax.swing.JPanel {
            system.findNetwork(city).getEnterpriseDirectory().findEnterprise(user.getEmployee().getName()).getOrganizationDirectory().createOrganization(name, Organization.Type.Patient,"test");
 //            system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.Patient, "Test");
            JOptionPane.showMessageDialog(this," Patient created");
+           dName.setText("");
+            dspe.setText("");
+             dUname.setText("");
+              dPass.setText("");
         }else{
             System.out.println("Already exists");
             JOptionPane.showMessageDialog(this," Patient Already exists");
@@ -182,6 +187,7 @@ public class AddPatientJPanel extends javax.swing.JPanel {
 //            ArrayList<Patient> patientlist = new ArrayList<>();
 //            patientlist.add(patient);
            // system.getPatientDirectory().setPatientList(patientlist);
+           
         }
                 }
     }//GEN-LAST:event_addPatientActionPerformed

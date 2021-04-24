@@ -174,14 +174,14 @@ public class ManageInsuranceOrdersJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 //        System.out.println("R is");
         System.out.println(system.getWorkQueue().getWorkRequestList());
-        for (WorkRequest request : system.getWorkQueue().findWorkRequest(userAccount)) {
-            
+        for (WorkRequest request : system.getWorkQueue().getWorkRequestList()) {
+            if(request instanceof BuyInsuranceWorkRequest){
             BuyInsuranceWorkRequest buyInsurance = (BuyInsuranceWorkRequest ) request;
-            System.out.println("REC "+request.getReceiver().getUsername());
-            System.out.println("class: " +request.getSender().getUsername());
-            System.out.println("class: " +request.getSender().getPassword());
-            System.out.println("HELLO "+this.userAccount);
- 
+//            System.out.println("REC "+request.getReceiver().getUsername());
+//            System.out.println("class: " +request.getSender().getUsername());
+//            System.out.println("class: " +request.getSender().getPassword());
+//            System.out.println("HELLO "+this.userAccount);
+            
             if (request.getReceiver().getUsername().equals(this.userAccount.getUsername())) {
                 Object[] row = new Object[4];
                 row[0] = request;
@@ -190,6 +190,6 @@ public class ManageInsuranceOrdersJPanel extends javax.swing.JPanel {
                 row[3] = request.getStatus();
                 model.addRow(row);
             }
-    }
+    }}
     }
 }

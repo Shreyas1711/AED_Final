@@ -36,9 +36,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         userJButton = new javax.swing.JButton();
-        manageEmployeeJButton = new javax.swing.JButton();
         manageOrganizationJButton = new javax.swing.JButton();
-        userJButton1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         oderMedBtn = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
@@ -58,17 +56,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 170, -1));
 
-        manageEmployeeJButton.setBackground(new java.awt.Color(24, 31, 46));
-        manageEmployeeJButton.setForeground(new java.awt.Color(255, 255, 255));
-        manageEmployeeJButton.setText("Support Team");
-        manageEmployeeJButton.setPreferredSize(new java.awt.Dimension(156, 43));
-        manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEmployeeJButtonActionPerformed(evt);
-            }
-        });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 170, -1));
-
         manageOrganizationJButton.setBackground(new java.awt.Color(24, 31, 46));
         manageOrganizationJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageOrganizationJButton.setText("Doctors");
@@ -78,22 +65,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 170, -1));
-
-        userJButton1.setBackground(new java.awt.Color(24, 31, 46));
-        userJButton1.setForeground(new java.awt.Color(255, 255, 255));
-        userJButton1.setText("Emergency Team");
-        userJButton1.setPreferredSize(new java.awt.Dimension(156, 43));
-        userJButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userJButton1ActionPerformed(evt);
-            }
-        });
-        add(userJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 170, -1));
+        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 170, -1));
 
         jButton1.setBackground(new java.awt.Color(24, 31, 46));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Manage Inventory");
+        jButton1.setText("Order Inventory");
         jButton1.setPreferredSize(new java.awt.Dimension(156, 43));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,23 +106,12 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_userJButtonActionPerformed
 
-    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
-         AddSupportJPanel addSupportJPanel = new AddSupportJPanel(userProcessContainer, system,user);
-        userProcessContainer.add("CreateSupport", addSupportJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);  
-    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
-
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
         DoctorJPanel doctorJPanel = new DoctorJPanel(userProcessContainer,system,user);
         userProcessContainer.add("Doctors", doctorJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);        
     }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
-
-    private void userJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userJButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -174,11 +139,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton manageOrganizationJButton;
     private javax.swing.JButton oderMedBtn;
     private javax.swing.JButton userJButton;
-    private javax.swing.JButton userJButton1;
     // End of variables declaration//GEN-END:variables
     
 }
