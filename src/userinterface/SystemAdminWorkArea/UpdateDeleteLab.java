@@ -14,6 +14,8 @@ import static Business.Role.Role.RoleType.LabAdmin;
 //import Business.Lab.LabDirectory;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -229,6 +231,7 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         } else {
+            
 //            updateJPanel.setVisible(true);
 //            System.out.println("I am here");
         Object selectedItem = jComboBox1.getSelectedItem();
@@ -238,7 +241,23 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
 //    }
             Enterprise lab = (Enterprise) labTable.getValueAt(selectedRow, 0);
             UserAccount ua = system.getUserAccountDirectory().findUserAccount(lab.getName());
-           
+                               if (!nameTxtField.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name! Name should be string!");
+                nameTxtField.setText("");
+                return;
+            }
+            else if (strongUsername() == false) {
+        
+                addrTxtField.setText("");
+                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                return;
+            } 
+            else if (strongPassword() == false) {
+                phoneTxtField.setText("");
+                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+            }
            lab.setName(nameTxtField.getText());
            ua.getEmployee().setName(nameTxtField.getText());
            ua.setUsername(addrTxtField.getText());
@@ -329,5 +348,20 @@ public class UpdateDeleteLab extends javax.swing.JPanel {
  
         }
         }
+    }
+
+    private boolean strongUsername() {
+        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Matcher m = pat.matcher(addrTxtField.getText());
+        boolean boo = m.matches();
+        return boo;
+    }
+
+    private boolean strongPassword() {
+        Pattern pat1;
+        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = pat1.matcher(phoneTxtField.getText());
+        boolean bat1 = m1.matches();
+        return bat1;
     }
 }

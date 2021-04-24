@@ -12,6 +12,8 @@ import Business.Organization;
 import Business.Role.SupplierAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,12 +26,13 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AddSupplierJPanel
      */
-                JPanel userProcessContainer;
+    JPanel userProcessContainer;
     EcoSystem system;
-    public AddSupplierJPanel(JPanel userProcessContainer,EcoSystem system) {
+
+    public AddSupplierJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
-                this.userProcessContainer=userProcessContainer;
-        this.system=system;
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**
@@ -174,32 +177,70 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
 
     private void addHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHospitalActionPerformed
         // TODO add your handling code here:
-         String name = dName.getText();
+        if (dUname.getText().isEmpty() || dPass.getText().isEmpty() || dName.getText().isEmpty() || dspe.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
+        } else {
+                       if (!dName.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name! Name should be string!");
+                dName.setText("");
+                return;
+            }
+            else if(!dspe.getText().matches("\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)")) {
+                JOptionPane.showMessageDialog(this, "Enter proper Address in the format of 123, abcd");
+                dspe.setText("");
+                return;
+            }
+            else if (strongUsername() == false) {
+                dUname.setText("");
+                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                return;
+            } 
+            else if (strongPassword() == false) {
+                dPass.setText("");
+                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+            }
+            String name = dName.getText();
 //        String address = labAddr.getText();
 //        String phoneNumber = labPhone.getText();
-        String userName = dUname.getText();
-        String pwd= dPass.getText();
-        Object selectedItem = jComboBox1.getSelectedItem();
-        String city = selectedItem.toString();
-        Employee emp = system.getEmployeeDirectory().createEmployee(name);
-        
-        emp.setCity(city);
-        UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, pwd, emp, new SupplierAdminRole());
-        if(system.getNetworkList()==null || system.findNetwork(city)==null){
-            system.createNetwork(city);
-             System.out.println("cities"+system.findNetwork(city));
-        }
-      
-        if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
-        system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Supplier );
-        system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.SupplierAdmin, "Test");
-        }else{
-            System.out.println("already there");
-        }
-        
-        JOptionPane.showMessageDialog(this," Supplier Unit created");
-    }//GEN-LAST:event_addHospitalActionPerformed
+            String userName = dUname.getText();
+            String pwd = dPass.getText();
+            Object selectedItem = jComboBox1.getSelectedItem();
+            String city = selectedItem.toString();
+            Employee emp = system.getEmployeeDirectory().createEmployee(name);
 
+            emp.setCity(city);
+            UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, pwd, emp, new SupplierAdminRole());
+            if (system.getNetworkList() == null || system.findNetwork(city) == null) {
+                system.createNetwork(city);
+                System.out.println("cities" + system.findNetwork(city));
+            }
+
+            if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
+                system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Supplier);
+                system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.SupplierAdmin, "Test");
+            } else {
+                System.out.println("already there");
+            }
+
+            JOptionPane.showMessageDialog(this, " Supplier Unit created");
+        }
+    }//GEN-LAST:event_addHospitalActionPerformed
+    private boolean strongUsername() {
+        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Matcher m = pat.matcher(dUname.getText());
+        boolean boo = m.matches();
+        return boo;
+    }
+
+    private boolean strongPassword() {
+        Pattern pat1;
+        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = pat1.matcher(dPass.getText());
+        boolean bat1 = m1.matches();
+        return bat1;
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
@@ -208,11 +249,11 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
         //
         //        Component[] comps = this.userProcessContainer.getComponents();
         //        for(Component comp : comps){
-            //            if(comp instanceof SystemAdminWorkAreaJPanel){
-                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-                //                systemAdminWorkAreaJPanel.populateTree();
-                //            }
-            //        }
+        //            if(comp instanceof SystemAdminWorkAreaJPanel){
+        //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+        //                systemAdminWorkAreaJPanel.populateTree();
+        //            }
+        //        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
