@@ -13,6 +13,8 @@ import Business.Role.LabAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -27,10 +29,11 @@ public class AddLabJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    public AddLabJPanel(JPanel userProcessContainer,EcoSystem system) {
+
+    public AddLabJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.system=system;
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**
@@ -50,13 +53,19 @@ public class AddLabJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        labPwd = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        labPwd = new javax.swing.JTextField();
 
         jLabel2.setText("Lab Name");
 
         jLabel5.setText("Username:");
+
+        labName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                labNameActionPerformed(evt);
+            }
+        });
 
         addLab.setText("Add lab");
         addLab.addActionListener(new java.awt.event.ActionListener() {
@@ -98,14 +107,14 @@ public class AddLabJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(94, 94, 94)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                        .addGap(63, 63, 63)
-                        .addComponent(labPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(58, 58, 58)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, 0, 170, Short.MAX_VALUE)
+                    .addComponent(labPwd))
+                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 122, Short.MAX_VALUE)
@@ -134,11 +143,11 @@ public class AddLabJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(114, 114, 114)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(27, 27, 27)
+                .addGap(111, 111, 111)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(labPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(addLab)
                 .addGap(32, 32, 32))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,30 +174,50 @@ public class AddLabJPanel extends javax.swing.JPanel {
 
     private void addLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLabActionPerformed
         // TODO add your handling code here:
-        String name = labName.getText();
+        if (labName.getText().isEmpty() || labUName.getText().isEmpty() || labPwd.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all mandatory fields");
+        } else {
+
+            if (!labName.getText().matches("[a-zA-Z_]+")) {
+                JOptionPane.showMessageDialog(this, "Enter proper name");
+                labName.setText("");
+                return;
+            } else if (strongUsername() == false) {
+                labUName.setText("");
+                JOptionPane.showMessageDialog(null, "Username should be in the format of aa_aa@aa.aa");
+                return;
+            } else if (strongPassword() == false) {
+                labPwd.setText("");
+                JOptionPane.showMessageDialog(null, "Password should be at least 6 digits and contain at least one upper case letter, one lower case letter, one digit and one special character $, *, # or &.");
+                return;
+            } else {
+            }
+
+            String name = labName.getText();
 //        String address = labAddr.getText();
 //        String phoneNumber = labPhone.getText();
-        String userName = labUName.getText();
-        String pwd= labPwd.getText();
-        Object selectedItem = jComboBox1.getSelectedItem();
-        String city = selectedItem.toString();
-        Employee emp = system.getEmployeeDirectory().createEmployee(name);
-        
-        emp.setCity(city);
-        UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, pwd, emp, new LabAdminRole());
-        if(system.getNetworkList()==null || system.findNetwork(city)==null){
-            system.createNetwork(city);
-             System.out.println("cities"+system.findNetwork(city));
+            String userName = labUName.getText();
+            String pwd = labPwd.getText();
+            Object selectedItem = jComboBox1.getSelectedItem();
+            String city = selectedItem.toString();
+            Employee emp = system.getEmployeeDirectory().createEmployee(name);
+
+            emp.setCity(city);
+            UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, pwd, emp, new LabAdminRole());
+            if (system.getNetworkList() == null || system.findNetwork(city) == null) {
+                system.createNetwork(city);
+                System.out.println("cities" + system.findNetwork(city));
+            }
+
+            if (system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList() == null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name) == null) {
+                system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Lab);
+                system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.LabAdmin, "Test");
+            } else {
+                System.out.println("already there");
+            }
+
+            JOptionPane.showMessageDialog(this, " Lab created");
         }
-      
-        if(system.findNetwork(city).getEnterpriseDirectory().getEnterpriseList()==null || system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name)==null){
-        system.findNetwork(city).getEnterpriseDirectory().createAndAddEnterprise(name, Enterprise.EnterpriseType.Lab );
-        system.findNetwork(city).getEnterpriseDirectory().findEnterprise(name).getOrganizationDirectory().createOrganization(name, Organization.Type.LabAdmin, "Test");
-        }else{
-            System.out.println("already there");
-        }
-        
-        JOptionPane.showMessageDialog(this," Lab created");
     }//GEN-LAST:event_addLabActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -199,17 +228,34 @@ public class AddLabJPanel extends javax.swing.JPanel {
         //
         //        Component[] comps = this.userProcessContainer.getComponents();
         //        for(Component comp : comps){
-            //            if(comp instanceof SystemAdminWorkAreaJPanel){
-                //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
-                //                systemAdminWorkAreaJPanel.populateTree();
-                //            }
-            //        }
+        //            if(comp instanceof SystemAdminWorkAreaJPanel){
+        //                SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel= (SystemAdminWorkAreaJPanel) comp;
+        //                systemAdminWorkAreaJPanel.populateTree();
+        //            }
+        //        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void labNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labNameActionPerformed
+    private boolean strongUsername() {
+        Pattern pat = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Matcher m = pat.matcher(labUName.getText());
+        boolean boo = m.matches();
+        return boo;
+    }
+
+    private boolean strongPassword() {
+        Pattern pat1;
+        pat1 = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$");
+        Matcher m1 = pat1.matcher(labPwd.getText());
+        boolean bat1 = m1.matches();
+        return bat1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addLab;
